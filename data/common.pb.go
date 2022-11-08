@@ -20,6 +20,114 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// FillPolicy describes how the volume of an order will be filled
+type FillPolicy int32
+
+const (
+	FillPolicy_FillOrKill FillPolicy = 0 // An order can be executed in the specified volume only.
+	// If the necessary amount of a financial instrument is currently unavailable in the market, the order will not be executed.
+	// The desired volume can be made up of several available offers.
+	// The possibility of using FOK orders is determined at the trade server.
+	FillPolicy_ImmediateOrCancel FillPolicy = 1 // A trader agrees to execute a deal with the volume maximally available in the market within that indicated in the order.
+	// If the request cannot be filled completely, an order with the available volume will be executed, and the remaining volume will be canceled.
+	// The possibility of using IOC orders is determined at the trade server.
+	FillPolicy_Return FillPolicy = 2 // In case of partial filling, an order with remaining volume is not canceled but processed further.
+)
+
+// Enum value maps for FillPolicy.
+var (
+	FillPolicy_name = map[int32]string{
+		0: "FillOrKill",
+		1: "ImmediateOrCancel",
+		2: "Return",
+	}
+	FillPolicy_value = map[string]int32{
+		"FillOrKill":        0,
+		"ImmediateOrCancel": 1,
+		"Return":            2,
+	}
+)
+
+func (x FillPolicy) Enum() *FillPolicy {
+	p := new(FillPolicy)
+	*p = x
+	return p
+}
+
+func (x FillPolicy) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (FillPolicy) Descriptor() protoreflect.EnumDescriptor {
+	return file_protos_edge_data_common_proto_enumTypes[0].Descriptor()
+}
+
+func (FillPolicy) Type() protoreflect.EnumType {
+	return &file_protos_edge_data_common_proto_enumTypes[0]
+}
+
+func (x FillPolicy) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use FillPolicy.Descriptor instead.
+func (FillPolicy) EnumDescriptor() ([]byte, []int) {
+	return file_protos_edge_data_common_proto_rawDescGZIP(), []int{0}
+}
+
+// ExpirationPolicy describes the order validity period, after which it may be cancelled
+type ExpirationPolicy int32
+
+const (
+	ExpirationPolicy_UntilCancelled   ExpirationPolicy = 0 // Good till cancel order
+	ExpirationPolicy_Today            ExpirationPolicy = 1 // Good till current trade day order
+	ExpirationPolicy_TimeSpecified    ExpirationPolicy = 2 // Good till expired order
+	ExpirationPolicy_TimeSpecifiedDay ExpirationPolicy = 3 // The order will be effective till 23:59:59 of the specified day. If this time is outside a trading session, the order expires in the nearest trading time.
+)
+
+// Enum value maps for ExpirationPolicy.
+var (
+	ExpirationPolicy_name = map[int32]string{
+		0: "UntilCancelled",
+		1: "Today",
+		2: "TimeSpecified",
+		3: "TimeSpecifiedDay",
+	}
+	ExpirationPolicy_value = map[string]int32{
+		"UntilCancelled":   0,
+		"Today":            1,
+		"TimeSpecified":    2,
+		"TimeSpecifiedDay": 3,
+	}
+)
+
+func (x ExpirationPolicy) Enum() *ExpirationPolicy {
+	p := new(ExpirationPolicy)
+	*p = x
+	return p
+}
+
+func (x ExpirationPolicy) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (ExpirationPolicy) Descriptor() protoreflect.EnumDescriptor {
+	return file_protos_edge_data_common_proto_enumTypes[1].Descriptor()
+}
+
+func (ExpirationPolicy) Type() protoreflect.EnumType {
+	return &file_protos_edge_data_common_proto_enumTypes[1]
+}
+
+func (x ExpirationPolicy) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use ExpirationPolicy.Descriptor instead.
+func (ExpirationPolicy) EnumDescriptor() ([]byte, []int) {
+	return file_protos_edge_data_common_proto_rawDescGZIP(), []int{1}
+}
+
 // NameResult contains information uniquely identifying a CLI edge process that is currently running.
 // This information will be used to distinguish between processes of the same type
 type NameResult struct {
@@ -146,10 +254,20 @@ var file_protos_edge_data_common_proto_rawDesc = []byte{
 	0x79, 0x70, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x03,
 	0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x22, 0x1d, 0x0a,
 	0x07, 0x44, 0x65, 0x63, 0x69, 0x6d, 0x61, 0x6c, 0x12, 0x12, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x42, 0x27, 0x5a, 0x25,
-	0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x78, 0x65, 0x66, 0x69, 0x6e,
-	0x6f, 0x2f, 0x71, 0x75, 0x61, 0x6e, 0x74, 0x75, 0x6d, 0x2d, 0x63, 0x6c, 0x69, 0x2d, 0x67, 0x6f,
-	0x2f, 0x64, 0x61, 0x74, 0x61, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x2a, 0x3f, 0x0a, 0x0a,
+	0x46, 0x69, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x12, 0x0e, 0x0a, 0x0a, 0x46, 0x69,
+	0x6c, 0x6c, 0x4f, 0x72, 0x4b, 0x69, 0x6c, 0x6c, 0x10, 0x00, 0x12, 0x15, 0x0a, 0x11, 0x49, 0x6d,
+	0x6d, 0x65, 0x64, 0x69, 0x61, 0x74, 0x65, 0x4f, 0x72, 0x43, 0x61, 0x6e, 0x63, 0x65, 0x6c, 0x10,
+	0x01, 0x12, 0x0a, 0x0a, 0x06, 0x52, 0x65, 0x74, 0x75, 0x72, 0x6e, 0x10, 0x02, 0x2a, 0x5a, 0x0a,
+	0x10, 0x45, 0x78, 0x70, 0x69, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x50, 0x6f, 0x6c, 0x69, 0x63,
+	0x79, 0x12, 0x12, 0x0a, 0x0e, 0x55, 0x6e, 0x74, 0x69, 0x6c, 0x43, 0x61, 0x6e, 0x63, 0x65, 0x6c,
+	0x6c, 0x65, 0x64, 0x10, 0x00, 0x12, 0x09, 0x0a, 0x05, 0x54, 0x6f, 0x64, 0x61, 0x79, 0x10, 0x01,
+	0x12, 0x11, 0x0a, 0x0d, 0x54, 0x69, 0x6d, 0x65, 0x53, 0x70, 0x65, 0x63, 0x69, 0x66, 0x69, 0x65,
+	0x64, 0x10, 0x02, 0x12, 0x14, 0x0a, 0x10, 0x54, 0x69, 0x6d, 0x65, 0x53, 0x70, 0x65, 0x63, 0x69,
+	0x66, 0x69, 0x65, 0x64, 0x44, 0x61, 0x79, 0x10, 0x03, 0x42, 0x27, 0x5a, 0x25, 0x67, 0x69, 0x74,
+	0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x78, 0x65, 0x66, 0x69, 0x6e, 0x6f, 0x2f, 0x71,
+	0x75, 0x61, 0x6e, 0x74, 0x75, 0x6d, 0x2d, 0x63, 0x6c, 0x69, 0x2d, 0x67, 0x6f, 0x2f, 0x64, 0x61,
+	0x74, 0x61, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -164,10 +282,13 @@ func file_protos_edge_data_common_proto_rawDescGZIP() []byte {
 	return file_protos_edge_data_common_proto_rawDescData
 }
 
+var file_protos_edge_data_common_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
 var file_protos_edge_data_common_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_protos_edge_data_common_proto_goTypes = []interface{}{
-	(*NameResult)(nil), // 0: protos.edge.data.NameResult
-	(*Decimal)(nil),    // 1: protos.edge.data.Decimal
+	(FillPolicy)(0),       // 0: protos.edge.data.FillPolicy
+	(ExpirationPolicy)(0), // 1: protos.edge.data.ExpirationPolicy
+	(*NameResult)(nil),    // 2: protos.edge.data.NameResult
+	(*Decimal)(nil),       // 3: protos.edge.data.Decimal
 }
 var file_protos_edge_data_common_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
@@ -213,13 +334,14 @@ func file_protos_edge_data_common_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_protos_edge_data_common_proto_rawDesc,
-			NumEnums:      0,
+			NumEnums:      2,
 			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
 		GoTypes:           file_protos_edge_data_common_proto_goTypes,
 		DependencyIndexes: file_protos_edge_data_common_proto_depIdxs,
+		EnumInfos:         file_protos_edge_data_common_proto_enumTypes,
 		MessageInfos:      file_protos_edge_data_common_proto_msgTypes,
 	}.Build()
 	File_protos_edge_data_common_proto = out.File
