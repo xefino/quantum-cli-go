@@ -572,3 +572,606 @@ var _ = Describe("data.ExpirationPolicy Marshal/Unmarshal Tests", func() {
 		Entry("2 - Works", 2, ExpirationPolicy_TimeSpecified),
 		Entry("3 - Works", 3, ExpirationPolicy_TimeSpecifiedDay))
 })
+
+var _ = Describe("data.Deal.Type Marshal/Unmarshal Tests", func() {
+
+	// Test that converting the data.Deal.Type enum to JSON works for all values
+	DescribeTable("MarshalJSON Tests",
+		func(enum Deal_Type, value string) {
+			data, err := json.Marshal(enum)
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(string(data)).Should(Equal(value))
+		},
+		Entry("Buy - Works", Deal_Buy, "\"Buy\""),
+		Entry("Sell - Works", Deal_Sell, "\"Sell\""),
+		Entry("Balance - Works", Deal_Balance, "\"Balance\""),
+		Entry("Credit - Works", Deal_Credit, "\"Credit\""),
+		Entry("Charge - Works", Deal_Charge, "\"Charge\""),
+		Entry("Correction - Works", Deal_Correction, "\"Correction\""),
+		Entry("Bonus - Works", Deal_Bonus, "\"Bonus\""),
+		Entry("Commission - Works", Deal_Commission, "\"Commission\""),
+		Entry("CommissionDaily - Works", Deal_CommissionDaily, "\"CommissionDaily\""),
+		Entry("CommissionMonthly - Works", Deal_CommissionMonthly, "\"CommissionMonthly\""),
+		Entry("CommissionAgentDaily - Works", Deal_CommissionAgentDaily, "\"CommissionAgentDaily\""),
+		Entry("CommissionAgentMonthly - Works", Deal_CommissionAgentMonthly, "\"CommissionAgentMonthly\""),
+		Entry("Interest - Works", Deal_Interest, "\"Interest\""),
+		Entry("BuyCancelled - Works", Deal_BuyCancelled, "\"BuyCancelled\""),
+		Entry("SellCancelled - Works", Deal_SellCancelled, "\"SellCancelled\""),
+		Entry("Dividend - Works", Deal_Dividend, "\"Dividend\""),
+		Entry("Franked - Works", Deal_Franked, "\"Franked\""),
+		Entry("Tax - Works", Deal_Tax, "\"Tax\""))
+
+	// Test that converting the data.Deal.Type enum to a CSV column works for all values
+	DescribeTable("MarshalCSV Tests",
+		func(enum Deal_Type, value string) {
+			data, err := enum.MarshalCSV()
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(string(data)).Should(Equal(value))
+		},
+		Entry("Buy - Works", Deal_Buy, "Buy"),
+		Entry("Sell - Works", Deal_Sell, "Sell"),
+		Entry("Balance - Works", Deal_Balance, "Balance"),
+		Entry("Credit - Works", Deal_Credit, "Credit"),
+		Entry("Charge - Works", Deal_Charge, "Charge"),
+		Entry("Correction - Works", Deal_Correction, "Correction"),
+		Entry("Bonus - Works", Deal_Bonus, "Bonus"),
+		Entry("Commission - Works", Deal_Commission, "Commission"),
+		Entry("CommissionDaily - Works", Deal_CommissionDaily, "CommissionDaily"),
+		Entry("CommissionMonthly - Works", Deal_CommissionMonthly, "CommissionMonthly"),
+		Entry("CommissionAgentDaily - Works", Deal_CommissionAgentDaily, "CommissionAgentDaily"),
+		Entry("CommissionAgentMonthly - Works", Deal_CommissionAgentMonthly, "CommissionAgentMonthly"),
+		Entry("Interest - Works", Deal_Interest, "Interest"),
+		Entry("BuyCancelled - Works", Deal_BuyCancelled, "BuyCancelled"),
+		Entry("SellCancelled - Works", Deal_SellCancelled, "SellCancelled"),
+		Entry("Dividend - Works", Deal_Dividend, "Dividend"),
+		Entry("Franked - Works", Deal_Franked, "Franked"),
+		Entry("Tax - Works", Deal_Tax, "Tax"))
+
+	// Test that converting the data.Deal.Type enum to a YAML node works for all values
+	DescribeTable("MarshalYAML - Works",
+		func(enum Deal_Type, value string) {
+			data, err := enum.MarshalYAML()
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(data).Should(Equal(value))
+		},
+		Entry("Buy - Works", Deal_Buy, "Buy"),
+		Entry("Sell - Works", Deal_Sell, "Sell"),
+		Entry("Balance - Works", Deal_Balance, "Balance"),
+		Entry("Credit - Works", Deal_Credit, "Credit"),
+		Entry("Charge - Works", Deal_Charge, "Charge"),
+		Entry("Correction - Works", Deal_Correction, "Correction"),
+		Entry("Bonus - Works", Deal_Bonus, "Bonus"),
+		Entry("Commission - Works", Deal_Commission, "Commission"),
+		Entry("CommissionDaily - Works", Deal_CommissionDaily, "CommissionDaily"),
+		Entry("CommissionMonthly - Works", Deal_CommissionMonthly, "CommissionMonthly"),
+		Entry("CommissionAgentDaily - Works", Deal_CommissionAgentDaily, "CommissionAgentDaily"),
+		Entry("CommissionAgentMonthly - Works", Deal_CommissionAgentMonthly, "CommissionAgentMonthly"),
+		Entry("Interest - Works", Deal_Interest, "Interest"),
+		Entry("BuyCancelled - Works", Deal_BuyCancelled, "BuyCancelled"),
+		Entry("SellCancelled - Works", Deal_SellCancelled, "SellCancelled"),
+		Entry("Dividend - Works", Deal_Dividend, "Dividend"),
+		Entry("Franked - Works", Deal_Franked, "Franked"),
+		Entry("Tax - Works", Deal_Tax, "Tax"))
+
+	// Test that converting the data.Deal.Type enum to a DynamoDB AttributeVAlue works for all values
+	DescribeTable("MarshalDynamoDBAttributeValue - Works",
+		func(enum Deal_Type, value string) {
+			data, err := attributevalue.Marshal(enum)
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(data.(*types.AttributeValueMemberS).Value).Should(Equal(value))
+		},
+		Entry("Buy - Works", Deal_Buy, "Buy"),
+		Entry("Sell - Works", Deal_Sell, "Sell"),
+		Entry("Balance - Works", Deal_Balance, "Balance"),
+		Entry("Credit - Works", Deal_Credit, "Credit"),
+		Entry("Charge - Works", Deal_Charge, "Charge"),
+		Entry("Correction - Works", Deal_Correction, "Correction"),
+		Entry("Bonus - Works", Deal_Bonus, "Bonus"),
+		Entry("Commission - Works", Deal_Commission, "Commission"),
+		Entry("CommissionDaily - Works", Deal_CommissionDaily, "CommissionDaily"),
+		Entry("CommissionMonthly - Works", Deal_CommissionMonthly, "CommissionMonthly"),
+		Entry("CommissionAgentDaily - Works", Deal_CommissionAgentDaily, "CommissionAgentDaily"),
+		Entry("CommissionAgentMonthly - Works", Deal_CommissionAgentMonthly, "CommissionAgentMonthly"),
+		Entry("Interest - Works", Deal_Interest, "Interest"),
+		Entry("BuyCancelled - Works", Deal_BuyCancelled, "BuyCancelled"),
+		Entry("SellCancelled - Works", Deal_SellCancelled, "SellCancelled"),
+		Entry("Dividend - Works", Deal_Dividend, "Dividend"),
+		Entry("Franked - Works", Deal_Franked, "Franked"),
+		Entry("Tax - Works", Deal_Tax, "Tax"))
+
+	// Test that converting the data.Deal.Type enum to an SQL value for all values
+	DescribeTable("Value Tests",
+		func(enum Deal_Type, value string) {
+			data, err := enum.Value()
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(data).Should(Equal(value))
+		},
+		Entry("Buy - Works", Deal_Buy, "Buy"),
+		Entry("Sell - Works", Deal_Sell, "Sell"),
+		Entry("Balance - Works", Deal_Balance, "Balance"),
+		Entry("Credit - Works", Deal_Credit, "Credit"),
+		Entry("Charge - Works", Deal_Charge, "Charge"),
+		Entry("Correction - Works", Deal_Correction, "Correction"),
+		Entry("Bonus - Works", Deal_Bonus, "Bonus"),
+		Entry("Commission - Works", Deal_Commission, "Commission"),
+		Entry("CommissionDaily - Works", Deal_CommissionDaily, "CommissionDaily"),
+		Entry("CommissionMonthly - Works", Deal_CommissionMonthly, "CommissionMonthly"),
+		Entry("CommissionAgentDaily - Works", Deal_CommissionAgentDaily, "CommissionAgentDaily"),
+		Entry("CommissionAgentMonthly - Works", Deal_CommissionAgentMonthly, "CommissionAgentMonthly"),
+		Entry("Interest - Works", Deal_Interest, "Interest"),
+		Entry("BuyCancelled - Works", Deal_BuyCancelled, "BuyCancelled"),
+		Entry("SellCancelled - Works", Deal_SellCancelled, "SellCancelled"),
+		Entry("Dividend - Works", Deal_Dividend, "Dividend"),
+		Entry("Franked - Works", Deal_Franked, "Franked"),
+		Entry("Tax - Works", Deal_Tax, "Tax"))
+
+	// Test that attempting to deserialize a data.Deal.Type will fail and return an error if the value
+	// cannot be deserialized from a JSON value to a string
+	It("UnmarshalJSON fails - Error", func() {
+
+		// Attempt to convert a non-parseable string value into a data.Deal.Type; this should return an error
+		enum := new(Deal_Type)
+		err := enum.UnmarshalJSON([]byte("derp"))
+
+		// Verify the error
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a data.Deal_Type"))
+	})
+
+	// Test that attempting to deserialize a data.Deal.Type will fail and return an error if the value
+	// cannot be converted to either the name value or integer value of the enum option
+	It("UnmarshalJSON - Value is invalid - Error", func() {
+
+		// Attempt to convert a fake string value into a data.Deal.Type; this should return an error
+		enum := new(Deal_Type)
+		err := enum.UnmarshalJSON([]byte("\"derp\""))
+
+		// Verify the error
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a data.Deal_Type"))
+	})
+
+	// Test the conditions under which values should be convertible to a data.Deal.Type
+	DescribeTable("UnmarshalJSON Tests",
+		func(value string, shouldBe Deal_Type) {
+
+			// Attempt to convert the string value into a data.Deal.Type; this should not fail
+			var enum Deal_Type
+			err := enum.UnmarshalJSON([]byte(value))
+
+			// Verify that the deserialization was successful
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(shouldBe))
+		},
+		Entry("Buy - Works", "\"Buy\"", Deal_Buy),
+		Entry("Sell - Works", "\"Sell\"", Deal_Sell),
+		Entry("Balance - Works", "\"Balance\"", Deal_Balance),
+		Entry("Credit - Works", "\"Credit\"", Deal_Credit),
+		Entry("Charge - Works", "\"Charge\"", Deal_Charge),
+		Entry("Correction - Works", "\"Correction\"", Deal_Correction),
+		Entry("Bonus - Works", "\"Bonus\"", Deal_Bonus),
+		Entry("Commission", "\"Commission\"", Deal_Commission),
+		Entry("CommissionDaily", "\"CommissionDaily\"", Deal_CommissionDaily),
+		Entry("CommissionMonthly", "\"CommissionMonthly\"", Deal_CommissionMonthly),
+		Entry("CommissionAgentDaily", "\"CommissionAgentDaily\"", Deal_CommissionAgentDaily),
+		Entry("CommissionAgentMonthly", "\"CommissionAgentMonthly\"", Deal_CommissionAgentMonthly),
+		Entry("Interest", "\"Interest\"", Deal_Interest),
+		Entry("BuyCancelled", "\"BuyCancelled\"", Deal_BuyCancelled),
+		Entry("SellCancelled", "\"SellCancelled\"", Deal_SellCancelled),
+		Entry("Dividend", "\"Dividend\"", Deal_Dividend),
+		Entry("Franked", "\"Franked\"", Deal_Franked),
+		Entry("Tax", "\"Tax\"", Deal_Tax),
+		Entry("0 - Works", "\"0\"", Deal_Buy),
+		Entry("1 - Works", "\"1\"", Deal_Sell),
+		Entry("2 - Works", "\"2\"", Deal_Balance),
+		Entry("3 - Works", "\"3\"", Deal_Credit),
+		Entry("4 - Works", "\"4\"", Deal_Charge),
+		Entry("5 - Works", "\"5\"", Deal_Correction),
+		Entry("6 - Works", "\"6\"", Deal_Bonus),
+		Entry("7 - Works", "\"7\"", Deal_Commission),
+		Entry("8 - Works", "\"8\"", Deal_CommissionDaily),
+		Entry("9 - Works", "\"9\"", Deal_CommissionMonthly),
+		Entry("10 - Works", "\"10\"", Deal_CommissionAgentDaily),
+		Entry("11 - Works", "\"11\"", Deal_CommissionAgentMonthly),
+		Entry("12 - Works", "\"12\"", Deal_Interest),
+		Entry("13 - Works", "\"13\"", Deal_BuyCancelled),
+		Entry("14 - Works", "\"14\"", Deal_SellCancelled),
+		Entry("15 - Works", "\"15\"", Deal_Dividend),
+		Entry("16 - Works", "\"16\"", Deal_Franked),
+		Entry("17 - Works", "\"17\"", Deal_Tax))
+
+	// Test that attempting to deserialize a data.Deal.Type will fail and return an error if the value
+	// cannot be converted to either the name value or integer value of the enum option
+	It("UnmarshalCSV - Value is empty - Error", func() {
+
+		// Attempt to convert a fake string value into a data.Deal.Type; this should return an error
+		enum := new(Deal_Type)
+		err := enum.UnmarshalCSV("")
+
+		// Verify the error
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"\" cannot be mapped to a data.Deal_Type"))
+	})
+
+	// Test the conditions under which values should be convertible to a data.Deal.Type
+	DescribeTable("UnmarshalCSV Tests",
+		func(value string, shouldBe Deal_Type) {
+
+			// Attempt to convert the value into a data.Deal.Type; this should not fail
+			var enum Deal_Type
+			err := enum.UnmarshalCSV(value)
+
+			// Verify that the deserialization was successful
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(shouldBe))
+		},
+		Entry("Buy - Works", "Buy", Deal_Buy),
+		Entry("Sell - Works", "Sell", Deal_Sell),
+		Entry("Balance - Works", "Balance", Deal_Balance),
+		Entry("Credit - Works", "Credit", Deal_Credit),
+		Entry("Charge - Works", "Charge", Deal_Charge),
+		Entry("Correction - Works", "Correction", Deal_Correction),
+		Entry("Bonus - Works", "Bonus", Deal_Bonus),
+		Entry("Commission", "Commission", Deal_Commission),
+		Entry("CommissionDaily", "CommissionDaily", Deal_CommissionDaily),
+		Entry("CommissionMonthly", "CommissionMonthly", Deal_CommissionMonthly),
+		Entry("CommissionAgentDaily", "CommissionAgentDaily", Deal_CommissionAgentDaily),
+		Entry("CommissionAgentMonthly", "CommissionAgentMonthly", Deal_CommissionAgentMonthly),
+		Entry("Interest", "Interest", Deal_Interest),
+		Entry("BuyCancelled", "BuyCancelled", Deal_BuyCancelled),
+		Entry("SellCancelled", "SellCancelled", Deal_SellCancelled),
+		Entry("Dividend", "Dividend", Deal_Dividend),
+		Entry("Franked", "Franked", Deal_Franked),
+		Entry("Tax", "Tax", Deal_Tax),
+		Entry("0 - Works", "0", Deal_Buy),
+		Entry("1 - Works", "1", Deal_Sell),
+		Entry("2 - Works", "2", Deal_Balance),
+		Entry("3 - Works", "3", Deal_Credit),
+		Entry("4 - Works", "4", Deal_Charge),
+		Entry("5 - Works", "5", Deal_Correction),
+		Entry("6 - Works", "6", Deal_Bonus),
+		Entry("7 - Works", "7", Deal_Commission),
+		Entry("8 - Works", "8", Deal_CommissionDaily),
+		Entry("9 - Works", "9", Deal_CommissionMonthly),
+		Entry("10 - Works", "10", Deal_CommissionAgentDaily),
+		Entry("11 - Works", "11", Deal_CommissionAgentMonthly),
+		Entry("12 - Works", "12", Deal_Interest),
+		Entry("13 - Works", "13", Deal_BuyCancelled),
+		Entry("14 - Works", "14", Deal_SellCancelled),
+		Entry("15 - Works", "15", Deal_Dividend),
+		Entry("16 - Works", "16", Deal_Franked),
+		Entry("17 - Works", "17", Deal_Tax))
+
+	// Test that attempting to deserialize a data.Deal.Type will fail and return an error if the YAML
+	// node does not represent a scalar value
+	It("UnmarshalYAML - Node type is not scalar - Error", func() {
+		enum := new(Deal_Type)
+		err := enum.UnmarshalYAML(&yaml.Node{Kind: yaml.AliasNode})
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("YAML node had an invalid kind (expected scalar value)"))
+	})
+
+	// Test that attempting to deserialize a data.Deal.Type will fail and return an error if the YAML
+	// node value cannot be converted to either the name value or integer value of the enum option
+	It("UnmarshalYAML - Parse fails - Error", func() {
+		enum := new(Deal_Type)
+		err := enum.UnmarshalYAML(&yaml.Node{Kind: yaml.ScalarNode, Value: "derp"})
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a data.Deal_Type"))
+	})
+
+	// Test the conditions under which YAML node values should be convertible to a data.Deal.Type
+	DescribeTable("UnmarshalYAML Tests",
+		func(value string, shouldBe Deal_Type) {
+			var enum Deal_Type
+			err := enum.UnmarshalYAML(&yaml.Node{Kind: yaml.ScalarNode, Value: value})
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(shouldBe))
+		},
+		Entry("Buy - Works", "Buy", Deal_Buy),
+		Entry("Sell - Works", "Sell", Deal_Sell),
+		Entry("Balance - Works", "Balance", Deal_Balance),
+		Entry("Credit - Works", "Credit", Deal_Credit),
+		Entry("Charge - Works", "Charge", Deal_Charge),
+		Entry("Correction - Works", "Correction", Deal_Correction),
+		Entry("Bonus - Works", "Bonus", Deal_Bonus),
+		Entry("Commission", "Commission", Deal_Commission),
+		Entry("CommissionDaily", "CommissionDaily", Deal_CommissionDaily),
+		Entry("CommissionMonthly", "CommissionMonthly", Deal_CommissionMonthly),
+		Entry("CommissionAgentDaily", "CommissionAgentDaily", Deal_CommissionAgentDaily),
+		Entry("CommissionAgentMonthly", "CommissionAgentMonthly", Deal_CommissionAgentMonthly),
+		Entry("Interest", "Interest", Deal_Interest),
+		Entry("BuyCancelled", "BuyCancelled", Deal_BuyCancelled),
+		Entry("SellCancelled", "SellCancelled", Deal_SellCancelled),
+		Entry("Dividend", "Dividend", Deal_Dividend),
+		Entry("Franked", "Franked", Deal_Franked),
+		Entry("Tax", "Tax", Deal_Tax),
+		Entry("0 - Works", "0", Deal_Buy),
+		Entry("1 - Works", "1", Deal_Sell),
+		Entry("2 - Works", "2", Deal_Balance),
+		Entry("3 - Works", "3", Deal_Credit),
+		Entry("4 - Works", "4", Deal_Charge),
+		Entry("5 - Works", "5", Deal_Correction),
+		Entry("6 - Works", "6", Deal_Bonus),
+		Entry("7 - Works", "7", Deal_Commission),
+		Entry("8 - Works", "8", Deal_CommissionDaily),
+		Entry("9 - Works", "9", Deal_CommissionMonthly),
+		Entry("10 - Works", "10", Deal_CommissionAgentDaily),
+		Entry("11 - Works", "11", Deal_CommissionAgentMonthly),
+		Entry("12 - Works", "12", Deal_Interest),
+		Entry("13 - Works", "13", Deal_BuyCancelled),
+		Entry("14 - Works", "14", Deal_SellCancelled),
+		Entry("15 - Works", "15", Deal_Dividend),
+		Entry("16 - Works", "16", Deal_Franked),
+		Entry("17 - Works", "17", Deal_Tax))
+
+	// Tests that, if the attribute type submitted to UnmarshalDynamoDBAttributeValue is not one we
+	// recognize, then the function will return an error
+	It("UnmarshalDynamoDBAttributeValue - AttributeValue type invalid - Error", func() {
+		enum := new(Deal_Type)
+		err := attributevalue.Unmarshal(&types.AttributeValueMemberBOOL{Value: true}, &enum)
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("Attribute value of *types.AttributeValueMemberBOOL could not be converted to a data.Deal.Type"))
+	})
+
+	// Tests that, if time parsing fails, then calling UnmarshalDynamoDBAttributeValue will return an error
+	It("UnmarshalDynamoDBAttributeValue - Parse fails - Error", func() {
+		enum := new(Deal_Type)
+		err := attributevalue.Unmarshal(&types.AttributeValueMemberS{Value: "derp"}, &enum)
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a data.Deal_Type"))
+	})
+
+	// Tests the conditions under which UnmarshalDynamoDBAttributeValue is called and no error is generated
+	DescribeTable("UnmarshalDynamoDBAttributeValue - AttributeValue Conditions",
+		func(value types.AttributeValue, expected Deal_Type) {
+			var enum Deal_Type
+			err := attributevalue.Unmarshal(value, &enum)
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(expected))
+		},
+		Entry("Value is []bytes, Buy - Works",
+			&types.AttributeValueMemberB{Value: []byte("Buy")}, Deal_Buy),
+		Entry("Value is []bytes, Sell - Works",
+			&types.AttributeValueMemberB{Value: []byte("Sell")}, Deal_Sell),
+		Entry("Value is []bytes, Balance - Works",
+			&types.AttributeValueMemberB{Value: []byte("Balance")}, Deal_Balance),
+		Entry("Value is []bytes, Credit - Works",
+			&types.AttributeValueMemberB{Value: []byte("Credit")}, Deal_Credit),
+		Entry("Value is []bytes, Charge - Works",
+			&types.AttributeValueMemberB{Value: []byte("Charge")}, Deal_Charge),
+		Entry("Value is []bytes, Correction - Works",
+			&types.AttributeValueMemberB{Value: []byte("Correction")}, Deal_Correction),
+		Entry("Value is []bytes, Bonus - Works",
+			&types.AttributeValueMemberB{Value: []byte("Bonus")}, Deal_Bonus),
+		Entry("Value is []bytes, Commission - Works",
+			&types.AttributeValueMemberB{Value: []byte("Commission")}, Deal_Commission),
+		Entry("Value is []bytes, CommissionDaily - Works",
+			&types.AttributeValueMemberB{Value: []byte("CommissionDaily")}, Deal_CommissionDaily),
+		Entry("Value is []bytes, CommissionMonthly - Works",
+			&types.AttributeValueMemberB{Value: []byte("CommissionMonthly")}, Deal_CommissionMonthly),
+		Entry("Value is []bytes, CommissionAgentDaily - Works",
+			&types.AttributeValueMemberB{Value: []byte("CommissionAgentDaily")}, Deal_CommissionAgentDaily),
+		Entry("Value is []bytes, CommissionAgentMonthly - Works",
+			&types.AttributeValueMemberB{Value: []byte("CommissionAgentMonthly")}, Deal_CommissionAgentMonthly),
+		Entry("Value is []bytes, Interest - Works",
+			&types.AttributeValueMemberB{Value: []byte("Interest")}, Deal_Interest),
+		Entry("Value is []bytes, BuyCancelled - Works",
+			&types.AttributeValueMemberB{Value: []byte("BuyCancelled")}, Deal_BuyCancelled),
+		Entry("Value is []bytes, SellCancelled - Works",
+			&types.AttributeValueMemberB{Value: []byte("SellCancelled")}, Deal_SellCancelled),
+		Entry("Value is []bytes, Dividend - Works",
+			&types.AttributeValueMemberB{Value: []byte("Dividend")}, Deal_Dividend),
+		Entry("Value is []bytes, Franked - Works",
+			&types.AttributeValueMemberB{Value: []byte("Franked")}, Deal_Franked),
+		Entry("Value is []bytes, Tax - Works",
+			&types.AttributeValueMemberB{Value: []byte("Tax")}, Deal_Tax),
+		Entry("Value is []bytes, 0 - Works",
+			&types.AttributeValueMemberB{Value: []byte("0")}, Deal_Buy),
+		Entry("Value is []bytes, 1 - Works",
+			&types.AttributeValueMemberB{Value: []byte("1")}, Deal_Sell),
+		Entry("Value is []bytes, 2 - Works",
+			&types.AttributeValueMemberB{Value: []byte("2")}, Deal_Balance),
+		Entry("Value is []bytes, 3 - Works",
+			&types.AttributeValueMemberB{Value: []byte("3")}, Deal_Credit),
+		Entry("Value is []bytes, 4 - Works",
+			&types.AttributeValueMemberB{Value: []byte("4")}, Deal_Charge),
+		Entry("Value is []bytes, 5 - Works",
+			&types.AttributeValueMemberB{Value: []byte("5")}, Deal_Correction),
+		Entry("Value is []bytes, 6 - Works",
+			&types.AttributeValueMemberB{Value: []byte("6")}, Deal_Bonus),
+		Entry("Value is []bytes, 7 - Works",
+			&types.AttributeValueMemberB{Value: []byte("7")}, Deal_Commission),
+		Entry("Value is []bytes, 8 - Works",
+			&types.AttributeValueMemberB{Value: []byte("8")}, Deal_CommissionDaily),
+		Entry("Value is []bytes, 9 - Works",
+			&types.AttributeValueMemberB{Value: []byte("9")}, Deal_CommissionMonthly),
+		Entry("Value is []bytes, 10 - Works",
+			&types.AttributeValueMemberB{Value: []byte("10")}, Deal_CommissionAgentDaily),
+		Entry("Value is []bytes, 11 - Works",
+			&types.AttributeValueMemberB{Value: []byte("11")}, Deal_CommissionAgentMonthly),
+		Entry("Value is []bytes, 12 - Works",
+			&types.AttributeValueMemberB{Value: []byte("12")}, Deal_Interest),
+		Entry("Value is []bytes, 13 - Works",
+			&types.AttributeValueMemberB{Value: []byte("13")}, Deal_BuyCancelled),
+		Entry("Value is []bytes, 14 - Works",
+			&types.AttributeValueMemberB{Value: []byte("14")}, Deal_SellCancelled),
+		Entry("Value is []bytes, 15 - Works",
+			&types.AttributeValueMemberB{Value: []byte("15")}, Deal_Dividend),
+		Entry("Value is []bytes, 16 - Works",
+			&types.AttributeValueMemberB{Value: []byte("16")}, Deal_Franked),
+		Entry("Value is []bytes, 17 - Works",
+			&types.AttributeValueMemberB{Value: []byte("17")}, Deal_Tax),
+		Entry("Value is int, 0 - Works",
+			&types.AttributeValueMemberN{Value: "0"}, Deal_Buy),
+		Entry("Value is int, 1 - Works",
+			&types.AttributeValueMemberN{Value: "1"}, Deal_Sell),
+		Entry("Value is int, 2 - Works",
+			&types.AttributeValueMemberN{Value: "2"}, Deal_Balance),
+		Entry("Value is int, 3 - Works",
+			&types.AttributeValueMemberN{Value: "3"}, Deal_Credit),
+		Entry("Value is int, 4 - Works",
+			&types.AttributeValueMemberN{Value: "4"}, Deal_Charge),
+		Entry("Value is int, 5 - Works",
+			&types.AttributeValueMemberN{Value: "5"}, Deal_Correction),
+		Entry("Value is int, 6 - Works",
+			&types.AttributeValueMemberN{Value: "6"}, Deal_Bonus),
+		Entry("Value is int, 7 - Works",
+			&types.AttributeValueMemberN{Value: "7"}, Deal_Commission),
+		Entry("Value is int, 8 - Works",
+			&types.AttributeValueMemberN{Value: "8"}, Deal_CommissionDaily),
+		Entry("Value is int, 9 - Works",
+			&types.AttributeValueMemberN{Value: "9"}, Deal_CommissionMonthly),
+		Entry("Value is int, 10 - Works",
+			&types.AttributeValueMemberN{Value: "10"}, Deal_CommissionAgentDaily),
+		Entry("Value is int, 11 - Works",
+			&types.AttributeValueMemberN{Value: "11"}, Deal_CommissionAgentMonthly),
+		Entry("Value is int, 12 - Works",
+			&types.AttributeValueMemberN{Value: "12"}, Deal_Interest),
+		Entry("Value is int, 13 - Works",
+			&types.AttributeValueMemberN{Value: "13"}, Deal_BuyCancelled),
+		Entry("Value is int, 14 - Works",
+			&types.AttributeValueMemberN{Value: "14"}, Deal_SellCancelled),
+		Entry("Value is int, 15 - Works",
+			&types.AttributeValueMemberN{Value: "15"}, Deal_Dividend),
+		Entry("Value is int, 16 - Works",
+			&types.AttributeValueMemberN{Value: "16"}, Deal_Franked),
+		Entry("Value is int, 17 - Works",
+			&types.AttributeValueMemberN{Value: "17"}, Deal_Tax),
+		Entry("Value is NULL - Works", new(types.AttributeValueMemberNULL), Deal_Type(0)),
+		Entry("Value is string, Buy - Works",
+			&types.AttributeValueMemberN{Value: "Buy"}, Deal_Buy),
+		Entry("Value is string, Sell - Works",
+			&types.AttributeValueMemberN{Value: "Sell"}, Deal_Sell),
+		Entry("Value is string, Balance - Works",
+			&types.AttributeValueMemberN{Value: "Balance"}, Deal_Balance),
+		Entry("Value is string, Credit - Works",
+			&types.AttributeValueMemberN{Value: "Credit"}, Deal_Credit),
+		Entry("Value is string, Charge - Works",
+			&types.AttributeValueMemberN{Value: "Charge"}, Deal_Charge),
+		Entry("Value is string, Correction - Works",
+			&types.AttributeValueMemberN{Value: "Correction"}, Deal_Correction),
+		Entry("Value is string, Bonus - Works",
+			&types.AttributeValueMemberN{Value: "Bonus"}, Deal_Bonus),
+		Entry("Value is string, Commission - Works",
+			&types.AttributeValueMemberN{Value: "Commission"}, Deal_Commission),
+		Entry("Value is string, CommissionDaily - Works",
+			&types.AttributeValueMemberN{Value: "CommissionDaily"}, Deal_CommissionDaily),
+		Entry("Value is string, CommissionMonthly - Works",
+			&types.AttributeValueMemberN{Value: "CommissionMonthly"}, Deal_CommissionMonthly),
+		Entry("Value is string, CommissionAgentDaily - Works",
+			&types.AttributeValueMemberN{Value: "CommissionAgentDaily"}, Deal_CommissionAgentDaily),
+		Entry("Value is string, CommissionAgentMonthly - Works",
+			&types.AttributeValueMemberN{Value: "CommissionAgentMonthly"}, Deal_CommissionAgentMonthly),
+		Entry("Value is string, Interest - Works",
+			&types.AttributeValueMemberN{Value: "Interest"}, Deal_Interest),
+		Entry("Value is string, BuyCancelled - Works",
+			&types.AttributeValueMemberN{Value: "BuyCancelled"}, Deal_BuyCancelled),
+		Entry("Value is string, SellCancelled - Works",
+			&types.AttributeValueMemberN{Value: "SellCancelled"}, Deal_SellCancelled),
+		Entry("Value is string, Dividend - Works",
+			&types.AttributeValueMemberN{Value: "Dividend"}, Deal_Dividend),
+		Entry("Value is string, Franked - Works",
+			&types.AttributeValueMemberN{Value: "Franked"}, Deal_Franked),
+		Entry("Value is string, Tax - Works",
+			&types.AttributeValueMemberN{Value: "Tax"}, Deal_Tax),
+		Entry("Value is string, 0 - Works",
+			&types.AttributeValueMemberN{Value: "0"}, Deal_Buy),
+		Entry("Value is string, 1 - Works",
+			&types.AttributeValueMemberN{Value: "1"}, Deal_Sell),
+		Entry("Value is string, 2 - Works",
+			&types.AttributeValueMemberN{Value: "2"}, Deal_Balance),
+		Entry("Value is string, 3 - Works",
+			&types.AttributeValueMemberN{Value: "3"}, Deal_Credit),
+		Entry("Value is string, 4 - Works",
+			&types.AttributeValueMemberN{Value: "4"}, Deal_Charge),
+		Entry("Value is string, 5 - Works",
+			&types.AttributeValueMemberN{Value: "5"}, Deal_Correction),
+		Entry("Value is string, 6 - Works",
+			&types.AttributeValueMemberN{Value: "6"}, Deal_Bonus),
+		Entry("Value is string, 7 - Works",
+			&types.AttributeValueMemberN{Value: "7"}, Deal_Commission),
+		Entry("Value is string, 8 - Works",
+			&types.AttributeValueMemberN{Value: "8"}, Deal_CommissionDaily),
+		Entry("Value is string, 9 - Works",
+			&types.AttributeValueMemberN{Value: "9"}, Deal_CommissionMonthly),
+		Entry("Value is string, 10 - Works",
+			&types.AttributeValueMemberN{Value: "10"}, Deal_CommissionAgentDaily),
+		Entry("Value is string, 11 - Works",
+			&types.AttributeValueMemberN{Value: "11"}, Deal_CommissionAgentMonthly),
+		Entry("Value is string, 12 - Works",
+			&types.AttributeValueMemberN{Value: "12"}, Deal_Interest),
+		Entry("Value is string, 13 - Works",
+			&types.AttributeValueMemberN{Value: "13"}, Deal_BuyCancelled),
+		Entry("Value is string, 14 - Works",
+			&types.AttributeValueMemberN{Value: "14"}, Deal_SellCancelled),
+		Entry("Value is string, 15 - Works",
+			&types.AttributeValueMemberN{Value: "15"}, Deal_Dividend),
+		Entry("Value is string, 16 - Works",
+			&types.AttributeValueMemberN{Value: "16"}, Deal_Franked),
+		Entry("Value is string, 17 - Works",
+			&types.AttributeValueMemberN{Value: "17"}, Deal_Tax))
+
+	// Test that attempting to deserialize a data.Deal.Type will fial and return an error if the value
+	// cannot be converted to either the name value or integer value of the enum option
+	It("Scan - Value is nil - Error", func() {
+
+		// Attempt to convert a fake string value into a data.Deal.Type; this should return an error
+		var enum *Deal_Type
+		err := enum.Scan(nil)
+
+		// Verify the error
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of %!q(<nil>) had an invalid type of <nil>"))
+		Expect(enum).Should(BeNil())
+	})
+
+	// Test the conditions under which values should be convertible to a data.Deal.Type
+	DescribeTable("Scan Tests",
+		func(value interface{}, shouldBe Deal_Type) {
+
+			// Attempt to convert the value into a data.Deal.Type; this should not fail
+			var enum Deal_Type
+			err := enum.Scan(value)
+
+			// Verify that the deserialization was successful
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(shouldBe))
+		},
+		Entry("Buy - Works", "Buy", Deal_Buy),
+		Entry("Sell - Works", "Sell", Deal_Sell),
+		Entry("Balance - Works", "Balance", Deal_Balance),
+		Entry("Credit - Works", "Credit", Deal_Credit),
+		Entry("Charge - Works", "Charge", Deal_Charge),
+		Entry("Correction - Works", "Correction", Deal_Correction),
+		Entry("Bonus - Works", "Bonus", Deal_Bonus),
+		Entry("Commission", "Commission", Deal_Commission),
+		Entry("CommissionDaily", "CommissionDaily", Deal_CommissionDaily),
+		Entry("CommissionMonthly", "CommissionMonthly", Deal_CommissionMonthly),
+		Entry("CommissionAgentDaily", "CommissionAgentDaily", Deal_CommissionAgentDaily),
+		Entry("CommissionAgentMonthly", "CommissionAgentMonthly", Deal_CommissionAgentMonthly),
+		Entry("Interest", "Interest", Deal_Interest),
+		Entry("BuyCancelled", "BuyCancelled", Deal_BuyCancelled),
+		Entry("SellCancelled", "SellCancelled", Deal_SellCancelled),
+		Entry("Dividend", "Dividend", Deal_Dividend),
+		Entry("Franked", "Franked", Deal_Franked),
+		Entry("Tax", "Tax", Deal_Tax),
+		Entry("0 - Works", 0, Deal_Buy),
+		Entry("1 - Works", 1, Deal_Sell),
+		Entry("2 - Works", 2, Deal_Balance),
+		Entry("3 - Works", 3, Deal_Credit),
+		Entry("4 - Works", 4, Deal_Charge),
+		Entry("5 - Works", 5, Deal_Correction),
+		Entry("6 - Works", 6, Deal_Bonus),
+		Entry("7 - Works", 7, Deal_Commission),
+		Entry("8 - Works", 8, Deal_CommissionDaily),
+		Entry("9 - Works", 9, Deal_CommissionMonthly),
+		Entry("10 - Works", 10, Deal_CommissionAgentDaily),
+		Entry("11 - Works", 11, Deal_CommissionAgentMonthly),
+		Entry("12 - Works", 12, Deal_Interest),
+		Entry("13 - Works", 13, Deal_BuyCancelled),
+		Entry("14 - Works", 14, Deal_SellCancelled),
+		Entry("15 - Works", 15, Deal_Dividend),
+		Entry("16 - Works", 16, Deal_Franked),
+		Entry("17 - Works", 17, Deal_Tax))
+})
