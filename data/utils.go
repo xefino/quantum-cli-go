@@ -11,13 +11,13 @@ import (
 
 // FillPolicyAlternates contains alternate values for the data.FillPolicy enum
 var FillPolicyAlternates = map[string]FillPolicy{
-	"KOC": FillPolicy_FillOrKill,
+	"FOK": FillPolicy_FillOrKill,
 	"IOC": FillPolicy_ImmediateOrCancel,
 }
 
 // FillPolicyMapping contains alternate names for the data.FillPolicy enum
 var FillPolicyMapping = map[FillPolicy]string{
-	FillPolicy_FillOrKill:        "KOC",
+	FillPolicy_FillOrKill:        "FOK",
 	FillPolicy_ImmediateOrCancel: "IOC",
 }
 
@@ -66,27 +66,27 @@ var OrderReasonMapping = map[Order_Reason]string{
 
 // MarshalJSON converts a data.FillPolicy value to a JSON value
 func (enum FillPolicy) MarshalJSON() ([]byte, error) {
-	return []byte(utils.MarshalString(enum, FillPolicy_name, FillPolicyMapping)), nil
+	return []byte(utils.MarshalString(enum, FillPolicy_name, FillPolicyMapping, true)), nil
 }
 
 // MarshalCSV converts a data.FillPolicy value to CSV cell value
 func (enum FillPolicy) MarshalCSV() (string, error) {
-	return utils.MarshalString(enum, FillPolicy_name, FillPolicyMapping), nil
+	return utils.MarshalString(enum, FillPolicy_name, FillPolicyMapping, false), nil
 }
 
 // MarshalYAML converts a data.FillPolicy value to a YAML node value
 func (enum FillPolicy) MarshalYAML() (interface{}, error) {
-	return utils.MarshalString(enum, FillPolicy_name, FillPolicyMapping), nil
+	return utils.MarshalString(enum, FillPolicy_name, FillPolicyMapping, false), nil
 }
 
 // MarshalDynamoDBAttributeValue converts a data.FillPolicy value to a DynamoDB AttributeValue
 func (enum FillPolicy) MarshalDynamoDBAttributeValue() (types.AttributeValue, error) {
-	return &types.AttributeValueMemberS{Value: utils.MarshalString(enum, FillPolicy_name, FillPolicyMapping)}, nil
+	return &types.AttributeValueMemberS{Value: utils.MarshalString(enum, FillPolicy_name, FillPolicyMapping, false)}, nil
 }
 
 // Value converts a data.FillPolicy value to an SQL driver value
 func (enum FillPolicy) Value() (driver.Value, error) {
-	return utils.MarshalString(enum, FillPolicy_name, FillPolicyMapping), nil
+	return utils.MarshalString(enum, FillPolicy_name, FillPolicyMapping, false), nil
 }
 
 // UnmarshalJSON attempts to convert a JSON value to a new data.FillPolicy value
@@ -128,32 +128,32 @@ func (enum *FillPolicy) UnmarshalDynamoDBAttributeValue(value types.AttributeVal
 
 // Scan attempts to convert an SQL driver value to a new data.FillPolicy value
 func (enum *FillPolicy) Scan(value interface{}) error {
-	return utils.UnmarshalString(value.(string), FillPolicy_value, FillPolicyAlternates, enum)
+	return utils.ScanValue(value, FillPolicy_value, FillPolicyAlternates, enum)
 }
 
 // MarshalJSON converts a data.ExpirationPolicy value to a JSON value
 func (enum ExpirationPolicy) MarshalJSON() ([]byte, error) {
-	return []byte(utils.MarshalString(enum, ExpirationPolicy_name, ExpirationPolicyMapping)), nil
+	return []byte(utils.MarshalString(enum, ExpirationPolicy_name, ExpirationPolicyMapping, true)), nil
 }
 
 // MarshalCSV converts a data.ExpirationPolicy value to CSV cell value
 func (enum ExpirationPolicy) MarshalCSV() (string, error) {
-	return utils.MarshalString(enum, ExpirationPolicy_name, ExpirationPolicyMapping), nil
+	return utils.MarshalString(enum, ExpirationPolicy_name, ExpirationPolicyMapping, false), nil
 }
 
 // MarshalYAML converts a data.ExpirationPolicy value to a YAML node value
 func (enum ExpirationPolicy) MarshalYAML() (interface{}, error) {
-	return utils.MarshalString(enum, ExpirationPolicy_name, ExpirationPolicyMapping), nil
+	return utils.MarshalString(enum, ExpirationPolicy_name, ExpirationPolicyMapping, false), nil
 }
 
 // MarshalDynamoDBAttributeValue converts a data.ExpirationPolicy value to a DynamoDB AttributeValue
 func (enum ExpirationPolicy) MarshalDynamoDBAttributeValue() (types.AttributeValue, error) {
-	return &types.AttributeValueMemberS{Value: utils.MarshalString(enum, ExpirationPolicy_name, ExpirationPolicyMapping)}, nil
+	return &types.AttributeValueMemberS{Value: utils.MarshalString(enum, ExpirationPolicy_name, ExpirationPolicyMapping, false)}, nil
 }
 
 // Value converts a data.ExpirationPolicy value to an SQL driver value
 func (enum ExpirationPolicy) Value() (driver.Value, error) {
-	return utils.MarshalString(enum, ExpirationPolicy_name, ExpirationPolicyMapping), nil
+	return utils.MarshalString(enum, ExpirationPolicy_name, ExpirationPolicyMapping, false), nil
 }
 
 // UnmarshalJSON attempts to convert a JSON value to a new data.ExpirationPolicy value
@@ -195,32 +195,32 @@ func (enum *ExpirationPolicy) UnmarshalDynamoDBAttributeValue(value types.Attrib
 
 // Scan attempts to convert an SQL driver value to a new data.ExpirationPolicy value
 func (enum *ExpirationPolicy) Scan(value interface{}) error {
-	return utils.UnmarshalString(value.(string), ExpirationPolicy_value, ExpirationPolicyAlternates, enum)
+	return utils.ScanValue(value, ExpirationPolicy_value, ExpirationPolicyAlternates, enum)
 }
 
 // MarshalJSON converts a data.Deal.Type value to a JSON value
 func (enum Deal_Type) MarshalJSON() ([]byte, error) {
-	return []byte(utils.MarshalString(enum, Deal_Type_name, utils.Ignore)), nil
+	return []byte(utils.MarshalString(enum, Deal_Type_name, utils.Ignore, true)), nil
 }
 
 // MarshalCSV converts a data.Deal.Type value to CSV cell value
 func (enum Deal_Type) MarshalCSV() (string, error) {
-	return utils.MarshalString(enum, Deal_Type_name, utils.Ignore), nil
+	return utils.MarshalString(enum, Deal_Type_name, utils.Ignore, false), nil
 }
 
 // MarshalYAML converts a data.Deal.Type value to a YAML node value
 func (enum Deal_Type) MarshalYAML() (interface{}, error) {
-	return utils.MarshalString(enum, Deal_Type_name, utils.Ignore), nil
+	return utils.MarshalString(enum, Deal_Type_name, utils.Ignore, false), nil
 }
 
 // MarshalDynamoDBAttributeValue converts a data.Deal.Type value to a DynamoDB AttributeValue
 func (enum Deal_Type) MarshalDynamoDBAttributeValue() (types.AttributeValue, error) {
-	return &types.AttributeValueMemberS{Value: utils.MarshalString(enum, Deal_Type_name, utils.Ignore)}, nil
+	return &types.AttributeValueMemberS{Value: utils.MarshalString(enum, Deal_Type_name, utils.Ignore, false)}, nil
 }
 
 // Value converts a data.Deal.Type value to an SQL driver value
 func (enum Deal_Type) Value() (driver.Value, error) {
-	return utils.MarshalString(enum, Deal_Type_name, utils.Ignore), nil
+	return utils.MarshalString(enum, Deal_Type_name, utils.Ignore, false), nil
 }
 
 // UnmarshalJSON attempts to convert a JSON value to a new data.Deal.Type value
@@ -262,32 +262,32 @@ func (enum *Deal_Type) UnmarshalDynamoDBAttributeValue(value types.AttributeValu
 
 // Scan attempts to convert an SQL driver value to a new data.Deal.Type value
 func (enum *Deal_Type) Scan(value interface{}) error {
-	return utils.UnmarshalString(value.(string), Deal_Type_value, utils.None, enum)
+	return utils.ScanValue(value, Deal_Type_value, utils.None, enum)
 }
 
 // MarshalJSON converts a data.Deal.Entry value to a JSON value
 func (enum Deal_Entry) MarshalJSON() ([]byte, error) {
-	return []byte(utils.MarshalString(enum, Deal_Entry_name, utils.Ignore)), nil
+	return []byte(utils.MarshalString(enum, Deal_Entry_name, utils.Ignore, true)), nil
 }
 
 // MarshalCSV converts a data.Deal.Entry value to CSV cell value
 func (enum Deal_Entry) MarshalCSV() (string, error) {
-	return utils.MarshalString(enum, Deal_Entry_name, utils.Ignore), nil
+	return utils.MarshalString(enum, Deal_Entry_name, utils.Ignore, false), nil
 }
 
 // MarshalYAML converts a data.Deal.Entry value to a YAML node value
 func (enum Deal_Entry) MarshalYAML() (interface{}, error) {
-	return utils.MarshalString(enum, Deal_Entry_name, utils.Ignore), nil
+	return utils.MarshalString(enum, Deal_Entry_name, utils.Ignore, false), nil
 }
 
 // MarshalDynamoDBAttributeValue converts a data.Deal.Entry value to a DynamoDB AttributeValue
 func (enum Deal_Entry) MarshalDynamoDBAttributeValue() (types.AttributeValue, error) {
-	return &types.AttributeValueMemberS{Value: utils.MarshalString(enum, Deal_Entry_name, utils.Ignore)}, nil
+	return &types.AttributeValueMemberS{Value: utils.MarshalString(enum, Deal_Entry_name, utils.Ignore, false)}, nil
 }
 
 // Value converts a data.Deal.Entry value to an SQL driver value
 func (enum Deal_Entry) Value() (driver.Value, error) {
-	return utils.MarshalString(enum, Deal_Entry_name, utils.Ignore), nil
+	return utils.MarshalString(enum, Deal_Entry_name, utils.Ignore, false), nil
 }
 
 // UnmarshalJSON attempts to convert a JSON value to a new data.Deal.Entry value
@@ -329,32 +329,32 @@ func (enum *Deal_Entry) UnmarshalDynamoDBAttributeValue(value types.AttributeVal
 
 // Scan attempts to convert an SQL driver value to a new data.Deal.Entry value
 func (enum *Deal_Entry) Scan(value interface{}) error {
-	return utils.UnmarshalString(value.(string), Deal_Entry_value, DealEntryAlternates, enum)
+	return utils.ScanValue(value, Deal_Entry_value, DealEntryAlternates, enum)
 }
 
 // MarshalJSON converts a data.Deal.Reason value to a JSON value
 func (enum Deal_Reason) MarshalJSON() ([]byte, error) {
-	return []byte(utils.MarshalString(enum, Deal_Reason_name, DealReasonMapping)), nil
+	return []byte(utils.MarshalString(enum, Deal_Reason_name, DealReasonMapping, true)), nil
 }
 
 // MarshalCSV converts a data.Deal.Reason value to CSV cell value
 func (enum Deal_Reason) MarshalCSV() (string, error) {
-	return utils.MarshalString(enum, Deal_Reason_name, DealReasonMapping), nil
+	return utils.MarshalString(enum, Deal_Reason_name, DealReasonMapping, false), nil
 }
 
 // MarshalYAML converts a data.Deal.Reason value to a YAML node value
 func (enum Deal_Reason) MarshalYAML() (interface{}, error) {
-	return utils.MarshalString(enum, Deal_Reason_name, DealReasonMapping), nil
+	return utils.MarshalString(enum, Deal_Reason_name, DealReasonMapping, false), nil
 }
 
 // MarshalDynamoDBAttributeValue converts a data.Deal.Reason value to a DynamoDB AttributeValue
 func (enum Deal_Reason) MarshalDynamoDBAttributeValue() (types.AttributeValue, error) {
-	return &types.AttributeValueMemberS{Value: utils.MarshalString(enum, Deal_Reason_name, DealReasonMapping)}, nil
+	return &types.AttributeValueMemberS{Value: utils.MarshalString(enum, Deal_Reason_name, DealReasonMapping, false)}, nil
 }
 
 // Value converts a data.Deal.Reason value to an SQL driver value
 func (enum Deal_Reason) Value() (driver.Value, error) {
-	return utils.MarshalString(enum, Deal_Reason_name, DealReasonMapping), nil
+	return utils.MarshalString(enum, Deal_Reason_name, DealReasonMapping, false), nil
 }
 
 // UnmarshalJSON attempts to convert a JSON value to a new data.Deal.Reason value
@@ -396,32 +396,32 @@ func (enum *Deal_Reason) UnmarshalDynamoDBAttributeValue(value types.AttributeVa
 
 // Scan attempts to convert an SQL driver value to a new data.Deal.Reason value
 func (enum *Deal_Reason) Scan(value interface{}) error {
-	return utils.UnmarshalString(value.(string), Deal_Reason_value, DealReasonAlternates, enum)
+	return utils.ScanValue(value, Deal_Reason_value, DealReasonAlternates, enum)
 }
 
 // MarshalJSON converts a data.Order.Type value to a JSON value
 func (enum Order_Type) MarshalJSON() ([]byte, error) {
-	return []byte(utils.MarshalString(enum, Order_Type_name, utils.Ignore)), nil
+	return []byte(utils.MarshalString(enum, Order_Type_name, utils.Ignore, true)), nil
 }
 
 // MarshalCSV converts a data.Order.Type value to CSV cell value
 func (enum Order_Type) MarshalCSV() (string, error) {
-	return utils.MarshalString(enum, Order_Type_name, utils.Ignore), nil
+	return utils.MarshalString(enum, Order_Type_name, utils.Ignore, false), nil
 }
 
 // MarshalYAML converts a data.Order.Type value to a YAML node value
 func (enum Order_Type) MarshalYAML() (interface{}, error) {
-	return utils.MarshalString(enum, Order_Type_name, utils.Ignore), nil
+	return utils.MarshalString(enum, Order_Type_name, utils.Ignore, false), nil
 }
 
 // MarshalDynamoDBAttributeValue converts a data.Order.Type value to a DynamoDB AttributeValue
 func (enum Order_Type) MarshalDynamoDBAttributeValue() (types.AttributeValue, error) {
-	return &types.AttributeValueMemberS{Value: utils.MarshalString(enum, Order_Type_name, utils.Ignore)}, nil
+	return &types.AttributeValueMemberS{Value: utils.MarshalString(enum, Order_Type_name, utils.Ignore, false)}, nil
 }
 
 // Value converts a data.Order.Type value to an SQL driver value
 func (enum Order_Type) Value() (driver.Value, error) {
-	return utils.MarshalString(enum, Order_Type_name, utils.Ignore), nil
+	return utils.MarshalString(enum, Order_Type_name, utils.Ignore, false), nil
 }
 
 // UnmarshalJSON attempts to convert a JSON value to a new data.Order.Type value
@@ -463,32 +463,32 @@ func (enum *Order_Type) UnmarshalDynamoDBAttributeValue(value types.AttributeVal
 
 // Scan attempts to convert an SQL driver value to a new data.Order.Type value
 func (enum *Order_Type) Scan(value interface{}) error {
-	return utils.UnmarshalString(value.(string), Order_Type_value, utils.None, enum)
+	return utils.ScanValue(value, Order_Type_value, utils.None, enum)
 }
 
 // MarshalJSON converts a data.Order.Status value to a JSON value
 func (enum Order_Status) MarshalJSON() ([]byte, error) {
-	return []byte(utils.MarshalString(enum, Order_Status_name, utils.Ignore)), nil
+	return []byte(utils.MarshalString(enum, Order_Status_name, utils.Ignore, true)), nil
 }
 
 // MarshalCSV converts a data.Order.Status value to CSV cell value
 func (enum Order_Status) MarshalCSV() (string, error) {
-	return utils.MarshalString(enum, Order_Status_name, utils.Ignore), nil
+	return utils.MarshalString(enum, Order_Status_name, utils.Ignore, false), nil
 }
 
 // MarshalYAML converts a data.Order.Status value to a YAML node value
 func (enum Order_Status) MarshalYAML() (interface{}, error) {
-	return utils.MarshalString(enum, Order_Status_name, utils.Ignore), nil
+	return utils.MarshalString(enum, Order_Status_name, utils.Ignore, false), nil
 }
 
 // MarshalDynamoDBAttributeValue converts a data.Order.Status value to a DynamoDB AttributeValue
 func (enum Order_Status) MarshalDynamoDBAttributeValue() (types.AttributeValue, error) {
-	return &types.AttributeValueMemberS{Value: utils.MarshalString(enum, Order_Status_name, utils.Ignore)}, nil
+	return &types.AttributeValueMemberS{Value: utils.MarshalString(enum, Order_Status_name, utils.Ignore, false)}, nil
 }
 
 // Value converts a data.Order.Status value to an SQL driver value
 func (enum Order_Status) Value() (driver.Value, error) {
-	return utils.MarshalString(enum, Order_Status_name, utils.Ignore), nil
+	return utils.MarshalString(enum, Order_Status_name, utils.Ignore, false), nil
 }
 
 // UnmarshalJSON attempts to convert a JSON value to a new data.Order.Status value
@@ -530,32 +530,32 @@ func (enum *Order_Status) UnmarshalDynamoDBAttributeValue(value types.AttributeV
 
 // Scan attempts to convert an SQL driver value to a new data.Order.Status value
 func (enum *Order_Status) Scan(value interface{}) error {
-	return utils.UnmarshalString(value.(string), Order_Status_value, utils.None, enum)
+	return utils.ScanValue(value, Order_Status_value, utils.None, enum)
 }
 
 // MarshalJSON converts a data.Order.Reason value to a JSON value
 func (enum Order_Reason) MarshalJSON() ([]byte, error) {
-	return []byte(utils.MarshalString(enum, Order_Reason_name, OrderReasonMapping)), nil
+	return []byte(utils.MarshalString(enum, Order_Reason_name, OrderReasonMapping, true)), nil
 }
 
 // MarshalCSV converts a data.Order.Reason value to CSV cell value
 func (enum Order_Reason) MarshalCSV() (string, error) {
-	return utils.MarshalString(enum, Order_Reason_name, OrderReasonMapping), nil
+	return utils.MarshalString(enum, Order_Reason_name, OrderReasonMapping, false), nil
 }
 
 // MarshalYAML converts a data.Order.Reason value to a YAML node value
 func (enum Order_Reason) MarshalYAML() (interface{}, error) {
-	return utils.MarshalString(enum, Order_Reason_name, OrderReasonMapping), nil
+	return utils.MarshalString(enum, Order_Reason_name, OrderReasonMapping, false), nil
 }
 
 // MarshalDynamoDBAttributeValue converts a data.Order.Reason value to a DynamoDB AttributeValue
 func (enum Order_Reason) MarshalDynamoDBAttributeValue() (types.AttributeValue, error) {
-	return &types.AttributeValueMemberS{Value: utils.MarshalString(enum, Order_Reason_name, OrderReasonMapping)}, nil
+	return &types.AttributeValueMemberS{Value: utils.MarshalString(enum, Order_Reason_name, OrderReasonMapping, false)}, nil
 }
 
 // Value converts a data.Order.Reason value to an SQL driver value
 func (enum Order_Reason) Value() (driver.Value, error) {
-	return utils.MarshalString(enum, Order_Reason_name, OrderReasonMapping), nil
+	return utils.MarshalString(enum, Order_Reason_name, OrderReasonMapping, false), nil
 }
 
 // UnmarshalJSON attempts to convert a JSON value to a new data.Order.Reason value
@@ -597,32 +597,32 @@ func (enum *Order_Reason) UnmarshalDynamoDBAttributeValue(value types.AttributeV
 
 // Scan attempts to convert an SQL driver value to a new data.Order.Reason value
 func (enum *Order_Reason) Scan(value interface{}) error {
-	return utils.UnmarshalString(value.(string), Order_Reason_value, OrderReasonAlternates, enum)
+	return utils.ScanValue(value, Order_Reason_value, OrderReasonAlternates, enum)
 }
 
 // MarshalJSON converts a data.Position.Type value to a JSON value
 func (enum Position_Type) MarshalJSON() ([]byte, error) {
-	return []byte(utils.MarshalString(enum, Position_Type_name, utils.Ignore)), nil
+	return []byte(utils.MarshalString(enum, Position_Type_name, utils.Ignore, true)), nil
 }
 
 // MarshalCSV converts a data.Position.Type value to CSV cell value
 func (enum Position_Type) MarshalCSV() (string, error) {
-	return utils.MarshalString(enum, Position_Type_name, utils.Ignore), nil
+	return utils.MarshalString(enum, Position_Type_name, utils.Ignore, false), nil
 }
 
 // MarshalYAML converts a data.Position.Type value to a YAML node value
 func (enum Position_Type) MarshalYAML() (interface{}, error) {
-	return utils.MarshalString(enum, Position_Type_name, utils.Ignore), nil
+	return utils.MarshalString(enum, Position_Type_name, utils.Ignore, false), nil
 }
 
 // MarshalDynamoDBAttributeValue converts a data.Position.Type value to a DynamoDB AttributeValue
 func (enum Position_Type) MarshalDynamoDBAttributeValue() (types.AttributeValue, error) {
-	return &types.AttributeValueMemberS{Value: utils.MarshalString(enum, Position_Type_name, utils.Ignore)}, nil
+	return &types.AttributeValueMemberS{Value: utils.MarshalString(enum, Position_Type_name, utils.Ignore, false)}, nil
 }
 
 // Value converts a data.Position.Type value to an SQL driver value
 func (enum Position_Type) Value() (driver.Value, error) {
-	return utils.MarshalString(enum, Position_Type_name, utils.Ignore), nil
+	return utils.MarshalString(enum, Position_Type_name, utils.Ignore, false), nil
 }
 
 // UnmarshalJSON attempts to convert a JSON value to a new data.Position.Type value
@@ -664,32 +664,32 @@ func (enum *Position_Type) UnmarshalDynamoDBAttributeValue(value types.Attribute
 
 // Scan attempts to convert an SQL driver value to a new data.Position.Type value
 func (enum *Position_Type) Scan(value interface{}) error {
-	return utils.UnmarshalString(value.(string), Position_Type_value, utils.None, enum)
+	return utils.ScanValue(value, Position_Type_value, utils.None, enum)
 }
 
 // MarshalJSON converts a data.Position.Reason value to a JSON value
 func (enum Position_Reason) MarshalJSON() ([]byte, error) {
-	return []byte(utils.MarshalString(enum, Position_Reason_name, utils.Ignore)), nil
+	return []byte(utils.MarshalString(enum, Position_Reason_name, utils.Ignore, true)), nil
 }
 
 // MarshalCSV converts a data.Position.Reason value to CSV cell value
 func (enum Position_Reason) MarshalCSV() (string, error) {
-	return utils.MarshalString(enum, Position_Reason_name, utils.Ignore), nil
+	return utils.MarshalString(enum, Position_Reason_name, utils.Ignore, false), nil
 }
 
 // MarshalYAML converts a data.Position.Reason value to a YAML node value
 func (enum Position_Reason) MarshalYAML() (interface{}, error) {
-	return utils.MarshalString(enum, Position_Reason_name, utils.Ignore), nil
+	return utils.MarshalString(enum, Position_Reason_name, utils.Ignore, false), nil
 }
 
 // MarshalDynamoDBAttributeValue converts a data.Position.Reason value to a DynamoDB AttributeValue
 func (enum Position_Reason) MarshalDynamoDBAttributeValue() (types.AttributeValue, error) {
-	return &types.AttributeValueMemberS{Value: utils.MarshalString(enum, Position_Reason_name, utils.Ignore)}, nil
+	return &types.AttributeValueMemberS{Value: utils.MarshalString(enum, Position_Reason_name, utils.Ignore, false)}, nil
 }
 
 // Value converts a data.Position.Reason value to an SQL driver value
 func (enum Position_Reason) Value() (driver.Value, error) {
-	return utils.MarshalString(enum, Position_Reason_name, utils.Ignore), nil
+	return utils.MarshalString(enum, Position_Reason_name, utils.Ignore, false), nil
 }
 
 // UnmarshalJSON attempts to convert a JSON value to a new data.Position.Reason value
@@ -731,32 +731,32 @@ func (enum *Position_Reason) UnmarshalDynamoDBAttributeValue(value types.Attribu
 
 // Scan attempts to convert an SQL driver value to a new data.Position.Reason value
 func (enum *Position_Reason) Scan(value interface{}) error {
-	return utils.UnmarshalString(value.(string), Position_Reason_value, utils.None, enum)
+	return utils.ScanValue(value, Position_Reason_value, utils.None, enum)
 }
 
 // MarshalJSON converts a data.TradeRequest.Action value to a JSON value
 func (enum TradeRequest_Action) MarshalJSON() ([]byte, error) {
-	return []byte(utils.MarshalString(enum, TradeRequest_Action_name, utils.Ignore)), nil
+	return []byte(utils.MarshalString(enum, TradeRequest_Action_name, utils.Ignore, true)), nil
 }
 
 // MarshalCSV converts a data.TradeRequest.Action value to CSV cell value
 func (enum TradeRequest_Action) MarshalCSV() (string, error) {
-	return utils.MarshalString(enum, TradeRequest_Action_name, utils.Ignore), nil
+	return utils.MarshalString(enum, TradeRequest_Action_name, utils.Ignore, false), nil
 }
 
 // MarshalYAML converts a data.TradeRequest.Action value to a YAML node value
 func (enum TradeRequest_Action) MarshalYAML() (interface{}, error) {
-	return utils.MarshalString(enum, TradeRequest_Action_name, utils.Ignore), nil
+	return utils.MarshalString(enum, TradeRequest_Action_name, utils.Ignore, false), nil
 }
 
 // MarshalDynamoDBAttributeValue converts a data.TradeRequest.Action value to a DynamoDB AttributeValue
 func (enum TradeRequest_Action) MarshalDynamoDBAttributeValue() (types.AttributeValue, error) {
-	return &types.AttributeValueMemberS{Value: utils.MarshalString(enum, TradeRequest_Action_name, utils.Ignore)}, nil
+	return &types.AttributeValueMemberS{Value: utils.MarshalString(enum, TradeRequest_Action_name, utils.Ignore, false)}, nil
 }
 
 // Value converts a data.TradeRequest.Action value to an SQL driver value
 func (enum TradeRequest_Action) Value() (driver.Value, error) {
-	return utils.MarshalString(enum, TradeRequest_Action_name, utils.Ignore), nil
+	return utils.MarshalString(enum, TradeRequest_Action_name, utils.Ignore, false), nil
 }
 
 // UnmarshalJSON attempts to convert a JSON value to a new data.TradeRequest.Action value
@@ -798,5 +798,5 @@ func (enum *TradeRequest_Action) UnmarshalDynamoDBAttributeValue(value types.Att
 
 // Scan attempts to convert an SQL driver value to a new data.TradeRequest.Action value
 func (enum *TradeRequest_Action) Scan(value interface{}) error {
-	return utils.UnmarshalString(value.(string), TradeRequest_Action_value, utils.None, enum)
+	return utils.ScanValue(value, TradeRequest_Action_value, utils.None, enum)
 }

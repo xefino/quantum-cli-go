@@ -17,7 +17,7 @@ func NewFromDecimal(in decimal.Decimal) (*Decimal, error) {
 
 	// Attempt to gob-encode the data to a Decimal; if this fails then return an error
 	if err := encoder.Encode(in); err != nil {
-		return nil, fmt.Errorf("Failed to encode Decimal")
+		return nil, fmt.Errorf("failed to encode Decimal, error: %v", err)
 	}
 
 	// The encoding succeeded; return the decimal
@@ -33,7 +33,7 @@ func (d *Decimal) ToDecimal() (*decimal.Decimal, error) {
 
 	// Attempt to gob-decode the data to a Decimal; if this fails then return an error
 	if err := decoder.Decode(&out); err != nil {
-		return nil, fmt.Errorf("Failed to decode to Decimal")
+		return nil, fmt.Errorf("failed to decode to Decimal, error: %v", err)
 	}
 
 	// The decoding succeeded; return the decimal
