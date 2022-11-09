@@ -1175,3 +1175,296 @@ var _ = Describe("data.Deal.Type Marshal/Unmarshal Tests", func() {
 		Entry("16 - Works", 16, Deal_Franked),
 		Entry("17 - Works", 17, Deal_Tax))
 })
+
+var _ = Describe("data.Deal.Entry Marshal/Unmarshal Tests", func() {
+
+	// Test that converting the data.Deal.Entry enum to JSON works for all values
+	DescribeTable("MarshalJSON Tests",
+		func(enum Deal_Entry, value string) {
+			data, err := json.Marshal(enum)
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(string(data)).Should(Equal(value))
+		},
+		Entry("In - Works", Deal_In, "\"In\""),
+		Entry("Out - Works", Deal_Out, "\"Out\""),
+		Entry("Reverse - Works", Deal_Reverse, "\"Reverse\""),
+		Entry("OutBy - Works", Deal_OutBy, "\"OutBy\""))
+
+	// Test that converting the data.Deal.Entry enum to a CSV column works for all values
+	DescribeTable("MarshalCSV Tests",
+		func(enum Deal_Entry, value string) {
+			data, err := enum.MarshalCSV()
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(string(data)).Should(Equal(value))
+		},
+		Entry("In - Works", Deal_In, "In"),
+		Entry("Out - Works", Deal_Out, "Out"),
+		Entry("Reverse - Works", Deal_Reverse, "Reverse"),
+		Entry("OutBy - Works", Deal_OutBy, "OutBy"))
+
+	// Test that converting the data.Deal.Entry enum to a YAML node works for all values
+	DescribeTable("MarshalYAML - Works",
+		func(enum Deal_Entry, value string) {
+			data, err := enum.MarshalYAML()
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(data).Should(Equal(value))
+		},
+		Entry("In - Works", Deal_In, "In"),
+		Entry("Out - Works", Deal_Out, "Out"),
+		Entry("Reverse - Works", Deal_Reverse, "Reverse"),
+		Entry("OutBy - Works", Deal_OutBy, "OutBy"))
+
+	// Test that converting the data.Deal.Entry enum to a DynamoDB AttributeVAlue works for all values
+	DescribeTable("MarshalDynamoDBAttributeValue - Works",
+		func(enum Deal_Entry, value string) {
+			data, err := attributevalue.Marshal(enum)
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(data.(*types.AttributeValueMemberS).Value).Should(Equal(value))
+		},
+		Entry("In - Works", Deal_In, "In"),
+		Entry("Out - Works", Deal_Out, "Out"),
+		Entry("Reverse - Works", Deal_Reverse, "Reverse"),
+		Entry("OutBy - Works", Deal_OutBy, "OutBy"))
+
+	// Test that converting the data.Deal.Entry enum to an SQL value for all values
+	DescribeTable("Value Tests",
+		func(enum Deal_Entry, value string) {
+			data, err := enum.Value()
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(data).Should(Equal(value))
+		},
+		Entry("In - Works", Deal_In, "In"),
+		Entry("Out - Works", Deal_Out, "Out"),
+		Entry("Reverse - Works", Deal_Reverse, "Reverse"),
+		Entry("OutBy - Works", Deal_OutBy, "OutBy"))
+
+	// Test that attempting to deserialize a data.Deal.Entry will fail and return an error if the value
+	// cannot be deserialized from a JSON value to a string
+	It("UnmarshalJSON fails - Error", func() {
+
+		// Attempt to convert a non-parseable string value into a data.Deal.Entry; this should return an error
+		enum := new(Deal_Entry)
+		err := enum.UnmarshalJSON([]byte("derp"))
+
+		// Verify the error
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a data.Deal_Entry"))
+	})
+
+	// Test that attempting to deserialize a data.Deal.Entry will fail and return an error if the value
+	// cannot be converted to either the name value or integer value of the enum option
+	It("UnmarshalJSON - Value is invalid - Error", func() {
+
+		// Attempt to convert a fake string value into a data.Deal.Entry; this should return an error
+		enum := new(Deal_Entry)
+		err := enum.UnmarshalJSON([]byte("\"derp\""))
+
+		// Verify the error
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a data.Deal_Entry"))
+	})
+
+	// Test the conditions under which values should be convertible to a data.Deal.Entry
+	DescribeTable("UnmarshalJSON Tests",
+		func(value string, shouldBe Deal_Entry) {
+
+			// Attempt to convert the string value into a data.Deal.Entry; this should not fail
+			var enum Deal_Entry
+			err := enum.UnmarshalJSON([]byte(value))
+
+			// Verify that the deserialization was successful
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(shouldBe))
+		},
+		Entry("InOut - Works", "\"InOut\"", Deal_Reverse),
+		Entry("In - Works", "\"In\"", Deal_In),
+		Entry("Out - Works", "\"Out\"", Deal_Out),
+		Entry("Reverse - Works", "\"Reverse\"", Deal_Reverse),
+		Entry("OutBy - Works", "\"OutBy\"", Deal_OutBy),
+		Entry("0 - Works", "\"0\"", Deal_In),
+		Entry("1 - Works", "\"1\"", Deal_Out),
+		Entry("2 - Works", "\"2\"", Deal_Reverse),
+		Entry("3 - Works", "\"3\"", Deal_OutBy))
+
+	// Test that attempting to deserialize a data.Deal.Entry will fail and return an error if the value
+	// cannot be converted to either the name value or integer value of the enum option
+	It("UnmarshalCSV - Value is empty - Error", func() {
+
+		// Attempt to convert a fake string value into a data.Deal.Entry; this should return an error
+		enum := new(Deal_Entry)
+		err := enum.UnmarshalCSV("")
+
+		// Verify the error
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"\" cannot be mapped to a data.Deal_Entry"))
+	})
+
+	// Test the conditions under which values should be convertible to a data.Deal.Entry
+	DescribeTable("UnmarshalCSV Tests",
+		func(value string, shouldBe Deal_Entry) {
+
+			// Attempt to convert the value into a data.Deal.Entry; this should not fail
+			var enum Deal_Entry
+			err := enum.UnmarshalCSV(value)
+
+			// Verify that the deserialization was successful
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(shouldBe))
+		},
+		Entry("InOut - Works", "InOut", Deal_Reverse),
+		Entry("In - Works", "In", Deal_In),
+		Entry("Out - Works", "Out", Deal_Out),
+		Entry("Reverse - Works", "Reverse", Deal_Reverse),
+		Entry("OutBy - Works", "OutBy", Deal_OutBy),
+		Entry("0 - Works", "0", Deal_In),
+		Entry("1 - Works", "1", Deal_Out),
+		Entry("2 - Works", "2", Deal_Reverse),
+		Entry("3 - Works", "3", Deal_OutBy))
+
+	// Test that attempting to deserialize a data.Deal.Entry will fail and return an error if the YAML
+	// node does not represent a scalar value
+	It("UnmarshalYAML - Node type is not scalar - Error", func() {
+		enum := new(Deal_Entry)
+		err := enum.UnmarshalYAML(&yaml.Node{Kind: yaml.AliasNode})
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("YAML node had an invalid kind (expected scalar value)"))
+	})
+
+	// Test that attempting to deserialize a data.Deal.Entry will fail and return an error if the YAML
+	// node value cannot be converted to either the name value or integer value of the enum option
+	It("UnmarshalYAML - Parse fails - Error", func() {
+		enum := new(Deal_Entry)
+		err := enum.UnmarshalYAML(&yaml.Node{Kind: yaml.ScalarNode, Value: "derp"})
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a data.Deal_Entry"))
+	})
+
+	// Test the conditions under which YAML node values should be convertible to a data.Deal.Entry
+	DescribeTable("UnmarshalYAML Tests",
+		func(value string, shouldBe Deal_Entry) {
+			var enum Deal_Entry
+			err := enum.UnmarshalYAML(&yaml.Node{Kind: yaml.ScalarNode, Value: value})
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(shouldBe))
+		},
+		Entry("InOut - Works", "InOut", Deal_Reverse),
+		Entry("In - Works", "In", Deal_In),
+		Entry("Out - Works", "Out", Deal_Out),
+		Entry("Reverse - Works", "Reverse", Deal_Reverse),
+		Entry("OutBy - Works", "OutBy", Deal_OutBy),
+		Entry("0 - Works", "0", Deal_In),
+		Entry("1 - Works", "1", Deal_Out),
+		Entry("2 - Works", "2", Deal_Reverse),
+		Entry("3 - Works", "3", Deal_OutBy))
+
+	// Tests that, if the attribute type submitted to UnmarshalDynamoDBAttributeValue is not one we
+	// recognize, then the function will return an error
+	It("UnmarshalDynamoDBAttributeValue - AttributeValue type invalid - Error", func() {
+		enum := new(Deal_Entry)
+		err := attributevalue.Unmarshal(&types.AttributeValueMemberBOOL{Value: true}, &enum)
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("Attribute value of *types.AttributeValueMemberBOOL could not be converted to a data.Deal.Entry"))
+	})
+
+	// Tests that, if time parsing fails, then calling UnmarshalDynamoDBAttributeValue will return an error
+	It("UnmarshalDynamoDBAttributeValue - Parse fails - Error", func() {
+		enum := new(Deal_Entry)
+		err := attributevalue.Unmarshal(&types.AttributeValueMemberS{Value: "derp"}, &enum)
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a data.Deal_Entry"))
+	})
+
+	// Tests the conditions under which UnmarshalDynamoDBAttributeValue is called and no error is generated
+	DescribeTable("UnmarshalDynamoDBAttributeValue - AttributeValue Conditions",
+		func(value types.AttributeValue, expected Deal_Entry) {
+			var enum Deal_Entry
+			err := attributevalue.Unmarshal(value, &enum)
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(expected))
+		},
+		Entry("Value is []bytes, InOut - Works",
+			&types.AttributeValueMemberB{Value: []byte("InOut")}, Deal_Reverse),
+		Entry("Value is []bytes, In - Works",
+			&types.AttributeValueMemberB{Value: []byte("In")}, Deal_In),
+		Entry("Value is []bytes, Out - Works",
+			&types.AttributeValueMemberB{Value: []byte("Out")}, Deal_Out),
+		Entry("Value is []bytes, Reverse - Works",
+			&types.AttributeValueMemberB{Value: []byte("Reverse")}, Deal_Reverse),
+		Entry("Value is []bytes, OutBy - Works",
+			&types.AttributeValueMemberB{Value: []byte("OutBy")}, Deal_OutBy),
+		Entry("Value is []bytes, 0 - Works",
+			&types.AttributeValueMemberB{Value: []byte("0")}, Deal_In),
+		Entry("Value is []bytes, 1 - Works",
+			&types.AttributeValueMemberB{Value: []byte("1")}, Deal_Out),
+		Entry("Value is []bytes, 2 - Works",
+			&types.AttributeValueMemberB{Value: []byte("2")}, Deal_Reverse),
+		Entry("Value is []bytes, 3 - Works",
+			&types.AttributeValueMemberB{Value: []byte("3")}, Deal_OutBy),
+		Entry("Value is int, 0 - Works",
+			&types.AttributeValueMemberN{Value: "0"}, Deal_In),
+		Entry("Value is int, 1 - Works",
+			&types.AttributeValueMemberN{Value: "1"}, Deal_Out),
+		Entry("Value is int, 2 - Works",
+			&types.AttributeValueMemberN{Value: "2"}, Deal_Reverse),
+		Entry("Value is int, 3 - Works",
+			&types.AttributeValueMemberN{Value: "3"}, Deal_OutBy),
+		Entry("Value is NULL - Works", new(types.AttributeValueMemberNULL), Deal_Entry(0)),
+		Entry("Value is string, InOut - Works",
+			&types.AttributeValueMemberS{Value: "InOut"}, Deal_Reverse),
+		Entry("Value is string, In - Works",
+			&types.AttributeValueMemberN{Value: "In"}, Deal_In),
+		Entry("Value is string, Out - Works",
+			&types.AttributeValueMemberN{Value: "Out"}, Deal_Out),
+		Entry("Value is string, Reverse - Works",
+			&types.AttributeValueMemberN{Value: "Reverse"}, Deal_Reverse),
+		Entry("Value is string, OutBy - Works",
+			&types.AttributeValueMemberN{Value: "OutBy"}, Deal_OutBy),
+		Entry("Value is string, 0 - Works",
+			&types.AttributeValueMemberN{Value: "0"}, Deal_In),
+		Entry("Value is string, 1 - Works",
+			&types.AttributeValueMemberN{Value: "1"}, Deal_Out),
+		Entry("Value is string, 2 - Works",
+			&types.AttributeValueMemberN{Value: "2"}, Deal_Reverse),
+		Entry("Value is string, 3 - Works",
+			&types.AttributeValueMemberN{Value: "3"}, Deal_OutBy))
+
+	// Test that attempting to deserialize a data.Deal.Entry will fial and return an error if the value
+	// cannot be converted to either the name value or integer value of the enum option
+	It("Scan - Value is nil - Error", func() {
+
+		// Attempt to convert a fake string value into a data.Deal.Entry; this should return an error
+		var enum *Deal_Entry
+		err := enum.Scan(nil)
+
+		// Verify the error
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of %!q(<nil>) had an invalid type of <nil>"))
+		Expect(enum).Should(BeNil())
+	})
+
+	// Test the conditions under which values should be convertible to a data.Deal.Entry
+	DescribeTable("Scan Tests",
+		func(value interface{}, shouldBe Deal_Entry) {
+
+			// Attempt to convert the value into a data.Deal.Entry; this should not fail
+			var enum Deal_Entry
+			err := enum.Scan(value)
+
+			// Verify that the deserialization was successful
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(shouldBe))
+		},
+		Entry("InOut - Works", "InOut", Deal_Reverse),
+		Entry("In - Works", "In", Deal_In),
+		Entry("Out - Works", "Out", Deal_Out),
+		Entry("Reverse - Works", "Reverse", Deal_Reverse),
+		Entry("OutBy - Works", "OutBy", Deal_OutBy),
+		Entry("0 - Works", 0, Deal_In),
+		Entry("1 - Works", 1, Deal_Out),
+		Entry("2 - Works", 2, Deal_Reverse),
+		Entry("3 - Works", 3, Deal_OutBy))
+})
+
+var _ = Describe("data.Deal.Reason Marshal/Unmarshal Tests", func() {
+
+})
