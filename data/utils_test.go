@@ -1467,4 +1467,443 @@ var _ = Describe("data.Deal.Entry Marshal/Unmarshal Tests", func() {
 
 var _ = Describe("data.Deal.Reason Marshal/Unmarshal Tests", func() {
 
+	// Test that converting the data.Deal.Reason enum to JSON works for all values
+	DescribeTable("MarshalJSON Tests",
+		func(enum Deal_Reason, value string) {
+			data, err := json.Marshal(enum)
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(string(data)).Should(Equal(value))
+		},
+		Entry("Client - Works", Deal_Client, "\"Client\""),
+		Entry("Mobile - Works", Deal_Mobile, "\"Mobile\""),
+		Entry("Web - Works", Deal_Web, "\"Web\""),
+		Entry("Strategy - Works", Deal_Strategy, "\"Strategy\""),
+		Entry("StopLoss - Works", Deal_StopLoss, "\"SL\""),
+		Entry("TakeProfit - Works", Deal_TakeProfit, "\"TP\""),
+		Entry("StopOut - Works", Deal_StopOut, "\"SO\""),
+		Entry("Rollover - Works", Deal_Rollover, "\"Rollover\""),
+		Entry("Margin - Works", Deal_Margin, "\"Margin\""),
+		Entry("Split - Works", Deal_Split, "\"Split\""))
+
+	// Test that converting the data.Deal.Reason enum to a CSV column works for all values
+	DescribeTable("MarshalCSV Tests",
+		func(enum Deal_Reason, value string) {
+			data, err := enum.MarshalCSV()
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(string(data)).Should(Equal(value))
+		},
+		Entry("Client - Works", Deal_Client, "Client"),
+		Entry("Mobile - Works", Deal_Mobile, "Mobile"),
+		Entry("Web - Works", Deal_Web, "Web"),
+		Entry("Strategy - Works", Deal_Strategy, "Strategy"),
+		Entry("StopLoss - Works", Deal_StopLoss, "SL"),
+		Entry("TakeProfit - Works", Deal_TakeProfit, "TP"),
+		Entry("StopOut - Works", Deal_StopOut, "SO"),
+		Entry("Rollover - Works", Deal_Rollover, "Rollover"),
+		Entry("Margin - Works", Deal_Margin, "Margin"),
+		Entry("Split - Works", Deal_Split, "Split"))
+
+	// Test that converting the data.Deal.Reason enum to a YAML node works for all values
+	DescribeTable("MarshalYAML - Works",
+		func(enum Deal_Reason, value string) {
+			data, err := enum.MarshalYAML()
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(data).Should(Equal(value))
+		},
+		Entry("Client - Works", Deal_Client, "Client"),
+		Entry("Mobile - Works", Deal_Mobile, "Mobile"),
+		Entry("Web - Works", Deal_Web, "Web"),
+		Entry("Strategy - Works", Deal_Strategy, "Strategy"),
+		Entry("StopLoss - Works", Deal_StopLoss, "SL"),
+		Entry("TakeProfit - Works", Deal_TakeProfit, "TP"),
+		Entry("StopOut - Works", Deal_StopOut, "SO"),
+		Entry("Rollover - Works", Deal_Rollover, "Rollover"),
+		Entry("Margin - Works", Deal_Margin, "Margin"),
+		Entry("Split - Works", Deal_Split, "Split"))
+
+	// Test that converting the data.Deal.Reason enum to a DynamoDB AttributeVAlue works for all values
+	DescribeTable("MarshalDynamoDBAttributeValue - Works",
+		func(enum Deal_Reason, value string) {
+			data, err := attributevalue.Marshal(enum)
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(data.(*types.AttributeValueMemberS).Value).Should(Equal(value))
+		},
+		Entry("Client - Works", Deal_Client, "Client"),
+		Entry("Mobile - Works", Deal_Mobile, "Mobile"),
+		Entry("Web - Works", Deal_Web, "Web"),
+		Entry("Strategy - Works", Deal_Strategy, "Strategy"),
+		Entry("StopLoss - Works", Deal_StopLoss, "SL"),
+		Entry("TakeProfit - Works", Deal_TakeProfit, "TP"),
+		Entry("StopOut - Works", Deal_StopOut, "SO"),
+		Entry("Rollover - Works", Deal_Rollover, "Rollover"),
+		Entry("Margin - Works", Deal_Margin, "Margin"),
+		Entry("Split - Works", Deal_Split, "Split"))
+
+	// Test that converting the data.Deal.Reason enum to an SQL value for all values
+	DescribeTable("Value Tests",
+		func(enum Deal_Reason, value string) {
+			data, err := enum.Value()
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(data).Should(Equal(value))
+		},
+		Entry("Client - Works", Deal_Client, "Client"),
+		Entry("Mobile - Works", Deal_Mobile, "Mobile"),
+		Entry("Web - Works", Deal_Web, "Web"),
+		Entry("Strategy - Works", Deal_Strategy, "Strategy"),
+		Entry("StopLoss - Works", Deal_StopLoss, "SL"),
+		Entry("TakeProfit - Works", Deal_TakeProfit, "TP"),
+		Entry("StopOut - Works", Deal_StopOut, "SO"),
+		Entry("Rollover - Works", Deal_Rollover, "Rollover"),
+		Entry("Margin - Works", Deal_Margin, "Margin"),
+		Entry("Split - Works", Deal_Split, "Split"))
+
+	// Test that attempting to deserialize a data.Deal.Reason will fail and return an error if the value
+	// cannot be deserialized from a JSON value to a string
+	It("UnmarshalJSON fails - Error", func() {
+
+		// Attempt to convert a non-parseable string value into a data.Deal.Reason; this should return an error
+		enum := new(Deal_Reason)
+		err := enum.UnmarshalJSON([]byte("derp"))
+
+		// Verify the error
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a data.Deal_Reason"))
+	})
+
+	// Test that attempting to deserialize a data.Deal.Reason will fail and return an error if the value
+	// cannot be converted to either the name value or integer value of the enum option
+	It("UnmarshalJSON - Value is invalid - Error", func() {
+
+		// Attempt to convert a fake string value into a data.Deal.Reason; this should return an error
+		enum := new(Deal_Reason)
+		err := enum.UnmarshalJSON([]byte("\"derp\""))
+
+		// Verify the error
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a data.Deal_Reason"))
+	})
+
+	// Test the conditions under which values should be convertible to a data.Deal.Reason
+	DescribeTable("UnmarshalJSON Tests",
+		func(value string, shouldBe Deal_Reason) {
+
+			// Attempt to convert the string value into a data.Deal.Reason; this should not fail
+			var enum Deal_Reason
+			err := enum.UnmarshalJSON([]byte(value))
+
+			// Verify that the deserialization was successful
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(shouldBe))
+		},
+		Entry("SL - Works", "\"SL\"", Deal_StopLoss),
+		Entry("TP - Works", "\"TP\"", Deal_TakeProfit),
+		Entry("SO - Works", "\"SO\"", Deal_StopOut),
+		Entry("Client - Works", "\"Client\"", Deal_Client),
+		Entry("Mobile - Works", "\"Mobile\"", Deal_Mobile),
+		Entry("Web - Works", "\"Web\"", Deal_Web),
+		Entry("Strategy - Works", "\"Strategy\"", Deal_Strategy),
+		Entry("StopLoss - Works", "\"StopLoss\"", Deal_StopLoss),
+		Entry("TakeProfit - Works", "\"TakeProfit\"", Deal_TakeProfit),
+		Entry("StopOut - Works", "\"StopOut\"", Deal_StopOut),
+		Entry("Rollover", "\"Rollover\"", Deal_Rollover),
+		Entry("Margin", "\"Margin\"", Deal_Margin),
+		Entry("Split", "\"Split\"", Deal_Split),
+		Entry("0 - Works", "\"0\"", Deal_Client),
+		Entry("1 - Works", "\"1\"", Deal_Mobile),
+		Entry("2 - Works", "\"2\"", Deal_Web),
+		Entry("3 - Works", "\"3\"", Deal_Strategy),
+		Entry("4 - Works", "\"4\"", Deal_StopLoss),
+		Entry("5 - Works", "\"5\"", Deal_TakeProfit),
+		Entry("6 - Works", "\"6\"", Deal_StopOut),
+		Entry("7 - Works", "\"7\"", Deal_Rollover),
+		Entry("8 - Works", "\"8\"", Deal_Margin),
+		Entry("9 - Works", "\"9\"", Deal_Split))
+
+	// Test that attempting to deserialize a data.Deal.Reason will fail and return an error if the value
+	// cannot be converted to either the name value or integer value of the enum option
+	It("UnmarshalCSV - Value is empty - Error", func() {
+
+		// Attempt to convert a fake string value into a data.Deal.Reason; this should return an error
+		enum := new(Deal_Reason)
+		err := enum.UnmarshalCSV("")
+
+		// Verify the error
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"\" cannot be mapped to a data.Deal_Reason"))
+	})
+
+	// Test the conditions under which values should be convertible to a data.Deal.Reason
+	DescribeTable("UnmarshalCSV Tests",
+		func(value string, shouldBe Deal_Reason) {
+
+			// Attempt to convert the value into a data.Deal.Reason; this should not fail
+			var enum Deal_Reason
+			err := enum.UnmarshalCSV(value)
+
+			// Verify that the deserialization was successful
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(shouldBe))
+		},
+		Entry("SL - Works", "SL", Deal_StopLoss),
+		Entry("TP - Works", "TP", Deal_TakeProfit),
+		Entry("SO - Works", "SO", Deal_StopOut),
+		Entry("Client - Works", "Client", Deal_Client),
+		Entry("Mobile - Works", "Mobile", Deal_Mobile),
+		Entry("Web - Works", "Web", Deal_Web),
+		Entry("Strategy - Works", "Strategy", Deal_Strategy),
+		Entry("StopLoss - Works", "StopLoss", Deal_StopLoss),
+		Entry("TakeProfit - Works", "TakeProfit", Deal_TakeProfit),
+		Entry("StopOut - Works", "StopOut", Deal_StopOut),
+		Entry("Rollover", "Rollover", Deal_Rollover),
+		Entry("Margin", "Margin", Deal_Margin),
+		Entry("Split", "Split", Deal_Split),
+		Entry("0 - Works", "0", Deal_Client),
+		Entry("1 - Works", "1", Deal_Mobile),
+		Entry("2 - Works", "2", Deal_Web),
+		Entry("3 - Works", "3", Deal_Strategy),
+		Entry("4 - Works", "4", Deal_StopLoss),
+		Entry("5 - Works", "5", Deal_TakeProfit),
+		Entry("6 - Works", "6", Deal_StopOut),
+		Entry("7 - Works", "7", Deal_Rollover),
+		Entry("8 - Works", "8", Deal_Margin),
+		Entry("9 - Works", "9", Deal_Split))
+
+	// Test that attempting to deserialize a data.Deal.Reason will fail and return an error if the YAML
+	// node does not represent a scalar value
+	It("UnmarshalYAML - Node type is not scalar - Error", func() {
+		enum := new(Deal_Reason)
+		err := enum.UnmarshalYAML(&yaml.Node{Kind: yaml.AliasNode})
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("YAML node had an invalid kind (expected scalar value)"))
+	})
+
+	// Test that attempting to deserialize a data.Deal.Reason will fail and return an error if the YAML
+	// node value cannot be converted to either the name value or integer value of the enum option
+	It("UnmarshalYAML - Parse fails - Error", func() {
+		enum := new(Deal_Reason)
+		err := enum.UnmarshalYAML(&yaml.Node{Kind: yaml.ScalarNode, Value: "derp"})
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a data.Deal_Reason"))
+	})
+
+	// Test the conditions under which YAML node values should be convertible to a data.Deal.Reason
+	DescribeTable("UnmarshalYAML Tests",
+		func(value string, shouldBe Deal_Reason) {
+			var enum Deal_Reason
+			err := enum.UnmarshalYAML(&yaml.Node{Kind: yaml.ScalarNode, Value: value})
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(shouldBe))
+		},
+		Entry("SL - Works", "SL", Deal_StopLoss),
+		Entry("TP - Works", "TP", Deal_TakeProfit),
+		Entry("SO - Works", "SO", Deal_StopOut),
+		Entry("Client - Works", "Client", Deal_Client),
+		Entry("Mobile - Works", "Mobile", Deal_Mobile),
+		Entry("Web - Works", "Web", Deal_Web),
+		Entry("Strategy - Works", "Strategy", Deal_Strategy),
+		Entry("StopLoss - Works", "StopLoss", Deal_StopLoss),
+		Entry("TakeProfit - Works", "TakeProfit", Deal_TakeProfit),
+		Entry("StopOut - Works", "StopOut", Deal_StopOut),
+		Entry("Rollover", "Rollover", Deal_Rollover),
+		Entry("Margin", "Margin", Deal_Margin),
+		Entry("Split", "Split", Deal_Split),
+		Entry("0 - Works", "0", Deal_Client),
+		Entry("1 - Works", "1", Deal_Mobile),
+		Entry("2 - Works", "2", Deal_Web),
+		Entry("3 - Works", "3", Deal_Strategy),
+		Entry("4 - Works", "4", Deal_StopLoss),
+		Entry("5 - Works", "5", Deal_TakeProfit),
+		Entry("6 - Works", "6", Deal_StopOut),
+		Entry("7 - Works", "7", Deal_Rollover),
+		Entry("8 - Works", "8", Deal_Margin),
+		Entry("9 - Works", "9", Deal_Split))
+
+	// Tests that, if the attribute type submitted to UnmarshalDynamoDBAttributeValue is not one we
+	// recognize, then the function will return an error
+	It("UnmarshalDynamoDBAttributeValue - AttributeValue type invalid - Error", func() {
+		enum := new(Deal_Reason)
+		err := attributevalue.Unmarshal(&types.AttributeValueMemberBOOL{Value: true}, &enum)
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("Attribute value of *types.AttributeValueMemberBOOL could not be converted to a data.Deal.Reason"))
+	})
+
+	// Tests that, if time parsing fails, then calling UnmarshalDynamoDBAttributeValue will return an error
+	It("UnmarshalDynamoDBAttributeValue - Parse fails - Error", func() {
+		enum := new(Deal_Reason)
+		err := attributevalue.Unmarshal(&types.AttributeValueMemberS{Value: "derp"}, &enum)
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a data.Deal_Reason"))
+	})
+
+	// Tests the conditions under which UnmarshalDynamoDBAttributeValue is called and no error is generated
+	DescribeTable("UnmarshalDynamoDBAttributeValue - AttributeValue Conditions",
+		func(value types.AttributeValue, expected Deal_Reason) {
+			var enum Deal_Reason
+			err := attributevalue.Unmarshal(value, &enum)
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(expected))
+		},
+		Entry("Value is []bytes, SL - Works",
+			&types.AttributeValueMemberB{Value: []byte("SL")}, Deal_StopLoss),
+		Entry("Value is []bytes, TP - Works",
+			&types.AttributeValueMemberB{Value: []byte("TP")}, Deal_TakeProfit),
+		Entry("Value is []bytes, SO - Works",
+			&types.AttributeValueMemberB{Value: []byte("SO")}, Deal_StopOut),
+		Entry("Value is []bytes, Client - Works",
+			&types.AttributeValueMemberB{Value: []byte("Client")}, Deal_Client),
+		Entry("Value is []bytes, Mobile - Works",
+			&types.AttributeValueMemberB{Value: []byte("Mobile")}, Deal_Mobile),
+		Entry("Value is []bytes, Web - Works",
+			&types.AttributeValueMemberB{Value: []byte("Web")}, Deal_Web),
+		Entry("Value is []bytes, Strategy - Works",
+			&types.AttributeValueMemberB{Value: []byte("Strategy")}, Deal_Strategy),
+		Entry("Value is []bytes, StopLoss - Works",
+			&types.AttributeValueMemberB{Value: []byte("StopLoss")}, Deal_StopLoss),
+		Entry("Value is []bytes, TakeProfit - Works",
+			&types.AttributeValueMemberB{Value: []byte("TakeProfit")}, Deal_TakeProfit),
+		Entry("Value is []bytes, StopOut - Works",
+			&types.AttributeValueMemberB{Value: []byte("StopOut")}, Deal_StopOut),
+		Entry("Value is []bytes, Rollover - Works",
+			&types.AttributeValueMemberB{Value: []byte("Rollover")}, Deal_Rollover),
+		Entry("Value is []bytes, Margin - Works",
+			&types.AttributeValueMemberB{Value: []byte("Margin")}, Deal_Margin),
+		Entry("Value is []bytes, Split - Works",
+			&types.AttributeValueMemberB{Value: []byte("Split")}, Deal_Split),
+		Entry("Value is []bytes, 0 - Works",
+			&types.AttributeValueMemberB{Value: []byte("0")}, Deal_Client),
+		Entry("Value is []bytes, 1 - Works",
+			&types.AttributeValueMemberB{Value: []byte("1")}, Deal_Mobile),
+		Entry("Value is []bytes, 2 - Works",
+			&types.AttributeValueMemberB{Value: []byte("2")}, Deal_Web),
+		Entry("Value is []bytes, 3 - Works",
+			&types.AttributeValueMemberB{Value: []byte("3")}, Deal_Strategy),
+		Entry("Value is []bytes, 4 - Works",
+			&types.AttributeValueMemberB{Value: []byte("4")}, Deal_StopLoss),
+		Entry("Value is []bytes, 5 - Works",
+			&types.AttributeValueMemberB{Value: []byte("5")}, Deal_TakeProfit),
+		Entry("Value is []bytes, 6 - Works",
+			&types.AttributeValueMemberB{Value: []byte("6")}, Deal_StopOut),
+		Entry("Value is []bytes, 7 - Works",
+			&types.AttributeValueMemberB{Value: []byte("7")}, Deal_Rollover),
+		Entry("Value is []bytes, 8 - Works",
+			&types.AttributeValueMemberB{Value: []byte("8")}, Deal_Margin),
+		Entry("Value is []bytes, 9 - Works",
+			&types.AttributeValueMemberB{Value: []byte("9")}, Deal_Split),
+		Entry("Value is int, 0 - Works",
+			&types.AttributeValueMemberN{Value: "0"}, Deal_Client),
+		Entry("Value is int, 1 - Works",
+			&types.AttributeValueMemberN{Value: "1"}, Deal_Mobile),
+		Entry("Value is int, 2 - Works",
+			&types.AttributeValueMemberN{Value: "2"}, Deal_Web),
+		Entry("Value is int, 3 - Works",
+			&types.AttributeValueMemberN{Value: "3"}, Deal_Strategy),
+		Entry("Value is int, 4 - Works",
+			&types.AttributeValueMemberN{Value: "4"}, Deal_StopLoss),
+		Entry("Value is int, 5 - Works",
+			&types.AttributeValueMemberN{Value: "5"}, Deal_TakeProfit),
+		Entry("Value is int, 6 - Works",
+			&types.AttributeValueMemberN{Value: "6"}, Deal_StopOut),
+		Entry("Value is int, 7 - Works",
+			&types.AttributeValueMemberN{Value: "7"}, Deal_Rollover),
+		Entry("Value is int, 8 - Works",
+			&types.AttributeValueMemberN{Value: "8"}, Deal_Margin),
+		Entry("Value is int, 9 - Works",
+			&types.AttributeValueMemberN{Value: "9"}, Deal_Split),
+		Entry("Value is NULL - Works", new(types.AttributeValueMemberNULL), Deal_Reason(0)),
+		Entry("Value is string, SL - Works",
+			&types.AttributeValueMemberS{Value: "SL"}, Deal_StopLoss),
+		Entry("Value is string, TP - Works",
+			&types.AttributeValueMemberS{Value: "TP"}, Deal_TakeProfit),
+		Entry("Value is string, SO - Works",
+			&types.AttributeValueMemberS{Value: "SO"}, Deal_StopOut),
+		Entry("Value is string, Client - Works",
+			&types.AttributeValueMemberN{Value: "Client"}, Deal_Client),
+		Entry("Value is string, Mobile - Works",
+			&types.AttributeValueMemberN{Value: "Mobile"}, Deal_Mobile),
+		Entry("Value is string, Web - Works",
+			&types.AttributeValueMemberN{Value: "Web"}, Deal_Web),
+		Entry("Value is string, Strategy - Works",
+			&types.AttributeValueMemberN{Value: "Strategy"}, Deal_Strategy),
+		Entry("Value is string, StopLoss - Works",
+			&types.AttributeValueMemberN{Value: "StopLoss"}, Deal_StopLoss),
+		Entry("Value is string, TakeProfit - Works",
+			&types.AttributeValueMemberN{Value: "TakeProfit"}, Deal_TakeProfit),
+		Entry("Value is string, StopOut - Works",
+			&types.AttributeValueMemberN{Value: "StopOut"}, Deal_StopOut),
+		Entry("Value is string, Rollover - Works",
+			&types.AttributeValueMemberN{Value: "Rollover"}, Deal_Rollover),
+		Entry("Value is string, Margin - Works",
+			&types.AttributeValueMemberN{Value: "Margin"}, Deal_Margin),
+		Entry("Value is string, Split - Works",
+			&types.AttributeValueMemberN{Value: "Split"}, Deal_Split),
+		Entry("Value is string, 0 - Works",
+			&types.AttributeValueMemberN{Value: "0"}, Deal_Client),
+		Entry("Value is string, 1 - Works",
+			&types.AttributeValueMemberN{Value: "1"}, Deal_Mobile),
+		Entry("Value is string, 2 - Works",
+			&types.AttributeValueMemberN{Value: "2"}, Deal_Web),
+		Entry("Value is string, 3 - Works",
+			&types.AttributeValueMemberN{Value: "3"}, Deal_Strategy),
+		Entry("Value is string, 4 - Works",
+			&types.AttributeValueMemberN{Value: "4"}, Deal_StopLoss),
+		Entry("Value is string, 5 - Works",
+			&types.AttributeValueMemberN{Value: "5"}, Deal_TakeProfit),
+		Entry("Value is string, 6 - Works",
+			&types.AttributeValueMemberN{Value: "6"}, Deal_StopOut),
+		Entry("Value is string, 7 - Works",
+			&types.AttributeValueMemberN{Value: "7"}, Deal_Rollover),
+		Entry("Value is string, 8 - Works",
+			&types.AttributeValueMemberN{Value: "8"}, Deal_Margin),
+		Entry("Value is string, 9 - Works",
+			&types.AttributeValueMemberN{Value: "9"}, Deal_Split))
+
+	// Test that attempting to deserialize a data.Deal.Reason will fial and return an error if the value
+	// cannot be converted to either the name value or integer value of the enum option
+	It("Scan - Value is nil - Error", func() {
+
+		// Attempt to convert a fake string value into a data.Deal.Reason; this should return an error
+		var enum *Deal_Reason
+		err := enum.Scan(nil)
+
+		// Verify the error
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of %!q(<nil>) had an invalid type of <nil>"))
+		Expect(enum).Should(BeNil())
+	})
+
+	// Test the conditions under which values should be convertible to a data.Deal.Reason
+	DescribeTable("Scan Tests",
+		func(value interface{}, shouldBe Deal_Reason) {
+
+			// Attempt to convert the value into a data.Deal.Reason; this should not fail
+			var enum Deal_Reason
+			err := enum.Scan(value)
+
+			// Verify that the deserialization was successful
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(shouldBe))
+		},
+		Entry("SL - Works", "SL", Deal_StopLoss),
+		Entry("TP - Works", "TP", Deal_TakeProfit),
+		Entry("SO - Works", "SO", Deal_StopOut),
+		Entry("Client - Works", "Client", Deal_Client),
+		Entry("Mobile - Works", "Mobile", Deal_Mobile),
+		Entry("Web - Works", "Web", Deal_Web),
+		Entry("Strategy - Works", "Strategy", Deal_Strategy),
+		Entry("StopLoss - Works", "StopLoss", Deal_StopLoss),
+		Entry("TakeProfit - Works", "TakeProfit", Deal_TakeProfit),
+		Entry("StopOut - Works", "StopOut", Deal_StopOut),
+		Entry("Rollover", "Rollover", Deal_Rollover),
+		Entry("Margin", "Margin", Deal_Margin),
+		Entry("Split", "Split", Deal_Split),
+		Entry("0 - Works", 0, Deal_Client),
+		Entry("1 - Works", 1, Deal_Mobile),
+		Entry("2 - Works", 2, Deal_Web),
+		Entry("3 - Works", 3, Deal_Strategy),
+		Entry("4 - Works", 4, Deal_StopLoss),
+		Entry("5 - Works", 5, Deal_TakeProfit),
+		Entry("6 - Works", 6, Deal_StopOut),
+		Entry("7 - Works", 7, Deal_Rollover),
+		Entry("8 - Works", 8, Deal_Margin),
+		Entry("9 - Works", 9, Deal_Split))
 })
