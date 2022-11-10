@@ -40,8 +40,8 @@ github.com/shopspring/decimal v1.3.1/go.mod h1:DKyhrW/HYNuLGql+MJL6WCR6knT2jwCFR
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/xefino/protobuf-gen-go v1.1.3 h1:eQ6eQgn0oJF0fT6jLS2DrM4dxLAvd2Zi5b9b2DNYXjw=
 github.com/xefino/protobuf-gen-go v1.1.3/go.mod h1:34yHu/axNVaEfwT4vc3T7bV1Ica/OE4sTuJdrBFNb5k=
-github.com/xefino/quantum-api-go v1.1.1 h1:7lDIII9wmAtwL8zQStsnzOv3Pcc1VpeeEWsSqmQZ76c=
-github.com/xefino/quantum-api-go v1.1.1/go.mod h1:PLBJjyyA7T/K1fXflVmS3gRSXa7Fc70LyQ7eP2IgEwM=
+github.com/xefino/quantum-api-go v1.2.1 h1:ADQKuh1QzMJQ+BFW2pHhZrMHYckh5ytzjdmTUowNzt4=
+github.com/xefino/quantum-api-go v1.2.1/go.mod h1:fE1jbBuTtOy/+ixGh5ybu8SUchQhr49liZbH404pr1g=
 golang.org/x/net v0.1.0 h1:hZ/3BUoy5aId7sCpA/Tc5lt8DkFgdVS2onTpJsZ/fl0=
 golang.org/x/net v0.1.0/go.mod h1:Cx3nUiGt4eDBEyega/BKRp+/AlGL8hYe7U9odMt2Cco=
 golang.org/x/sys v0.1.0 h1:kunALQeHf1/185U1i0GOB/fy1IPRDDpuoOOqRReG57U=

@@ -11,7 +11,7 @@ require (
 	github.com/onsi/gomega v1.23.0
 	github.com/shopspring/decimal v1.3.1
 	github.com/xefino/protobuf-gen-go v1.1.3
-	github.com/xefino/quantum-api-go v1.1.1
+	github.com/xefino/quantum-api-go v1.2.1
 	google.golang.org/grpc v1.50.1
 	google.golang.org/protobuf v1.28.1
 	gopkg.in/yaml.v3 v3.0.1
