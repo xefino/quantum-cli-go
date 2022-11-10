@@ -750,17 +750,17 @@ var _ = Describe("data.Deal.Type Marshal/Unmarshal Tests", func() {
 		Entry("Charge - Works", "\"Charge\"", Deal_Charge),
 		Entry("Correction - Works", "\"Correction\"", Deal_Correction),
 		Entry("Bonus - Works", "\"Bonus\"", Deal_Bonus),
-		Entry("Commission", "\"Commission\"", Deal_Commission),
-		Entry("CommissionDaily", "\"CommissionDaily\"", Deal_CommissionDaily),
-		Entry("CommissionMonthly", "\"CommissionMonthly\"", Deal_CommissionMonthly),
-		Entry("CommissionAgentDaily", "\"CommissionAgentDaily\"", Deal_CommissionAgentDaily),
-		Entry("CommissionAgentMonthly", "\"CommissionAgentMonthly\"", Deal_CommissionAgentMonthly),
-		Entry("Interest", "\"Interest\"", Deal_Interest),
-		Entry("BuyCancelled", "\"BuyCancelled\"", Deal_BuyCancelled),
-		Entry("SellCancelled", "\"SellCancelled\"", Deal_SellCancelled),
-		Entry("Dividend", "\"Dividend\"", Deal_Dividend),
-		Entry("Franked", "\"Franked\"", Deal_Franked),
-		Entry("Tax", "\"Tax\"", Deal_Tax),
+		Entry("Commission - Works", "\"Commission\"", Deal_Commission),
+		Entry("CommissionDaily - Works", "\"CommissionDaily\"", Deal_CommissionDaily),
+		Entry("CommissionMonthly - Works", "\"CommissionMonthly\"", Deal_CommissionMonthly),
+		Entry("CommissionAgentDaily - Works", "\"CommissionAgentDaily\"", Deal_CommissionAgentDaily),
+		Entry("CommissionAgentMonthly - Works", "\"CommissionAgentMonthly\"", Deal_CommissionAgentMonthly),
+		Entry("Interest - Works", "\"Interest\"", Deal_Interest),
+		Entry("BuyCancelled - Works", "\"BuyCancelled\"", Deal_BuyCancelled),
+		Entry("SellCancelled - Works", "\"SellCancelled\"", Deal_SellCancelled),
+		Entry("Dividend - Works", "\"Dividend\"", Deal_Dividend),
+		Entry("Franked - Works", "\"Franked\"", Deal_Franked),
+		Entry("Tax - Works", "\"Tax\"", Deal_Tax),
 		Entry("0 - Works", "\"0\"", Deal_Buy),
 		Entry("1 - Works", "\"1\"", Deal_Sell),
 		Entry("2 - Works", "\"2\"", Deal_Balance),
@@ -812,17 +812,17 @@ var _ = Describe("data.Deal.Type Marshal/Unmarshal Tests", func() {
 		Entry("Charge - Works", "Charge", Deal_Charge),
 		Entry("Correction - Works", "Correction", Deal_Correction),
 		Entry("Bonus - Works", "Bonus", Deal_Bonus),
-		Entry("Commission", "Commission", Deal_Commission),
-		Entry("CommissionDaily", "CommissionDaily", Deal_CommissionDaily),
-		Entry("CommissionMonthly", "CommissionMonthly", Deal_CommissionMonthly),
-		Entry("CommissionAgentDaily", "CommissionAgentDaily", Deal_CommissionAgentDaily),
-		Entry("CommissionAgentMonthly", "CommissionAgentMonthly", Deal_CommissionAgentMonthly),
-		Entry("Interest", "Interest", Deal_Interest),
-		Entry("BuyCancelled", "BuyCancelled", Deal_BuyCancelled),
-		Entry("SellCancelled", "SellCancelled", Deal_SellCancelled),
-		Entry("Dividend", "Dividend", Deal_Dividend),
-		Entry("Franked", "Franked", Deal_Franked),
-		Entry("Tax", "Tax", Deal_Tax),
+		Entry("Commission - Works", "Commission", Deal_Commission),
+		Entry("CommissionDaily - Works", "CommissionDaily", Deal_CommissionDaily),
+		Entry("CommissionMonthly - Works", "CommissionMonthly", Deal_CommissionMonthly),
+		Entry("CommissionAgentDaily - Works", "CommissionAgentDaily", Deal_CommissionAgentDaily),
+		Entry("CommissionAgentMonthly - Works", "CommissionAgentMonthly", Deal_CommissionAgentMonthly),
+		Entry("Interest - Works", "Interest", Deal_Interest),
+		Entry("BuyCancelled - Works", "BuyCancelled", Deal_BuyCancelled),
+		Entry("SellCancelled - Works", "SellCancelled", Deal_SellCancelled),
+		Entry("Dividend - Works", "Dividend", Deal_Dividend),
+		Entry("Franked - Works", "Franked", Deal_Franked),
+		Entry("Tax - Works", "Tax", Deal_Tax),
 		Entry("0 - Works", "0", Deal_Buy),
 		Entry("1 - Works", "1", Deal_Sell),
 		Entry("2 - Works", "2", Deal_Balance),
@@ -875,17 +875,17 @@ var _ = Describe("data.Deal.Type Marshal/Unmarshal Tests", func() {
 		Entry("Charge - Works", "Charge", Deal_Charge),
 		Entry("Correction - Works", "Correction", Deal_Correction),
 		Entry("Bonus - Works", "Bonus", Deal_Bonus),
-		Entry("Commission", "Commission", Deal_Commission),
-		Entry("CommissionDaily", "CommissionDaily", Deal_CommissionDaily),
-		Entry("CommissionMonthly", "CommissionMonthly", Deal_CommissionMonthly),
-		Entry("CommissionAgentDaily", "CommissionAgentDaily", Deal_CommissionAgentDaily),
-		Entry("CommissionAgentMonthly", "CommissionAgentMonthly", Deal_CommissionAgentMonthly),
-		Entry("Interest", "Interest", Deal_Interest),
-		Entry("BuyCancelled", "BuyCancelled", Deal_BuyCancelled),
-		Entry("SellCancelled", "SellCancelled", Deal_SellCancelled),
-		Entry("Dividend", "Dividend", Deal_Dividend),
-		Entry("Franked", "Franked", Deal_Franked),
-		Entry("Tax", "Tax", Deal_Tax),
+		Entry("Commission - Works", "Commission", Deal_Commission),
+		Entry("CommissionDaily - Works", "CommissionDaily", Deal_CommissionDaily),
+		Entry("CommissionMonthly - Works", "CommissionMonthly", Deal_CommissionMonthly),
+		Entry("CommissionAgentDaily - Works", "CommissionAgentDaily", Deal_CommissionAgentDaily),
+		Entry("CommissionAgentMonthly - Works", "CommissionAgentMonthly", Deal_CommissionAgentMonthly),
+		Entry("Interest - Works", "Interest", Deal_Interest),
+		Entry("BuyCancelled - Works", "BuyCancelled", Deal_BuyCancelled),
+		Entry("SellCancelled - Works", "SellCancelled", Deal_SellCancelled),
+		Entry("Dividend - Works", "Dividend", Deal_Dividend),
+		Entry("Franked - Works", "Franked", Deal_Franked),
+		Entry("Tax - Works", "Tax", Deal_Tax),
 		Entry("0 - Works", "0", Deal_Buy),
 		Entry("1 - Works", "1", Deal_Sell),
 		Entry("2 - Works", "2", Deal_Balance),
@@ -1040,77 +1040,77 @@ var _ = Describe("data.Deal.Type Marshal/Unmarshal Tests", func() {
 			&types.AttributeValueMemberN{Value: "17"}, Deal_Tax),
 		Entry("Value is NULL - Works", new(types.AttributeValueMemberNULL), Deal_Type(0)),
 		Entry("Value is string, Buy - Works",
-			&types.AttributeValueMemberN{Value: "Buy"}, Deal_Buy),
+			&types.AttributeValueMemberS{Value: "Buy"}, Deal_Buy),
 		Entry("Value is string, Sell - Works",
-			&types.AttributeValueMemberN{Value: "Sell"}, Deal_Sell),
+			&types.AttributeValueMemberS{Value: "Sell"}, Deal_Sell),
 		Entry("Value is string, Balance - Works",
-			&types.AttributeValueMemberN{Value: "Balance"}, Deal_Balance),
+			&types.AttributeValueMemberS{Value: "Balance"}, Deal_Balance),
 		Entry("Value is string, Credit - Works",
-			&types.AttributeValueMemberN{Value: "Credit"}, Deal_Credit),
+			&types.AttributeValueMemberS{Value: "Credit"}, Deal_Credit),
 		Entry("Value is string, Charge - Works",
-			&types.AttributeValueMemberN{Value: "Charge"}, Deal_Charge),
+			&types.AttributeValueMemberS{Value: "Charge"}, Deal_Charge),
 		Entry("Value is string, Correction - Works",
-			&types.AttributeValueMemberN{Value: "Correction"}, Deal_Correction),
+			&types.AttributeValueMemberS{Value: "Correction"}, Deal_Correction),
 		Entry("Value is string, Bonus - Works",
-			&types.AttributeValueMemberN{Value: "Bonus"}, Deal_Bonus),
+			&types.AttributeValueMemberS{Value: "Bonus"}, Deal_Bonus),
 		Entry("Value is string, Commission - Works",
-			&types.AttributeValueMemberN{Value: "Commission"}, Deal_Commission),
+			&types.AttributeValueMemberS{Value: "Commission"}, Deal_Commission),
 		Entry("Value is string, CommissionDaily - Works",
-			&types.AttributeValueMemberN{Value: "CommissionDaily"}, Deal_CommissionDaily),
+			&types.AttributeValueMemberS{Value: "CommissionDaily"}, Deal_CommissionDaily),
 		Entry("Value is string, CommissionMonthly - Works",
-			&types.AttributeValueMemberN{Value: "CommissionMonthly"}, Deal_CommissionMonthly),
+			&types.AttributeValueMemberS{Value: "CommissionMonthly"}, Deal_CommissionMonthly),
 		Entry("Value is string, CommissionAgentDaily - Works",
-			&types.AttributeValueMemberN{Value: "CommissionAgentDaily"}, Deal_CommissionAgentDaily),
+			&types.AttributeValueMemberS{Value: "CommissionAgentDaily"}, Deal_CommissionAgentDaily),
 		Entry("Value is string, CommissionAgentMonthly - Works",
-			&types.AttributeValueMemberN{Value: "CommissionAgentMonthly"}, Deal_CommissionAgentMonthly),
+			&types.AttributeValueMemberS{Value: "CommissionAgentMonthly"}, Deal_CommissionAgentMonthly),
 		Entry("Value is string, Interest - Works",
-			&types.AttributeValueMemberN{Value: "Interest"}, Deal_Interest),
+			&types.AttributeValueMemberS{Value: "Interest"}, Deal_Interest),
 		Entry("Value is string, BuyCancelled - Works",
-			&types.AttributeValueMemberN{Value: "BuyCancelled"}, Deal_BuyCancelled),
+			&types.AttributeValueMemberS{Value: "BuyCancelled"}, Deal_BuyCancelled),
 		Entry("Value is string, SellCancelled - Works",
-			&types.AttributeValueMemberN{Value: "SellCancelled"}, Deal_SellCancelled),
+			&types.AttributeValueMemberS{Value: "SellCancelled"}, Deal_SellCancelled),
 		Entry("Value is string, Dividend - Works",
-			&types.AttributeValueMemberN{Value: "Dividend"}, Deal_Dividend),
+			&types.AttributeValueMemberS{Value: "Dividend"}, Deal_Dividend),
 		Entry("Value is string, Franked - Works",
-			&types.AttributeValueMemberN{Value: "Franked"}, Deal_Franked),
+			&types.AttributeValueMemberS{Value: "Franked"}, Deal_Franked),
 		Entry("Value is string, Tax - Works",
-			&types.AttributeValueMemberN{Value: "Tax"}, Deal_Tax),
+			&types.AttributeValueMemberS{Value: "Tax"}, Deal_Tax),
 		Entry("Value is string, 0 - Works",
-			&types.AttributeValueMemberN{Value: "0"}, Deal_Buy),
+			&types.AttributeValueMemberS{Value: "0"}, Deal_Buy),
 		Entry("Value is string, 1 - Works",
-			&types.AttributeValueMemberN{Value: "1"}, Deal_Sell),
+			&types.AttributeValueMemberS{Value: "1"}, Deal_Sell),
 		Entry("Value is string, 2 - Works",
-			&types.AttributeValueMemberN{Value: "2"}, Deal_Balance),
+			&types.AttributeValueMemberS{Value: "2"}, Deal_Balance),
 		Entry("Value is string, 3 - Works",
-			&types.AttributeValueMemberN{Value: "3"}, Deal_Credit),
+			&types.AttributeValueMemberS{Value: "3"}, Deal_Credit),
 		Entry("Value is string, 4 - Works",
-			&types.AttributeValueMemberN{Value: "4"}, Deal_Charge),
+			&types.AttributeValueMemberS{Value: "4"}, Deal_Charge),
 		Entry("Value is string, 5 - Works",
-			&types.AttributeValueMemberN{Value: "5"}, Deal_Correction),
+			&types.AttributeValueMemberS{Value: "5"}, Deal_Correction),
 		Entry("Value is string, 6 - Works",
-			&types.AttributeValueMemberN{Value: "6"}, Deal_Bonus),
+			&types.AttributeValueMemberS{Value: "6"}, Deal_Bonus),
 		Entry("Value is string, 7 - Works",
-			&types.AttributeValueMemberN{Value: "7"}, Deal_Commission),
+			&types.AttributeValueMemberS{Value: "7"}, Deal_Commission),
 		Entry("Value is string, 8 - Works",
-			&types.AttributeValueMemberN{Value: "8"}, Deal_CommissionDaily),
+			&types.AttributeValueMemberS{Value: "8"}, Deal_CommissionDaily),
 		Entry("Value is string, 9 - Works",
-			&types.AttributeValueMemberN{Value: "9"}, Deal_CommissionMonthly),
+			&types.AttributeValueMemberS{Value: "9"}, Deal_CommissionMonthly),
 		Entry("Value is string, 10 - Works",
-			&types.AttributeValueMemberN{Value: "10"}, Deal_CommissionAgentDaily),
+			&types.AttributeValueMemberS{Value: "10"}, Deal_CommissionAgentDaily),
 		Entry("Value is string, 11 - Works",
-			&types.AttributeValueMemberN{Value: "11"}, Deal_CommissionAgentMonthly),
+			&types.AttributeValueMemberS{Value: "11"}, Deal_CommissionAgentMonthly),
 		Entry("Value is string, 12 - Works",
-			&types.AttributeValueMemberN{Value: "12"}, Deal_Interest),
+			&types.AttributeValueMemberS{Value: "12"}, Deal_Interest),
 		Entry("Value is string, 13 - Works",
-			&types.AttributeValueMemberN{Value: "13"}, Deal_BuyCancelled),
+			&types.AttributeValueMemberS{Value: "13"}, Deal_BuyCancelled),
 		Entry("Value is string, 14 - Works",
-			&types.AttributeValueMemberN{Value: "14"}, Deal_SellCancelled),
+			&types.AttributeValueMemberS{Value: "14"}, Deal_SellCancelled),
 		Entry("Value is string, 15 - Works",
-			&types.AttributeValueMemberN{Value: "15"}, Deal_Dividend),
+			&types.AttributeValueMemberS{Value: "15"}, Deal_Dividend),
 		Entry("Value is string, 16 - Works",
-			&types.AttributeValueMemberN{Value: "16"}, Deal_Franked),
+			&types.AttributeValueMemberS{Value: "16"}, Deal_Franked),
 		Entry("Value is string, 17 - Works",
-			&types.AttributeValueMemberN{Value: "17"}, Deal_Tax))
+			&types.AttributeValueMemberS{Value: "17"}, Deal_Tax))
 
 	// Test that attempting to deserialize a data.Deal.Type will fial and return an error if the value
 	// cannot be converted to either the name value or integer value of the enum option
@@ -1145,17 +1145,17 @@ var _ = Describe("data.Deal.Type Marshal/Unmarshal Tests", func() {
 		Entry("Charge - Works", "Charge", Deal_Charge),
 		Entry("Correction - Works", "Correction", Deal_Correction),
 		Entry("Bonus - Works", "Bonus", Deal_Bonus),
-		Entry("Commission", "Commission", Deal_Commission),
-		Entry("CommissionDaily", "CommissionDaily", Deal_CommissionDaily),
-		Entry("CommissionMonthly", "CommissionMonthly", Deal_CommissionMonthly),
-		Entry("CommissionAgentDaily", "CommissionAgentDaily", Deal_CommissionAgentDaily),
-		Entry("CommissionAgentMonthly", "CommissionAgentMonthly", Deal_CommissionAgentMonthly),
-		Entry("Interest", "Interest", Deal_Interest),
-		Entry("BuyCancelled", "BuyCancelled", Deal_BuyCancelled),
-		Entry("SellCancelled", "SellCancelled", Deal_SellCancelled),
-		Entry("Dividend", "Dividend", Deal_Dividend),
-		Entry("Franked", "Franked", Deal_Franked),
-		Entry("Tax", "Tax", Deal_Tax),
+		Entry("Commission - Works", "Commission", Deal_Commission),
+		Entry("CommissionDaily - Works", "CommissionDaily", Deal_CommissionDaily),
+		Entry("CommissionMonthly - Works", "CommissionMonthly", Deal_CommissionMonthly),
+		Entry("CommissionAgentDaily - Works", "CommissionAgentDaily", Deal_CommissionAgentDaily),
+		Entry("CommissionAgentMonthly - Works", "CommissionAgentMonthly", Deal_CommissionAgentMonthly),
+		Entry("Interest - Works", "Interest", Deal_Interest),
+		Entry("BuyCancelled - Works", "BuyCancelled", Deal_BuyCancelled),
+		Entry("SellCancelled - Works", "SellCancelled", Deal_SellCancelled),
+		Entry("Dividend - Works", "Dividend", Deal_Dividend),
+		Entry("Franked - Works", "Franked", Deal_Franked),
+		Entry("Tax - Works", "Tax", Deal_Tax),
 		Entry("0 - Works", 0, Deal_Buy),
 		Entry("1 - Works", 1, Deal_Sell),
 		Entry("2 - Works", 2, Deal_Balance),
@@ -1412,21 +1412,21 @@ var _ = Describe("data.Deal.Entry Marshal/Unmarshal Tests", func() {
 		Entry("Value is string, InOut - Works",
 			&types.AttributeValueMemberS{Value: "InOut"}, Deal_Reverse),
 		Entry("Value is string, In - Works",
-			&types.AttributeValueMemberN{Value: "In"}, Deal_In),
+			&types.AttributeValueMemberS{Value: "In"}, Deal_In),
 		Entry("Value is string, Out - Works",
-			&types.AttributeValueMemberN{Value: "Out"}, Deal_Out),
+			&types.AttributeValueMemberS{Value: "Out"}, Deal_Out),
 		Entry("Value is string, Reverse - Works",
-			&types.AttributeValueMemberN{Value: "Reverse"}, Deal_Reverse),
+			&types.AttributeValueMemberS{Value: "Reverse"}, Deal_Reverse),
 		Entry("Value is string, OutBy - Works",
-			&types.AttributeValueMemberN{Value: "OutBy"}, Deal_OutBy),
+			&types.AttributeValueMemberS{Value: "OutBy"}, Deal_OutBy),
 		Entry("Value is string, 0 - Works",
-			&types.AttributeValueMemberN{Value: "0"}, Deal_In),
+			&types.AttributeValueMemberS{Value: "0"}, Deal_In),
 		Entry("Value is string, 1 - Works",
-			&types.AttributeValueMemberN{Value: "1"}, Deal_Out),
+			&types.AttributeValueMemberS{Value: "1"}, Deal_Out),
 		Entry("Value is string, 2 - Works",
-			&types.AttributeValueMemberN{Value: "2"}, Deal_Reverse),
+			&types.AttributeValueMemberS{Value: "2"}, Deal_Reverse),
 		Entry("Value is string, 3 - Works",
-			&types.AttributeValueMemberN{Value: "3"}, Deal_OutBy))
+			&types.AttributeValueMemberS{Value: "3"}, Deal_OutBy))
 
 	// Test that attempting to deserialize a data.Deal.Entry will fial and return an error if the value
 	// cannot be converted to either the name value or integer value of the enum option
@@ -1605,9 +1605,9 @@ var _ = Describe("data.Deal.Reason Marshal/Unmarshal Tests", func() {
 		Entry("StopLoss - Works", "\"StopLoss\"", Deal_StopLoss),
 		Entry("TakeProfit - Works", "\"TakeProfit\"", Deal_TakeProfit),
 		Entry("StopOut - Works", "\"StopOut\"", Deal_StopOut),
-		Entry("Rollover", "\"Rollover\"", Deal_Rollover),
-		Entry("Margin", "\"Margin\"", Deal_Margin),
-		Entry("Split", "\"Split\"", Deal_Split),
+		Entry("Rollover - Works", "\"Rollover\"", Deal_Rollover),
+		Entry("Margin - Works", "\"Margin\"", Deal_Margin),
+		Entry("Split - Works", "\"Split\"", Deal_Split),
 		Entry("0 - Works", "\"0\"", Deal_Client),
 		Entry("1 - Works", "\"1\"", Deal_Mobile),
 		Entry("2 - Works", "\"2\"", Deal_Web),
@@ -1654,9 +1654,9 @@ var _ = Describe("data.Deal.Reason Marshal/Unmarshal Tests", func() {
 		Entry("StopLoss - Works", "StopLoss", Deal_StopLoss),
 		Entry("TakeProfit - Works", "TakeProfit", Deal_TakeProfit),
 		Entry("StopOut - Works", "StopOut", Deal_StopOut),
-		Entry("Rollover", "Rollover", Deal_Rollover),
-		Entry("Margin", "Margin", Deal_Margin),
-		Entry("Split", "Split", Deal_Split),
+		Entry("Rollover - Works", "Rollover", Deal_Rollover),
+		Entry("Margin - Works", "Margin", Deal_Margin),
+		Entry("Split - Works", "Split", Deal_Split),
 		Entry("0 - Works", "0", Deal_Client),
 		Entry("1 - Works", "1", Deal_Mobile),
 		Entry("2 - Works", "2", Deal_Web),
@@ -1704,9 +1704,9 @@ var _ = Describe("data.Deal.Reason Marshal/Unmarshal Tests", func() {
 		Entry("StopLoss - Works", "StopLoss", Deal_StopLoss),
 		Entry("TakeProfit - Works", "TakeProfit", Deal_TakeProfit),
 		Entry("StopOut - Works", "StopOut", Deal_StopOut),
-		Entry("Rollover", "Rollover", Deal_Rollover),
-		Entry("Margin", "Margin", Deal_Margin),
-		Entry("Split", "Split", Deal_Split),
+		Entry("Rollover - Works", "Rollover", Deal_Rollover),
+		Entry("Margin - Works", "Margin", Deal_Margin),
+		Entry("Split - Works", "Split", Deal_Split),
 		Entry("0 - Works", "0", Deal_Client),
 		Entry("1 - Works", "1", Deal_Mobile),
 		Entry("2 - Works", "2", Deal_Web),
@@ -1817,45 +1817,45 @@ var _ = Describe("data.Deal.Reason Marshal/Unmarshal Tests", func() {
 		Entry("Value is string, SO - Works",
 			&types.AttributeValueMemberS{Value: "SO"}, Deal_StopOut),
 		Entry("Value is string, Client - Works",
-			&types.AttributeValueMemberN{Value: "Client"}, Deal_Client),
+			&types.AttributeValueMemberS{Value: "Client"}, Deal_Client),
 		Entry("Value is string, Mobile - Works",
-			&types.AttributeValueMemberN{Value: "Mobile"}, Deal_Mobile),
+			&types.AttributeValueMemberS{Value: "Mobile"}, Deal_Mobile),
 		Entry("Value is string, Web - Works",
-			&types.AttributeValueMemberN{Value: "Web"}, Deal_Web),
+			&types.AttributeValueMemberS{Value: "Web"}, Deal_Web),
 		Entry("Value is string, Strategy - Works",
-			&types.AttributeValueMemberN{Value: "Strategy"}, Deal_Strategy),
+			&types.AttributeValueMemberS{Value: "Strategy"}, Deal_Strategy),
 		Entry("Value is string, StopLoss - Works",
-			&types.AttributeValueMemberN{Value: "StopLoss"}, Deal_StopLoss),
+			&types.AttributeValueMemberS{Value: "StopLoss"}, Deal_StopLoss),
 		Entry("Value is string, TakeProfit - Works",
-			&types.AttributeValueMemberN{Value: "TakeProfit"}, Deal_TakeProfit),
+			&types.AttributeValueMemberS{Value: "TakeProfit"}, Deal_TakeProfit),
 		Entry("Value is string, StopOut - Works",
-			&types.AttributeValueMemberN{Value: "StopOut"}, Deal_StopOut),
+			&types.AttributeValueMemberS{Value: "StopOut"}, Deal_StopOut),
 		Entry("Value is string, Rollover - Works",
-			&types.AttributeValueMemberN{Value: "Rollover"}, Deal_Rollover),
+			&types.AttributeValueMemberS{Value: "Rollover"}, Deal_Rollover),
 		Entry("Value is string, Margin - Works",
-			&types.AttributeValueMemberN{Value: "Margin"}, Deal_Margin),
+			&types.AttributeValueMemberS{Value: "Margin"}, Deal_Margin),
 		Entry("Value is string, Split - Works",
-			&types.AttributeValueMemberN{Value: "Split"}, Deal_Split),
+			&types.AttributeValueMemberS{Value: "Split"}, Deal_Split),
 		Entry("Value is string, 0 - Works",
-			&types.AttributeValueMemberN{Value: "0"}, Deal_Client),
+			&types.AttributeValueMemberS{Value: "0"}, Deal_Client),
 		Entry("Value is string, 1 - Works",
-			&types.AttributeValueMemberN{Value: "1"}, Deal_Mobile),
+			&types.AttributeValueMemberS{Value: "1"}, Deal_Mobile),
 		Entry("Value is string, 2 - Works",
-			&types.AttributeValueMemberN{Value: "2"}, Deal_Web),
+			&types.AttributeValueMemberS{Value: "2"}, Deal_Web),
 		Entry("Value is string, 3 - Works",
-			&types.AttributeValueMemberN{Value: "3"}, Deal_Strategy),
+			&types.AttributeValueMemberS{Value: "3"}, Deal_Strategy),
 		Entry("Value is string, 4 - Works",
-			&types.AttributeValueMemberN{Value: "4"}, Deal_StopLoss),
+			&types.AttributeValueMemberS{Value: "4"}, Deal_StopLoss),
 		Entry("Value is string, 5 - Works",
-			&types.AttributeValueMemberN{Value: "5"}, Deal_TakeProfit),
+			&types.AttributeValueMemberS{Value: "5"}, Deal_TakeProfit),
 		Entry("Value is string, 6 - Works",
-			&types.AttributeValueMemberN{Value: "6"}, Deal_StopOut),
+			&types.AttributeValueMemberS{Value: "6"}, Deal_StopOut),
 		Entry("Value is string, 7 - Works",
-			&types.AttributeValueMemberN{Value: "7"}, Deal_Rollover),
+			&types.AttributeValueMemberS{Value: "7"}, Deal_Rollover),
 		Entry("Value is string, 8 - Works",
-			&types.AttributeValueMemberN{Value: "8"}, Deal_Margin),
+			&types.AttributeValueMemberS{Value: "8"}, Deal_Margin),
 		Entry("Value is string, 9 - Works",
-			&types.AttributeValueMemberN{Value: "9"}, Deal_Split))
+			&types.AttributeValueMemberS{Value: "9"}, Deal_Split))
 
 	// Test that attempting to deserialize a data.Deal.Reason will fial and return an error if the value
 	// cannot be converted to either the name value or integer value of the enum option
@@ -1893,9 +1893,9 @@ var _ = Describe("data.Deal.Reason Marshal/Unmarshal Tests", func() {
 		Entry("StopLoss - Works", "StopLoss", Deal_StopLoss),
 		Entry("TakeProfit - Works", "TakeProfit", Deal_TakeProfit),
 		Entry("StopOut - Works", "StopOut", Deal_StopOut),
-		Entry("Rollover", "Rollover", Deal_Rollover),
-		Entry("Margin", "Margin", Deal_Margin),
-		Entry("Split", "Split", Deal_Split),
+		Entry("Rollover - Works", "Rollover", Deal_Rollover),
+		Entry("Margin - Works", "Margin", Deal_Margin),
+		Entry("Split - Works", "Split", Deal_Split),
 		Entry("0 - Works", 0, Deal_Client),
 		Entry("1 - Works", 1, Deal_Mobile),
 		Entry("2 - Works", 2, Deal_Web),
@@ -2040,8 +2040,8 @@ var _ = Describe("data.Order.Type Marshal/Unmarshal Tests", func() {
 		Entry("BuyStop - Works", "\"BuyStop\"", Order_BuyStop),
 		Entry("SellStop - Works", "\"SellStop\"", Order_SellStop),
 		Entry("BuyStopLimit - Works", "\"BuyStopLimit\"", Order_BuyStopLimit),
-		Entry("SellStopLimit", "\"SellStopLimit\"", Order_SellStopLimit),
-		Entry("ClosedBy", "\"ClosedBy\"", Order_ClosedBy),
+		Entry("SellStopLimit - Works", "\"SellStopLimit\"", Order_SellStopLimit),
+		Entry("ClosedBy - Works", "\"ClosedBy\"", Order_ClosedBy),
 		Entry("0 - Works", "\"0\"", Order_Buy),
 		Entry("1 - Works", "\"1\"", Order_Sell),
 		Entry("2 - Works", "\"2\"", Order_BuyLimit),
@@ -2084,8 +2084,8 @@ var _ = Describe("data.Order.Type Marshal/Unmarshal Tests", func() {
 		Entry("BuyStop - Works", "BuyStop", Order_BuyStop),
 		Entry("SellStop - Works", "SellStop", Order_SellStop),
 		Entry("BuyStopLimit - Works", "BuyStopLimit", Order_BuyStopLimit),
-		Entry("SellStopLimit", "SellStopLimit", Order_SellStopLimit),
-		Entry("ClosedBy", "ClosedBy", Order_ClosedBy),
+		Entry("SellStopLimit - Works", "SellStopLimit", Order_SellStopLimit),
+		Entry("ClosedBy - Works", "ClosedBy", Order_ClosedBy),
 		Entry("0 - Works", "0", Order_Buy),
 		Entry("1 - Works", "1", Order_Sell),
 		Entry("2 - Works", "2", Order_BuyLimit),
@@ -2129,8 +2129,8 @@ var _ = Describe("data.Order.Type Marshal/Unmarshal Tests", func() {
 		Entry("BuyStop - Works", "BuyStop", Order_BuyStop),
 		Entry("SellStop - Works", "SellStop", Order_SellStop),
 		Entry("BuyStopLimit - Works", "BuyStopLimit", Order_BuyStopLimit),
-		Entry("SellStopLimit", "SellStopLimit", Order_SellStopLimit),
-		Entry("ClosedBy", "ClosedBy", Order_ClosedBy),
+		Entry("SellStopLimit - Works", "SellStopLimit", Order_SellStopLimit),
+		Entry("ClosedBy - Works", "ClosedBy", Order_ClosedBy),
 		Entry("0 - Works", "0", Order_Buy),
 		Entry("1 - Works", "1", Order_Sell),
 		Entry("2 - Works", "2", Order_BuyLimit),
@@ -2222,41 +2222,41 @@ var _ = Describe("data.Order.Type Marshal/Unmarshal Tests", func() {
 			&types.AttributeValueMemberN{Value: "8"}, Order_ClosedBy),
 		Entry("Value is NULL - Works", new(types.AttributeValueMemberNULL), Order_Type(0)),
 		Entry("Value is string, Buy - Works",
-			&types.AttributeValueMemberN{Value: "Buy"}, Order_Buy),
+			&types.AttributeValueMemberS{Value: "Buy"}, Order_Buy),
 		Entry("Value is string, Sell - Works",
-			&types.AttributeValueMemberN{Value: "Sell"}, Order_Sell),
+			&types.AttributeValueMemberS{Value: "Sell"}, Order_Sell),
 		Entry("Value is string, BuyLimit - Works",
-			&types.AttributeValueMemberN{Value: "BuyLimit"}, Order_BuyLimit),
+			&types.AttributeValueMemberS{Value: "BuyLimit"}, Order_BuyLimit),
 		Entry("Value is string, SellLimit - Works",
-			&types.AttributeValueMemberN{Value: "SellLimit"}, Order_SellLimit),
+			&types.AttributeValueMemberS{Value: "SellLimit"}, Order_SellLimit),
 		Entry("Value is string, BuyStop - Works",
-			&types.AttributeValueMemberN{Value: "BuyStop"}, Order_BuyStop),
+			&types.AttributeValueMemberS{Value: "BuyStop"}, Order_BuyStop),
 		Entry("Value is string, SellStop - Works",
-			&types.AttributeValueMemberN{Value: "SellStop"}, Order_SellStop),
+			&types.AttributeValueMemberS{Value: "SellStop"}, Order_SellStop),
 		Entry("Value is string, BuyStopLimit - Works",
-			&types.AttributeValueMemberN{Value: "BuyStopLimit"}, Order_BuyStopLimit),
+			&types.AttributeValueMemberS{Value: "BuyStopLimit"}, Order_BuyStopLimit),
 		Entry("Value is string, SellStopLimit - Works",
-			&types.AttributeValueMemberN{Value: "SellStopLimit"}, Order_SellStopLimit),
+			&types.AttributeValueMemberS{Value: "SellStopLimit"}, Order_SellStopLimit),
 		Entry("Value is string, ClosedBy - Works",
-			&types.AttributeValueMemberN{Value: "ClosedBy"}, Order_ClosedBy),
+			&types.AttributeValueMemberS{Value: "ClosedBy"}, Order_ClosedBy),
 		Entry("Value is string, 0 - Works",
-			&types.AttributeValueMemberN{Value: "0"}, Order_Buy),
+			&types.AttributeValueMemberS{Value: "0"}, Order_Buy),
 		Entry("Value is string, 1 - Works",
-			&types.AttributeValueMemberN{Value: "1"}, Order_Sell),
+			&types.AttributeValueMemberS{Value: "1"}, Order_Sell),
 		Entry("Value is string, 2 - Works",
-			&types.AttributeValueMemberN{Value: "2"}, Order_BuyLimit),
+			&types.AttributeValueMemberS{Value: "2"}, Order_BuyLimit),
 		Entry("Value is string, 3 - Works",
-			&types.AttributeValueMemberN{Value: "3"}, Order_SellLimit),
+			&types.AttributeValueMemberS{Value: "3"}, Order_SellLimit),
 		Entry("Value is string, 4 - Works",
-			&types.AttributeValueMemberN{Value: "4"}, Order_BuyStop),
+			&types.AttributeValueMemberS{Value: "4"}, Order_BuyStop),
 		Entry("Value is string, 5 - Works",
-			&types.AttributeValueMemberN{Value: "5"}, Order_SellStop),
+			&types.AttributeValueMemberS{Value: "5"}, Order_SellStop),
 		Entry("Value is string, 6 - Works",
-			&types.AttributeValueMemberN{Value: "6"}, Order_BuyStopLimit),
+			&types.AttributeValueMemberS{Value: "6"}, Order_BuyStopLimit),
 		Entry("Value is string, 7 - Works",
-			&types.AttributeValueMemberN{Value: "7"}, Order_SellStopLimit),
+			&types.AttributeValueMemberS{Value: "7"}, Order_SellStopLimit),
 		Entry("Value is string, 8 - Works",
-			&types.AttributeValueMemberN{Value: "8"}, Order_ClosedBy))
+			&types.AttributeValueMemberS{Value: "8"}, Order_ClosedBy))
 
 	// Test that attempting to deserialize a data.Order.Type will fial and return an error if the value
 	// cannot be converted to either the name value or integer value of the enum option
@@ -2291,8 +2291,8 @@ var _ = Describe("data.Order.Type Marshal/Unmarshal Tests", func() {
 		Entry("BuyStop - Works", "BuyStop", Order_BuyStop),
 		Entry("SellStop - Works", "SellStop", Order_SellStop),
 		Entry("BuyStopLimit - Works", "BuyStopLimit", Order_BuyStopLimit),
-		Entry("SellStopLimit", "SellStopLimit", Order_SellStopLimit),
-		Entry("ClosedBy", "ClosedBy", Order_ClosedBy),
+		Entry("SellStopLimit - Works", "SellStopLimit", Order_SellStopLimit),
+		Entry("ClosedBy - Works", "ClosedBy", Order_ClosedBy),
 		Entry("0 - Works", 0, Order_Buy),
 		Entry("1 - Works", 1, Order_Sell),
 		Entry("2 - Works", 2, Order_BuyLimit),
@@ -2302,4 +2302,423 @@ var _ = Describe("data.Order.Type Marshal/Unmarshal Tests", func() {
 		Entry("6 - Works", 6, Order_BuyStopLimit),
 		Entry("7 - Works", 7, Order_SellStopLimit),
 		Entry("8 - Works", 8, Order_ClosedBy))
+})
+
+var _ = Describe("data.Order.Status Marshal/Unmarshal Tests", func() {
+
+	// Test that converting the data.Order.Status enum to JSON works for all values
+	DescribeTable("MarshalJSON Tests",
+		func(enum Order_Status, value string) {
+			data, err := json.Marshal(enum)
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(string(data)).Should(Equal(value))
+		},
+		Entry("Started - Works", Order_Started, "\"Started\""),
+		Entry("Placed - Works", Order_Placed, "\"Placed\""),
+		Entry("Cancelled - Works", Order_Cancelled, "\"Cancelled\""),
+		Entry("Partial - Works", Order_Partial, "\"Partial\""),
+		Entry("Filled - Works", Order_Filled, "\"Filled\""),
+		Entry("Rejected - Works", Order_Rejected, "\"Rejected\""),
+		Entry("Expired - Works", Order_Expired, "\"Expired\""),
+		Entry("RequestAdd - Works", Order_RequestAdd, "\"RequestAdd\""),
+		Entry("RequestModify - Works", Order_RequestModify, "\"RequestModify\""),
+		Entry("RequestCancel - Works", Order_RequestCancel, "\"RequestCancel\""))
+
+	// Test that converting the data.Order.Status enum to a CSV column works for all values
+	DescribeTable("MarshalCSV Tests",
+		func(enum Order_Status, value string) {
+			data, err := enum.MarshalCSV()
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(string(data)).Should(Equal(value))
+		},
+		Entry("Started - Works", Order_Started, "Started"),
+		Entry("Placed - Works", Order_Placed, "Placed"),
+		Entry("Cancelled - Works", Order_Cancelled, "Cancelled"),
+		Entry("Partial - Works", Order_Partial, "Partial"),
+		Entry("Filled - Works", Order_Filled, "Filled"),
+		Entry("Rejected - Works", Order_Rejected, "Rejected"),
+		Entry("Expired - Works", Order_Expired, "Expired"),
+		Entry("RequestAdd - Works", Order_RequestAdd, "RequestAdd"),
+		Entry("RequestModify - Works", Order_RequestModify, "RequestModify"),
+		Entry("RequestCancel - Works", Order_RequestCancel, "RequestCancel"))
+
+	// Test that converting the data.Order.Status enum to a YAML node works for all values
+	DescribeTable("MarshalYAML - Works",
+		func(enum Order_Status, value string) {
+			data, err := enum.MarshalYAML()
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(data).Should(Equal(value))
+		},
+		Entry("Started - Works", Order_Started, "Started"),
+		Entry("Placed - Works", Order_Placed, "Placed"),
+		Entry("Cancelled - Works", Order_Cancelled, "Cancelled"),
+		Entry("Partial - Works", Order_Partial, "Partial"),
+		Entry("Filled - Works", Order_Filled, "Filled"),
+		Entry("Rejected - Works", Order_Rejected, "Rejected"),
+		Entry("Expired - Works", Order_Expired, "Expired"),
+		Entry("RequestAdd - Works", Order_RequestAdd, "RequestAdd"),
+		Entry("RequestModify - Works", Order_RequestModify, "RequestModify"),
+		Entry("RequestCancel - Works", Order_RequestCancel, "RequestCancel"))
+
+	// Test that converting the data.Order.Status enum to a DynamoDB AttributeVAlue works for all values
+	DescribeTable("MarshalDynamoDBAttributeValue - Works",
+		func(enum Order_Status, value string) {
+			data, err := attributevalue.Marshal(enum)
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(data.(*types.AttributeValueMemberS).Value).Should(Equal(value))
+		},
+		Entry("Started - Works", Order_Started, "Started"),
+		Entry("Placed - Works", Order_Placed, "Placed"),
+		Entry("Cancelled - Works", Order_Cancelled, "Cancelled"),
+		Entry("Partial - Works", Order_Partial, "Partial"),
+		Entry("Filled - Works", Order_Filled, "Filled"),
+		Entry("Rejected - Works", Order_Rejected, "Rejected"),
+		Entry("Expired - Works", Order_Expired, "Expired"),
+		Entry("RequestAdd - Works", Order_RequestAdd, "RequestAdd"),
+		Entry("RequestModify - Works", Order_RequestModify, "RequestModify"),
+		Entry("RequestCancel - Works", Order_RequestCancel, "RequestCancel"))
+
+	// Test that converting the data.Order.Status enum to an SQL value for all values
+	DescribeTable("Value Tests",
+		func(enum Order_Status, value string) {
+			data, err := enum.Value()
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(data).Should(Equal(value))
+		},
+		Entry("Started - Works", Order_Started, "Started"),
+		Entry("Placed - Works", Order_Placed, "Placed"),
+		Entry("Cancelled - Works", Order_Cancelled, "Cancelled"),
+		Entry("Partial - Works", Order_Partial, "Partial"),
+		Entry("Filled - Works", Order_Filled, "Filled"),
+		Entry("Rejected - Works", Order_Rejected, "Rejected"),
+		Entry("Expired - Works", Order_Expired, "Expired"),
+		Entry("RequestAdd - Works", Order_RequestAdd, "RequestAdd"),
+		Entry("RequestModify - Works", Order_RequestModify, "RequestModify"),
+		Entry("RequestCancel - Works", Order_RequestCancel, "RequestCancel"))
+
+	// Test that attempting to deserialize a data.Order.Status will fail and return an error if the value
+	// cannot be deserialized from a JSON value to a string
+	It("UnmarshalJSON fails - Error", func() {
+
+		// Attempt to convert a non-parseable string value into a data.Order.Status; this should return an error
+		enum := new(Order_Status)
+		err := enum.UnmarshalJSON([]byte("derp"))
+
+		// Verify the error
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a data.Order_Status"))
+	})
+
+	// Test that attempting to deserialize a data.Order.Status will fail and return an error if the value
+	// cannot be converted to either the name value or integer value of the enum option
+	It("UnmarshalJSON - Value is invalid - Error", func() {
+
+		// Attempt to convert a fake string value into a data.Order.Status; this should return an error
+		enum := new(Order_Status)
+		err := enum.UnmarshalJSON([]byte("\"derp\""))
+
+		// Verify the error
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a data.Order_Status"))
+	})
+
+	// Test the conditions under which values should be convertible to a data.Order.Status
+	DescribeTable("UnmarshalJSON Tests",
+		func(value string, shouldBe Order_Status) {
+
+			// Attempt to convert the string value into a data.Order.Status; this should not fail
+			var enum Order_Status
+			err := enum.UnmarshalJSON([]byte(value))
+
+			// Verify that the deserialization was successful
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(shouldBe))
+		},
+		Entry("Started - Works", "\"Started\"", Order_Started),
+		Entry("Placed - Works", "\"Placed\"", Order_Placed),
+		Entry("Cancelled - Works", "\"Cancelled\"", Order_Cancelled),
+		Entry("Partial - Works", "\"Partial\"", Order_Partial),
+		Entry("Filled - Works", "\"Filled\"", Order_Filled),
+		Entry("Rejected - Works", "\"Rejected\"", Order_Rejected),
+		Entry("Expired - Works", "\"Expired\"", Order_Expired),
+		Entry("RequestAdd - Works", "\"RequestAdd\"", Order_RequestAdd),
+		Entry("RequestModify - Works", "\"RequestModify\"", Order_RequestModify),
+		Entry("RequestCancel - Works", "\"RequestCancel\"", Order_RequestCancel),
+		Entry("0 - Works", "\"0\"", Order_Started),
+		Entry("1 - Works", "\"1\"", Order_Placed),
+		Entry("2 - Works", "\"2\"", Order_Cancelled),
+		Entry("3 - Works", "\"3\"", Order_Partial),
+		Entry("4 - Works", "\"4\"", Order_Filled),
+		Entry("5 - Works", "\"5\"", Order_Rejected),
+		Entry("6 - Works", "\"6\"", Order_Expired),
+		Entry("7 - Works", "\"7\"", Order_RequestAdd),
+		Entry("8 - Works", "\"8\"", Order_RequestModify),
+		Entry("9 - Works", "\"9\"", Order_RequestCancel))
+
+	// Test that attempting to deserialize a data.Order.Status will fail and return an error if the value
+	// cannot be converted to either the name value or integer value of the enum option
+	It("UnmarshalCSV - Value is empty - Error", func() {
+
+		// Attempt to convert a fake string value into a data.Order.Status; this should return an error
+		enum := new(Order_Status)
+		err := enum.UnmarshalCSV("")
+
+		// Verify the error
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"\" cannot be mapped to a data.Order_Status"))
+	})
+
+	// Test the conditions under which values should be convertible to a data.Order.Status
+	DescribeTable("UnmarshalCSV Tests",
+		func(value string, shouldBe Order_Status) {
+
+			// Attempt to convert the value into a data.Order.Status; this should not fail
+			var enum Order_Status
+			err := enum.UnmarshalCSV(value)
+
+			// Verify that the deserialization was successful
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(shouldBe))
+		},
+		Entry("Started - Works", "Started", Order_Started),
+		Entry("Placed - Works", "Placed", Order_Placed),
+		Entry("Cancelled - Works", "Cancelled", Order_Cancelled),
+		Entry("Partial - Works", "Partial", Order_Partial),
+		Entry("Filled - Works", "Filled", Order_Filled),
+		Entry("Rejected - Works", "Rejected", Order_Rejected),
+		Entry("Expired - Works", "Expired", Order_Expired),
+		Entry("RequestAdd - Works", "RequestAdd", Order_RequestAdd),
+		Entry("RequestModify - Works", "RequestModify", Order_RequestModify),
+		Entry("RequestCancel - Works", "RequestCancel", Order_RequestCancel),
+		Entry("0 - Works", "0", Order_Started),
+		Entry("1 - Works", "1", Order_Placed),
+		Entry("2 - Works", "2", Order_Cancelled),
+		Entry("3 - Works", "3", Order_Partial),
+		Entry("4 - Works", "4", Order_Filled),
+		Entry("5 - Works", "5", Order_Rejected),
+		Entry("6 - Works", "6", Order_Expired),
+		Entry("7 - Works", "7", Order_RequestAdd),
+		Entry("8 - Works", "8", Order_RequestModify),
+		Entry("9 - Works", "9", Order_RequestCancel))
+
+	// Test that attempting to deserialize a data.Order.Status will fail and return an error if the YAML
+	// node does not represent a scalar value
+	It("UnmarshalYAML - Node type is not scalar - Error", func() {
+		enum := new(Order_Status)
+		err := enum.UnmarshalYAML(&yaml.Node{Kind: yaml.AliasNode})
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("YAML node had an invalid kind (expected scalar value)"))
+	})
+
+	// Test that attempting to deserialize a data.Order.Status will fail and return an error if the YAML
+	// node value cannot be converted to either the name value or integer value of the enum option
+	It("UnmarshalYAML - Parse fails - Error", func() {
+		enum := new(Order_Status)
+		err := enum.UnmarshalYAML(&yaml.Node{Kind: yaml.ScalarNode, Value: "derp"})
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a data.Order_Status"))
+	})
+
+	// Test the conditions under which YAML node values should be convertible to a data.Order.Status
+	DescribeTable("UnmarshalYAML Tests",
+		func(value string, shouldBe Order_Status) {
+			var enum Order_Status
+			err := enum.UnmarshalYAML(&yaml.Node{Kind: yaml.ScalarNode, Value: value})
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(shouldBe))
+		},
+		Entry("Started - Works", "Started", Order_Started),
+		Entry("Placed - Works", "Placed", Order_Placed),
+		Entry("Cancelled - Works", "Cancelled", Order_Cancelled),
+		Entry("Partial - Works", "Partial", Order_Partial),
+		Entry("Filled - Works", "Filled", Order_Filled),
+		Entry("Rejected - Works", "Rejected", Order_Rejected),
+		Entry("Expired - Works", "Expired", Order_Expired),
+		Entry("RequestAdd - Works", "RequestAdd", Order_RequestAdd),
+		Entry("RequestModify - Works", "RequestModify", Order_RequestModify),
+		Entry("RequestCancel - Works", "RequestCancel", Order_RequestCancel),
+		Entry("0 - Works", "0", Order_Started),
+		Entry("1 - Works", "1", Order_Placed),
+		Entry("2 - Works", "2", Order_Cancelled),
+		Entry("3 - Works", "3", Order_Partial),
+		Entry("4 - Works", "4", Order_Filled),
+		Entry("5 - Works", "5", Order_Rejected),
+		Entry("6 - Works", "6", Order_Expired),
+		Entry("7 - Works", "7", Order_RequestAdd),
+		Entry("8 - Works", "8", Order_RequestModify),
+		Entry("9 - Works", "9", Order_RequestCancel))
+
+	// Tests that, if the attribute type submitted to UnmarshalDynamoDBAttributeValue is not one we
+	// recognize, then the function will return an error
+	It("UnmarshalDynamoDBAttributeValue - AttributeValue type invalid - Error", func() {
+		enum := new(Order_Status)
+		err := attributevalue.Unmarshal(&types.AttributeValueMemberBOOL{Value: true}, &enum)
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("Attribute value of *types.AttributeValueMemberBOOL could not be converted to a data.Order.Status"))
+	})
+
+	// Tests that, if time parsing fails, then calling UnmarshalDynamoDBAttributeValue will return an error
+	It("UnmarshalDynamoDBAttributeValue - Parse fails - Error", func() {
+		enum := new(Order_Status)
+		err := attributevalue.Unmarshal(&types.AttributeValueMemberS{Value: "derp"}, &enum)
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a data.Order_Status"))
+	})
+
+	// Tests the conditions under which UnmarshalDynamoDBAttributeValue is called and no error is generated
+	DescribeTable("UnmarshalDynamoDBAttributeValue - AttributeValue Conditions",
+		func(value types.AttributeValue, expected Order_Status) {
+			var enum Order_Status
+			err := attributevalue.Unmarshal(value, &enum)
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(expected))
+		},
+		Entry("Value is []bytes, Started - Works",
+			&types.AttributeValueMemberB{Value: []byte("Started")}, Order_Started),
+		Entry("Value is []bytes, Placed - Works",
+			&types.AttributeValueMemberB{Value: []byte("Placed")}, Order_Placed),
+		Entry("Value is []bytes, Cancelled - Works",
+			&types.AttributeValueMemberB{Value: []byte("Cancelled")}, Order_Cancelled),
+		Entry("Value is []bytes, Partial - Works",
+			&types.AttributeValueMemberB{Value: []byte("Partial")}, Order_Partial),
+		Entry("Value is []bytes, Filled - Works",
+			&types.AttributeValueMemberB{Value: []byte("Filled")}, Order_Filled),
+		Entry("Value is []bytes, Rejected - Works",
+			&types.AttributeValueMemberB{Value: []byte("Rejected")}, Order_Rejected),
+		Entry("Value is []bytes, Expired - Works",
+			&types.AttributeValueMemberB{Value: []byte("Expired")}, Order_Expired),
+		Entry("Value is []bytes, RequestAdd - Works",
+			&types.AttributeValueMemberB{Value: []byte("RequestAdd")}, Order_RequestAdd),
+		Entry("Value is []bytes, RequestModify - Works",
+			&types.AttributeValueMemberB{Value: []byte("RequestModify")}, Order_RequestModify),
+		Entry("Value is []bytes, RequestCancel - Works",
+			&types.AttributeValueMemberB{Value: []byte("RequestCancel")}, Order_RequestCancel),
+		Entry("Value is []bytes, 0 - Works",
+			&types.AttributeValueMemberB{Value: []byte("0")}, Order_Started),
+		Entry("Value is []bytes, 1 - Works",
+			&types.AttributeValueMemberB{Value: []byte("1")}, Order_Placed),
+		Entry("Value is []bytes, 2 - Works",
+			&types.AttributeValueMemberB{Value: []byte("2")}, Order_Cancelled),
+		Entry("Value is []bytes, 3 - Works",
+			&types.AttributeValueMemberB{Value: []byte("3")}, Order_Partial),
+		Entry("Value is []bytes, 4 - Works",
+			&types.AttributeValueMemberB{Value: []byte("4")}, Order_Filled),
+		Entry("Value is []bytes, 5 - Works",
+			&types.AttributeValueMemberB{Value: []byte("5")}, Order_Rejected),
+		Entry("Value is []bytes, 6 - Works",
+			&types.AttributeValueMemberB{Value: []byte("6")}, Order_Expired),
+		Entry("Value is []bytes, 7 - Works",
+			&types.AttributeValueMemberB{Value: []byte("7")}, Order_RequestAdd),
+		Entry("Value is []bytes, 8 - Works",
+			&types.AttributeValueMemberB{Value: []byte("8")}, Order_RequestModify),
+		Entry("Value is []bytes, 9 - Works",
+			&types.AttributeValueMemberB{Value: []byte("9")}, Order_RequestCancel),
+		Entry("Value is int, 0 - Works",
+			&types.AttributeValueMemberN{Value: "0"}, Order_Started),
+		Entry("Value is int, 1 - Works",
+			&types.AttributeValueMemberN{Value: "1"}, Order_Placed),
+		Entry("Value is int, 2 - Works",
+			&types.AttributeValueMemberN{Value: "2"}, Order_Cancelled),
+		Entry("Value is int, 3 - Works",
+			&types.AttributeValueMemberN{Value: "3"}, Order_Partial),
+		Entry("Value is int, 4 - Works",
+			&types.AttributeValueMemberN{Value: "4"}, Order_Filled),
+		Entry("Value is int, 5 - Works",
+			&types.AttributeValueMemberN{Value: "5"}, Order_Rejected),
+		Entry("Value is int, 6 - Works",
+			&types.AttributeValueMemberN{Value: "6"}, Order_Expired),
+		Entry("Value is int, 7 - Works",
+			&types.AttributeValueMemberN{Value: "7"}, Order_RequestAdd),
+		Entry("Value is int, 8 - Works",
+			&types.AttributeValueMemberN{Value: "8"}, Order_RequestModify),
+		Entry("Value is int, 9 - Works",
+			&types.AttributeValueMemberN{Value: "9"}, Order_RequestCancel),
+		Entry("Value is NULL - Works", new(types.AttributeValueMemberNULL), Order_Status(0)),
+		Entry("Value is string, Started - Works",
+			&types.AttributeValueMemberS{Value: "Started"}, Order_Started),
+		Entry("Value is string, Placed - Works",
+			&types.AttributeValueMemberS{Value: "Placed"}, Order_Placed),
+		Entry("Value is string, Cancelled - Works",
+			&types.AttributeValueMemberS{Value: "Cancelled"}, Order_Cancelled),
+		Entry("Value is string, Partial - Works",
+			&types.AttributeValueMemberS{Value: "Partial"}, Order_Partial),
+		Entry("Value is string, Filled - Works",
+			&types.AttributeValueMemberS{Value: "Filled"}, Order_Filled),
+		Entry("Value is string, Rejected - Works",
+			&types.AttributeValueMemberS{Value: "Rejected"}, Order_Rejected),
+		Entry("Value is string, Expired - Works",
+			&types.AttributeValueMemberS{Value: "Expired"}, Order_Expired),
+		Entry("Value is string, RequestAdd - Works",
+			&types.AttributeValueMemberS{Value: "RequestAdd"}, Order_RequestAdd),
+		Entry("Value is string, RequestModify - Works",
+			&types.AttributeValueMemberS{Value: "RequestModify"}, Order_RequestModify),
+		Entry("Value is string, RequestCancel - Works",
+			&types.AttributeValueMemberS{Value: "RequestCancel"}, Order_RequestCancel),
+		Entry("Value is string, 0 - Works",
+			&types.AttributeValueMemberS{Value: "0"}, Order_Started),
+		Entry("Value is string, 1 - Works",
+			&types.AttributeValueMemberS{Value: "1"}, Order_Placed),
+		Entry("Value is string, 2 - Works",
+			&types.AttributeValueMemberS{Value: "2"}, Order_Cancelled),
+		Entry("Value is string, 3 - Works",
+			&types.AttributeValueMemberS{Value: "3"}, Order_Partial),
+		Entry("Value is string, 4 - Works",
+			&types.AttributeValueMemberS{Value: "4"}, Order_Filled),
+		Entry("Value is string, 5 - Works",
+			&types.AttributeValueMemberS{Value: "5"}, Order_Rejected),
+		Entry("Value is string, 6 - Works",
+			&types.AttributeValueMemberS{Value: "6"}, Order_Expired),
+		Entry("Value is string, 7 - Works",
+			&types.AttributeValueMemberS{Value: "7"}, Order_RequestAdd),
+		Entry("Value is string, 8 - Works",
+			&types.AttributeValueMemberS{Value: "8"}, Order_RequestModify),
+		Entry("Value is string, 9 - Works",
+			&types.AttributeValueMemberS{Value: "9"}, Order_RequestCancel))
+
+	// Test that attempting to deserialize a data.Order.Status will fial and return an error if the value
+	// cannot be converted to either the name value or integer value of the enum option
+	It("Scan - Value is nil - Error", func() {
+
+		// Attempt to convert a fake string value into a data.Order.Status; this should return an error
+		var enum *Order_Status
+		err := enum.Scan(nil)
+
+		// Verify the error
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of %!q(<nil>) had an invalid type of <nil>"))
+		Expect(enum).Should(BeNil())
+	})
+
+	// Test the conditions under which values should be convertible to a data.Order.Status
+	DescribeTable("Scan Tests",
+		func(value interface{}, shouldBe Order_Status) {
+
+			// Attempt to convert the value into a data.Order.Status; this should not fail
+			var enum Order_Status
+			err := enum.Scan(value)
+
+			// Verify that the deserialization was successful
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(shouldBe))
+		},
+		Entry("Started - Works", "Started", Order_Started),
+		Entry("Placed - Works", "Placed", Order_Placed),
+		Entry("Cancelled - Works", "Cancelled", Order_Cancelled),
+		Entry("Partial - Works", "Partial", Order_Partial),
+		Entry("Filled - Works", "Filled", Order_Filled),
+		Entry("Rejected - Works", "Rejected", Order_Rejected),
+		Entry("Expired - Works", "Expired", Order_Expired),
+		Entry("RequestAdd - Works", "RequestAdd", Order_RequestAdd),
+		Entry("RequestModify - Works", "RequestModify", Order_RequestModify),
+		Entry("RequestCancel - Works", "RequestCancel", Order_RequestCancel),
+		Entry("0 - Works", 0, Order_Started),
+		Entry("1 - Works", 1, Order_Placed),
+		Entry("2 - Works", 2, Order_Cancelled),
+		Entry("3 - Works", 3, Order_Partial),
+		Entry("4 - Works", 4, Order_Filled),
+		Entry("5 - Works", 5, Order_Rejected),
+		Entry("6 - Works", 6, Order_Expired),
+		Entry("7 - Works", 7, Order_RequestAdd),
+		Entry("8 - Works", 8, Order_RequestModify),
+		Entry("9 - Works", 9, Order_RequestCancel))
 })
