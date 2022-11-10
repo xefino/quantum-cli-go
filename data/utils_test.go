@@ -1907,3 +1907,399 @@ var _ = Describe("data.Deal.Reason Marshal/Unmarshal Tests", func() {
 		Entry("8 - Works", 8, Deal_Margin),
 		Entry("9 - Works", 9, Deal_Split))
 })
+
+var _ = Describe("data.Order.Type Marshal/Unmarshal Tests", func() {
+
+	// Test that converting the data.Order.Type enum to JSON works for all values
+	DescribeTable("MarshalJSON Tests",
+		func(enum Order_Type, value string) {
+			data, err := json.Marshal(enum)
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(string(data)).Should(Equal(value))
+		},
+		Entry("Buy - Works", Order_Buy, "\"Buy\""),
+		Entry("Sell - Works", Order_Sell, "\"Sell\""),
+		Entry("BuyLimit - Works", Order_BuyLimit, "\"BuyLimit\""),
+		Entry("SellLimit - Works", Order_SellLimit, "\"SellLimit\""),
+		Entry("BuyStop - Works", Order_BuyStop, "\"BuyStop\""),
+		Entry("SellStop - Works", Order_SellStop, "\"SellStop\""),
+		Entry("BuyStopLimit - Works", Order_BuyStopLimit, "\"BuyStopLimit\""),
+		Entry("SellStopLimit - Works", Order_SellStopLimit, "\"SellStopLimit\""),
+		Entry("ClosedBy - Works", Order_ClosedBy, "\"ClosedBy\""))
+
+	// Test that converting the data.Order.Type enum to a CSV column works for all values
+	DescribeTable("MarshalCSV Tests",
+		func(enum Order_Type, value string) {
+			data, err := enum.MarshalCSV()
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(string(data)).Should(Equal(value))
+		},
+		Entry("Buy - Works", Order_Buy, "Buy"),
+		Entry("Sell - Works", Order_Sell, "Sell"),
+		Entry("BuyLimit - Works", Order_BuyLimit, "BuyLimit"),
+		Entry("SellLimit - Works", Order_SellLimit, "SellLimit"),
+		Entry("BuyStop - Works", Order_BuyStop, "BuyStop"),
+		Entry("SellStop - Works", Order_SellStop, "SellStop"),
+		Entry("BuyStopLimit - Works", Order_BuyStopLimit, "BuyStopLimit"),
+		Entry("SellStopLimit - Works", Order_SellStopLimit, "SellStopLimit"),
+		Entry("ClosedBy - Works", Order_ClosedBy, "ClosedBy"))
+
+	// Test that converting the data.Order.Type enum to a YAML node works for all values
+	DescribeTable("MarshalYAML - Works",
+		func(enum Order_Type, value string) {
+			data, err := enum.MarshalYAML()
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(data).Should(Equal(value))
+		},
+		Entry("Buy - Works", Order_Buy, "Buy"),
+		Entry("Sell - Works", Order_Sell, "Sell"),
+		Entry("BuyLimit - Works", Order_BuyLimit, "BuyLimit"),
+		Entry("SellLimit - Works", Order_SellLimit, "SellLimit"),
+		Entry("BuyStop - Works", Order_BuyStop, "BuyStop"),
+		Entry("SellStop - Works", Order_SellStop, "SellStop"),
+		Entry("BuyStopLimit - Works", Order_BuyStopLimit, "BuyStopLimit"),
+		Entry("SellStopLimit - Works", Order_SellStopLimit, "SellStopLimit"),
+		Entry("ClosedBy - Works", Order_ClosedBy, "ClosedBy"))
+
+	// Test that converting the data.Order.Type enum to a DynamoDB AttributeVAlue works for all values
+	DescribeTable("MarshalDynamoDBAttributeValue - Works",
+		func(enum Order_Type, value string) {
+			data, err := attributevalue.Marshal(enum)
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(data.(*types.AttributeValueMemberS).Value).Should(Equal(value))
+		},
+		Entry("Buy - Works", Order_Buy, "Buy"),
+		Entry("Sell - Works", Order_Sell, "Sell"),
+		Entry("BuyLimit - Works", Order_BuyLimit, "BuyLimit"),
+		Entry("SellLimit - Works", Order_SellLimit, "SellLimit"),
+		Entry("BuyStop - Works", Order_BuyStop, "BuyStop"),
+		Entry("SellStop - Works", Order_SellStop, "SellStop"),
+		Entry("BuyStopLimit - Works", Order_BuyStopLimit, "BuyStopLimit"),
+		Entry("SellStopLimit - Works", Order_SellStopLimit, "SellStopLimit"),
+		Entry("ClosedBy - Works", Order_ClosedBy, "ClosedBy"))
+
+	// Test that converting the data.Order.Type enum to an SQL value for all values
+	DescribeTable("Value Tests",
+		func(enum Order_Type, value string) {
+			data, err := enum.Value()
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(data).Should(Equal(value))
+		},
+		Entry("Buy - Works", Order_Buy, "Buy"),
+		Entry("Sell - Works", Order_Sell, "Sell"),
+		Entry("BuyLimit - Works", Order_BuyLimit, "BuyLimit"),
+		Entry("SellLimit - Works", Order_SellLimit, "SellLimit"),
+		Entry("BuyStop - Works", Order_BuyStop, "BuyStop"),
+		Entry("SellStop - Works", Order_SellStop, "SellStop"),
+		Entry("BuyStopLimit - Works", Order_BuyStopLimit, "BuyStopLimit"),
+		Entry("SellStopLimit - Works", Order_SellStopLimit, "SellStopLimit"),
+		Entry("ClosedBy - Works", Order_ClosedBy, "ClosedBy"))
+
+	// Test that attempting to deserialize a data.Order.Type will fail and return an error if the value
+	// cannot be deserialized from a JSON value to a string
+	It("UnmarshalJSON fails - Error", func() {
+
+		// Attempt to convert a non-parseable string value into a data.Order.Type; this should return an error
+		enum := new(Order_Type)
+		err := enum.UnmarshalJSON([]byte("derp"))
+
+		// Verify the error
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a data.Order_Type"))
+	})
+
+	// Test that attempting to deserialize a data.Order.Type will fail and return an error if the value
+	// cannot be converted to either the name value or integer value of the enum option
+	It("UnmarshalJSON - Value is invalid - Error", func() {
+
+		// Attempt to convert a fake string value into a data.Order.Type; this should return an error
+		enum := new(Order_Type)
+		err := enum.UnmarshalJSON([]byte("\"derp\""))
+
+		// Verify the error
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a data.Order_Type"))
+	})
+
+	// Test the conditions under which values should be convertible to a data.Order.Type
+	DescribeTable("UnmarshalJSON Tests",
+		func(value string, shouldBe Order_Type) {
+
+			// Attempt to convert the string value into a data.Order.Type; this should not fail
+			var enum Order_Type
+			err := enum.UnmarshalJSON([]byte(value))
+
+			// Verify that the deserialization was successful
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(shouldBe))
+		},
+		Entry("Buy - Works", "\"Buy\"", Order_Buy),
+		Entry("Sell - Works", "\"Sell\"", Order_Sell),
+		Entry("BuyLimit - Works", "\"BuyLimit\"", Order_BuyLimit),
+		Entry("SellLimit - Works", "\"SellLimit\"", Order_SellLimit),
+		Entry("BuyStop - Works", "\"BuyStop\"", Order_BuyStop),
+		Entry("SellStop - Works", "\"SellStop\"", Order_SellStop),
+		Entry("BuyStopLimit - Works", "\"BuyStopLimit\"", Order_BuyStopLimit),
+		Entry("SellStopLimit", "\"SellStopLimit\"", Order_SellStopLimit),
+		Entry("ClosedBy", "\"ClosedBy\"", Order_ClosedBy),
+		Entry("0 - Works", "\"0\"", Order_Buy),
+		Entry("1 - Works", "\"1\"", Order_Sell),
+		Entry("2 - Works", "\"2\"", Order_BuyLimit),
+		Entry("3 - Works", "\"3\"", Order_SellLimit),
+		Entry("4 - Works", "\"4\"", Order_BuyStop),
+		Entry("5 - Works", "\"5\"", Order_SellStop),
+		Entry("6 - Works", "\"6\"", Order_BuyStopLimit),
+		Entry("7 - Works", "\"7\"", Order_SellStopLimit),
+		Entry("8 - Works", "\"8\"", Order_ClosedBy))
+
+	// Test that attempting to deserialize a data.Order.Type will fail and return an error if the value
+	// cannot be converted to either the name value or integer value of the enum option
+	It("UnmarshalCSV - Value is empty - Error", func() {
+
+		// Attempt to convert a fake string value into a data.Order.Type; this should return an error
+		enum := new(Order_Type)
+		err := enum.UnmarshalCSV("")
+
+		// Verify the error
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"\" cannot be mapped to a data.Order_Type"))
+	})
+
+	// Test the conditions under which values should be convertible to a data.Order.Type
+	DescribeTable("UnmarshalCSV Tests",
+		func(value string, shouldBe Order_Type) {
+
+			// Attempt to convert the value into a data.Order.Type; this should not fail
+			var enum Order_Type
+			err := enum.UnmarshalCSV(value)
+
+			// Verify that the deserialization was successful
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(shouldBe))
+		},
+		Entry("Buy - Works", "Buy", Order_Buy),
+		Entry("Sell - Works", "Sell", Order_Sell),
+		Entry("BuyLimit - Works", "BuyLimit", Order_BuyLimit),
+		Entry("SellLimit - Works", "SellLimit", Order_SellLimit),
+		Entry("BuyStop - Works", "BuyStop", Order_BuyStop),
+		Entry("SellStop - Works", "SellStop", Order_SellStop),
+		Entry("BuyStopLimit - Works", "BuyStopLimit", Order_BuyStopLimit),
+		Entry("SellStopLimit", "SellStopLimit", Order_SellStopLimit),
+		Entry("ClosedBy", "ClosedBy", Order_ClosedBy),
+		Entry("0 - Works", "0", Order_Buy),
+		Entry("1 - Works", "1", Order_Sell),
+		Entry("2 - Works", "2", Order_BuyLimit),
+		Entry("3 - Works", "3", Order_SellLimit),
+		Entry("4 - Works", "4", Order_BuyStop),
+		Entry("5 - Works", "5", Order_SellStop),
+		Entry("6 - Works", "6", Order_BuyStopLimit),
+		Entry("7 - Works", "7", Order_SellStopLimit),
+		Entry("8 - Works", "8", Order_ClosedBy))
+
+	// Test that attempting to deserialize a data.Order.Type will fail and return an error if the YAML
+	// node does not represent a scalar value
+	It("UnmarshalYAML - Node type is not scalar - Error", func() {
+		enum := new(Order_Type)
+		err := enum.UnmarshalYAML(&yaml.Node{Kind: yaml.AliasNode})
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("YAML node had an invalid kind (expected scalar value)"))
+	})
+
+	// Test that attempting to deserialize a data.Order.Type will fail and return an error if the YAML
+	// node value cannot be converted to either the name value or integer value of the enum option
+	It("UnmarshalYAML - Parse fails - Error", func() {
+		enum := new(Order_Type)
+		err := enum.UnmarshalYAML(&yaml.Node{Kind: yaml.ScalarNode, Value: "derp"})
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a data.Order_Type"))
+	})
+
+	// Test the conditions under which YAML node values should be convertible to a data.Order.Type
+	DescribeTable("UnmarshalYAML Tests",
+		func(value string, shouldBe Order_Type) {
+			var enum Order_Type
+			err := enum.UnmarshalYAML(&yaml.Node{Kind: yaml.ScalarNode, Value: value})
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(shouldBe))
+		},
+		Entry("Buy - Works", "Buy", Order_Buy),
+		Entry("Sell - Works", "Sell", Order_Sell),
+		Entry("BuyLimit - Works", "BuyLimit", Order_BuyLimit),
+		Entry("SellLimit - Works", "SellLimit", Order_SellLimit),
+		Entry("BuyStop - Works", "BuyStop", Order_BuyStop),
+		Entry("SellStop - Works", "SellStop", Order_SellStop),
+		Entry("BuyStopLimit - Works", "BuyStopLimit", Order_BuyStopLimit),
+		Entry("SellStopLimit", "SellStopLimit", Order_SellStopLimit),
+		Entry("ClosedBy", "ClosedBy", Order_ClosedBy),
+		Entry("0 - Works", "0", Order_Buy),
+		Entry("1 - Works", "1", Order_Sell),
+		Entry("2 - Works", "2", Order_BuyLimit),
+		Entry("3 - Works", "3", Order_SellLimit),
+		Entry("4 - Works", "4", Order_BuyStop),
+		Entry("5 - Works", "5", Order_SellStop),
+		Entry("6 - Works", "6", Order_BuyStopLimit),
+		Entry("7 - Works", "7", Order_SellStopLimit),
+		Entry("8 - Works", "8", Order_ClosedBy))
+
+	// Tests that, if the attribute type submitted to UnmarshalDynamoDBAttributeValue is not one we
+	// recognize, then the function will return an error
+	It("UnmarshalDynamoDBAttributeValue - AttributeValue type invalid - Error", func() {
+		enum := new(Order_Type)
+		err := attributevalue.Unmarshal(&types.AttributeValueMemberBOOL{Value: true}, &enum)
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("Attribute value of *types.AttributeValueMemberBOOL could not be converted to a data.Order.Type"))
+	})
+
+	// Tests that, if time parsing fails, then calling UnmarshalDynamoDBAttributeValue will return an error
+	It("UnmarshalDynamoDBAttributeValue - Parse fails - Error", func() {
+		enum := new(Order_Type)
+		err := attributevalue.Unmarshal(&types.AttributeValueMemberS{Value: "derp"}, &enum)
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a data.Order_Type"))
+	})
+
+	// Tests the conditions under which UnmarshalDynamoDBAttributeValue is called and no error is generated
+	DescribeTable("UnmarshalDynamoDBAttributeValue - AttributeValue Conditions",
+		func(value types.AttributeValue, expected Order_Type) {
+			var enum Order_Type
+			err := attributevalue.Unmarshal(value, &enum)
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(expected))
+		},
+		Entry("Value is []bytes, Buy - Works",
+			&types.AttributeValueMemberB{Value: []byte("Buy")}, Order_Buy),
+		Entry("Value is []bytes, Sell - Works",
+			&types.AttributeValueMemberB{Value: []byte("Sell")}, Order_Sell),
+		Entry("Value is []bytes, BuyLimit - Works",
+			&types.AttributeValueMemberB{Value: []byte("BuyLimit")}, Order_BuyLimit),
+		Entry("Value is []bytes, SellLimit - Works",
+			&types.AttributeValueMemberB{Value: []byte("SellLimit")}, Order_SellLimit),
+		Entry("Value is []bytes, BuyStop - Works",
+			&types.AttributeValueMemberB{Value: []byte("BuyStop")}, Order_BuyStop),
+		Entry("Value is []bytes, SellStop - Works",
+			&types.AttributeValueMemberB{Value: []byte("SellStop")}, Order_SellStop),
+		Entry("Value is []bytes, BuyStopLimit - Works",
+			&types.AttributeValueMemberB{Value: []byte("BuyStopLimit")}, Order_BuyStopLimit),
+		Entry("Value is []bytes, SellStopLimit - Works",
+			&types.AttributeValueMemberB{Value: []byte("SellStopLimit")}, Order_SellStopLimit),
+		Entry("Value is []bytes, ClosedBy - Works",
+			&types.AttributeValueMemberB{Value: []byte("ClosedBy")}, Order_ClosedBy),
+		Entry("Value is []bytes, 0 - Works",
+			&types.AttributeValueMemberB{Value: []byte("0")}, Order_Buy),
+		Entry("Value is []bytes, 1 - Works",
+			&types.AttributeValueMemberB{Value: []byte("1")}, Order_Sell),
+		Entry("Value is []bytes, 2 - Works",
+			&types.AttributeValueMemberB{Value: []byte("2")}, Order_BuyLimit),
+		Entry("Value is []bytes, 3 - Works",
+			&types.AttributeValueMemberB{Value: []byte("3")}, Order_SellLimit),
+		Entry("Value is []bytes, 4 - Works",
+			&types.AttributeValueMemberB{Value: []byte("4")}, Order_BuyStop),
+		Entry("Value is []bytes, 5 - Works",
+			&types.AttributeValueMemberB{Value: []byte("5")}, Order_SellStop),
+		Entry("Value is []bytes, 6 - Works",
+			&types.AttributeValueMemberB{Value: []byte("6")}, Order_BuyStopLimit),
+		Entry("Value is []bytes, 7 - Works",
+			&types.AttributeValueMemberB{Value: []byte("7")}, Order_SellStopLimit),
+		Entry("Value is []bytes, 8 - Works",
+			&types.AttributeValueMemberB{Value: []byte("8")}, Order_ClosedBy),
+		Entry("Value is int, 0 - Works",
+			&types.AttributeValueMemberN{Value: "0"}, Order_Buy),
+		Entry("Value is int, 1 - Works",
+			&types.AttributeValueMemberN{Value: "1"}, Order_Sell),
+		Entry("Value is int, 2 - Works",
+			&types.AttributeValueMemberN{Value: "2"}, Order_BuyLimit),
+		Entry("Value is int, 3 - Works",
+			&types.AttributeValueMemberN{Value: "3"}, Order_SellLimit),
+		Entry("Value is int, 4 - Works",
+			&types.AttributeValueMemberN{Value: "4"}, Order_BuyStop),
+		Entry("Value is int, 5 - Works",
+			&types.AttributeValueMemberN{Value: "5"}, Order_SellStop),
+		Entry("Value is int, 6 - Works",
+			&types.AttributeValueMemberN{Value: "6"}, Order_BuyStopLimit),
+		Entry("Value is int, 7 - Works",
+			&types.AttributeValueMemberN{Value: "7"}, Order_SellStopLimit),
+		Entry("Value is int, 8 - Works",
+			&types.AttributeValueMemberN{Value: "8"}, Order_ClosedBy),
+		Entry("Value is NULL - Works", new(types.AttributeValueMemberNULL), Order_Type(0)),
+		Entry("Value is string, Buy - Works",
+			&types.AttributeValueMemberN{Value: "Buy"}, Order_Buy),
+		Entry("Value is string, Sell - Works",
+			&types.AttributeValueMemberN{Value: "Sell"}, Order_Sell),
+		Entry("Value is string, BuyLimit - Works",
+			&types.AttributeValueMemberN{Value: "BuyLimit"}, Order_BuyLimit),
+		Entry("Value is string, SellLimit - Works",
+			&types.AttributeValueMemberN{Value: "SellLimit"}, Order_SellLimit),
+		Entry("Value is string, BuyStop - Works",
+			&types.AttributeValueMemberN{Value: "BuyStop"}, Order_BuyStop),
+		Entry("Value is string, SellStop - Works",
+			&types.AttributeValueMemberN{Value: "SellStop"}, Order_SellStop),
+		Entry("Value is string, BuyStopLimit - Works",
+			&types.AttributeValueMemberN{Value: "BuyStopLimit"}, Order_BuyStopLimit),
+		Entry("Value is string, SellStopLimit - Works",
+			&types.AttributeValueMemberN{Value: "SellStopLimit"}, Order_SellStopLimit),
+		Entry("Value is string, ClosedBy - Works",
+			&types.AttributeValueMemberN{Value: "ClosedBy"}, Order_ClosedBy),
+		Entry("Value is string, 0 - Works",
+			&types.AttributeValueMemberN{Value: "0"}, Order_Buy),
+		Entry("Value is string, 1 - Works",
+			&types.AttributeValueMemberN{Value: "1"}, Order_Sell),
+		Entry("Value is string, 2 - Works",
+			&types.AttributeValueMemberN{Value: "2"}, Order_BuyLimit),
+		Entry("Value is string, 3 - Works",
+			&types.AttributeValueMemberN{Value: "3"}, Order_SellLimit),
+		Entry("Value is string, 4 - Works",
+			&types.AttributeValueMemberN{Value: "4"}, Order_BuyStop),
+		Entry("Value is string, 5 - Works",
+			&types.AttributeValueMemberN{Value: "5"}, Order_SellStop),
+		Entry("Value is string, 6 - Works",
+			&types.AttributeValueMemberN{Value: "6"}, Order_BuyStopLimit),
+		Entry("Value is string, 7 - Works",
+			&types.AttributeValueMemberN{Value: "7"}, Order_SellStopLimit),
+		Entry("Value is string, 8 - Works",
+			&types.AttributeValueMemberN{Value: "8"}, Order_ClosedBy))
+
+	// Test that attempting to deserialize a data.Order.Type will fial and return an error if the value
+	// cannot be converted to either the name value or integer value of the enum option
+	It("Scan - Value is nil - Error", func() {
+
+		// Attempt to convert a fake string value into a data.Order.Type; this should return an error
+		var enum *Order_Type
+		err := enum.Scan(nil)
+
+		// Verify the error
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of %!q(<nil>) had an invalid type of <nil>"))
+		Expect(enum).Should(BeNil())
+	})
+
+	// Test the conditions under which values should be convertible to a data.Order.Type
+	DescribeTable("Scan Tests",
+		func(value interface{}, shouldBe Order_Type) {
+
+			// Attempt to convert the value into a data.Order.Type; this should not fail
+			var enum Order_Type
+			err := enum.Scan(value)
+
+			// Verify that the deserialization was successful
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(shouldBe))
+		},
+		Entry("Buy - Works", "Buy", Order_Buy),
+		Entry("Sell - Works", "Sell", Order_Sell),
+		Entry("BuyLimit - Works", "BuyLimit", Order_BuyLimit),
+		Entry("SellLimit - Works", "SellLimit", Order_SellLimit),
+		Entry("BuyStop - Works", "BuyStop", Order_BuyStop),
+		Entry("SellStop - Works", "SellStop", Order_SellStop),
+		Entry("BuyStopLimit - Works", "BuyStopLimit", Order_BuyStopLimit),
+		Entry("SellStopLimit", "SellStopLimit", Order_SellStopLimit),
+		Entry("ClosedBy", "ClosedBy", Order_ClosedBy),
+		Entry("0 - Works", 0, Order_Buy),
+		Entry("1 - Works", 1, Order_Sell),
+		Entry("2 - Works", 2, Order_BuyLimit),
+		Entry("3 - Works", 3, Order_SellLimit),
+		Entry("4 - Works", 4, Order_BuyStop),
+		Entry("5 - Works", 5, Order_SellStop),
+		Entry("6 - Works", 6, Order_BuyStopLimit),
+		Entry("7 - Works", 7, Order_SellStopLimit),
+		Entry("8 - Works", 8, Order_ClosedBy))
+})
