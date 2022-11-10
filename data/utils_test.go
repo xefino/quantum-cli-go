@@ -3612,3 +3612,330 @@ var _ = Describe("data.Position.Reason Marshal/Unmarshal Tests", func() {
 		Entry("2 - Works", 2, Position_Web),
 		Entry("3 - Works", 3, Position_Strategy))
 })
+
+var _ = Describe("data.TradeRequest.Action Marshal/Unmarshal Tests", func() {
+
+	// Test that converting the data.TradeRequest.Action enum to JSON works for all values
+	DescribeTable("MarshalJSON Tests",
+		func(enum TradeRequest_Action, value string) {
+			data, err := json.Marshal(enum)
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(string(data)).Should(Equal(value))
+		},
+		Entry("Deal - Works", TradeRequest_Deal, "\"Deal\""),
+		Entry("Pending - Works", TradeRequest_Pending, "\"Pending\""),
+		Entry("SLTP - Works", TradeRequest_SLTP, "\"SLTP\""),
+		Entry("Modify - Works", TradeRequest_Modify, "\"Modify\""),
+		Entry("Remove - Works", TradeRequest_Remove, "\"Remove\""),
+		Entry("CloseBy - Works", TradeRequest_CloseBy, "\"CloseBy\""))
+
+	// Test that converting the data.TradeRequest.Action enum to a CSV column works for all values
+	DescribeTable("MarshalCSV Tests",
+		func(enum TradeRequest_Action, value string) {
+			data, err := enum.MarshalCSV()
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(string(data)).Should(Equal(value))
+		},
+		Entry("Deal - Works", TradeRequest_Deal, "Deal"),
+		Entry("Pending - Works", TradeRequest_Pending, "Pending"),
+		Entry("SLTP - Works", TradeRequest_SLTP, "SLTP"),
+		Entry("Modify - Works", TradeRequest_Modify, "Modify"),
+		Entry("Remove - Works", TradeRequest_Remove, "Remove"),
+		Entry("CloseBy - Works", TradeRequest_CloseBy, "CloseBy"))
+
+	// Test that converting the data.TradeRequest.Action enum to a YAML node works for all values
+	DescribeTable("MarshalYAML - Works",
+		func(enum TradeRequest_Action, value string) {
+			data, err := enum.MarshalYAML()
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(data).Should(Equal(value))
+		},
+		Entry("Deal - Works", TradeRequest_Deal, "Deal"),
+		Entry("Pending - Works", TradeRequest_Pending, "Pending"),
+		Entry("SLTP - Works", TradeRequest_SLTP, "SLTP"),
+		Entry("Modify - Works", TradeRequest_Modify, "Modify"),
+		Entry("Remove - Works", TradeRequest_Remove, "Remove"),
+		Entry("CloseBy - Works", TradeRequest_CloseBy, "CloseBy"))
+
+	// Test that converting the data.TradeRequest.Action enum to a DynamoDB AttributeVAlue works for all values
+	DescribeTable("MarshalDynamoDBAttributeValue - Works",
+		func(enum TradeRequest_Action, value string) {
+			data, err := attributevalue.Marshal(enum)
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(data.(*types.AttributeValueMemberS).Value).Should(Equal(value))
+		},
+		Entry("Deal - Works", TradeRequest_Deal, "Deal"),
+		Entry("Pending - Works", TradeRequest_Pending, "Pending"),
+		Entry("SLTP - Works", TradeRequest_SLTP, "SLTP"),
+		Entry("Modify - Works", TradeRequest_Modify, "Modify"),
+		Entry("Remove - Works", TradeRequest_Remove, "Remove"),
+		Entry("CloseBy - Works", TradeRequest_CloseBy, "CloseBy"))
+
+	// Test that converting the data.TradeRequest.Action enum to an SQL value for all values
+	DescribeTable("Value Tests",
+		func(enum TradeRequest_Action, value string) {
+			data, err := enum.Value()
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(data).Should(Equal(value))
+		},
+		Entry("Deal - Works", TradeRequest_Deal, "Deal"),
+		Entry("Pending - Works", TradeRequest_Pending, "Pending"),
+		Entry("SLTP - Works", TradeRequest_SLTP, "SLTP"),
+		Entry("Modify - Works", TradeRequest_Modify, "Modify"),
+		Entry("Remove - Works", TradeRequest_Remove, "Remove"),
+		Entry("CloseBy - Works", TradeRequest_CloseBy, "CloseBy"))
+
+	// Test that attempting to deserialize a data.TradeRequest.Action will fail and return an error
+	// if the value cannot be deserialized from a JSON value to a string
+	It("UnmarshalJSON fails - Error", func() {
+
+		// Attempt to convert a non-parseable string value into a data.TradeRequest.Action; this should return an error
+		enum := new(TradeRequest_Action)
+		err := enum.UnmarshalJSON([]byte("derp"))
+
+		// Verify the error
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a data.TradeRequest_Action"))
+	})
+
+	// Test that attempting to deserialize a data.TradeRequest.Action will fail and return an error
+	// if the value cannot be converted to either the name value or integer value of the enum option
+	It("UnmarshalJSON - Value is invalid - Error", func() {
+
+		// Attempt to convert a fake string value into a data.TradeRequest.Action; this should return an error
+		enum := new(TradeRequest_Action)
+		err := enum.UnmarshalJSON([]byte("\"derp\""))
+
+		// Verify the error
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a data.TradeRequest_Action"))
+	})
+
+	// Test the conditions under which values should be convertible to a data.TradeRequest.Action
+	DescribeTable("UnmarshalJSON Tests",
+		func(value string, shouldBe TradeRequest_Action) {
+
+			// Attempt to convert the string value into a data.TradeRequest.Action; this should not fail
+			var enum TradeRequest_Action
+			err := enum.UnmarshalJSON([]byte(value))
+
+			// Verify that the deserialization was successful
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(shouldBe))
+		},
+		Entry("Deal - Works", "\"Deal\"", TradeRequest_Deal),
+		Entry("Pending - Works", "\"Pending\"", TradeRequest_Pending),
+		Entry("SLTP - Works", "\"SLTP\"", TradeRequest_SLTP),
+		Entry("Modify - Works", "\"Modify\"", TradeRequest_Modify),
+		Entry("Remove - Works", "\"Remove\"", TradeRequest_Remove),
+		Entry("CloseBy - Works", "\"CloseBy\"", TradeRequest_CloseBy),
+		Entry("0 - Works", "\"0\"", TradeRequest_Deal),
+		Entry("1 - Works", "\"1\"", TradeRequest_Pending),
+		Entry("2 - Works", "\"2\"", TradeRequest_SLTP),
+		Entry("3 - Works", "\"3\"", TradeRequest_Modify),
+		Entry("4 - Works", "\"4\"", TradeRequest_Remove),
+		Entry("5 - Works", "\"5\"", TradeRequest_CloseBy))
+
+	// Test that attempting to deserialize a data.TradeRequest.Action will fail and return an error
+	// if the value cannot be converted to either the name value or integer value of the enum option
+	It("UnmarshalCSV - Value is empty - Error", func() {
+
+		// Attempt to convert a fake string value into a data.TradeRequest.Action; this should return an error
+		enum := new(TradeRequest_Action)
+		err := enum.UnmarshalCSV("")
+
+		// Verify the error
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"\" cannot be mapped to a data.TradeRequest_Action"))
+	})
+
+	// Test the conditions under which values should be convertible to a data.TradeRequest.Action
+	DescribeTable("UnmarshalCSV Tests",
+		func(value string, shouldBe TradeRequest_Action) {
+
+			// Attempt to convert the value into a data.TradeRequest.Action; this should not fail
+			var enum TradeRequest_Action
+			err := enum.UnmarshalCSV(value)
+
+			// Verify that the deserialization was successful
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(shouldBe))
+		},
+		Entry("Deal - Works", "Deal", TradeRequest_Deal),
+		Entry("Pending - Works", "Pending", TradeRequest_Pending),
+		Entry("SLTP - Works", "SLTP", TradeRequest_SLTP),
+		Entry("Modify - Works", "Modify", TradeRequest_Modify),
+		Entry("Remove - Works", "Remove", TradeRequest_Remove),
+		Entry("CloseBy - Works", "CloseBy", TradeRequest_CloseBy),
+		Entry("0 - Works", "0", TradeRequest_Deal),
+		Entry("1 - Works", "1", TradeRequest_Pending),
+		Entry("2 - Works", "2", TradeRequest_SLTP),
+		Entry("3 - Works", "3", TradeRequest_Modify),
+		Entry("4 - Works", "4", TradeRequest_Remove),
+		Entry("5 - Works", "5", TradeRequest_CloseBy))
+
+	// Test that attempting to deserialize a data.TradeRequest.Action will fail and return an error
+	// if the YAML node does not represent a scalar value
+	It("UnmarshalYAML - Node type is not scalar - Error", func() {
+		enum := new(TradeRequest_Action)
+		err := enum.UnmarshalYAML(&yaml.Node{Kind: yaml.AliasNode})
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("YAML node had an invalid kind (expected scalar value)"))
+	})
+
+	// Test that attempting to deserialize a data.TradeRequest.Action will fail and return an error if
+	// the YAML node value cannot be converted to either the name value or integer value of the enum option
+	It("UnmarshalYAML - Parse fails - Error", func() {
+		enum := new(TradeRequest_Action)
+		err := enum.UnmarshalYAML(&yaml.Node{Kind: yaml.ScalarNode, Value: "derp"})
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a data.TradeRequest_Action"))
+	})
+
+	// Test the conditions under which YAML node values should be convertible to a data.TradeRequest.Action
+	DescribeTable("UnmarshalYAML Tests",
+		func(value string, shouldBe TradeRequest_Action) {
+			var enum TradeRequest_Action
+			err := enum.UnmarshalYAML(&yaml.Node{Kind: yaml.ScalarNode, Value: value})
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(shouldBe))
+		},
+		Entry("Deal - Works", "Deal", TradeRequest_Deal),
+		Entry("Pending - Works", "Pending", TradeRequest_Pending),
+		Entry("SLTP - Works", "SLTP", TradeRequest_SLTP),
+		Entry("Modify - Works", "Modify", TradeRequest_Modify),
+		Entry("Remove - Works", "Remove", TradeRequest_Remove),
+		Entry("CloseBy - Works", "CloseBy", TradeRequest_CloseBy),
+		Entry("0 - Works", "0", TradeRequest_Deal),
+		Entry("1 - Works", "1", TradeRequest_Pending),
+		Entry("2 - Works", "2", TradeRequest_SLTP),
+		Entry("3 - Works", "3", TradeRequest_Modify),
+		Entry("4 - Works", "4", TradeRequest_Remove),
+		Entry("5 - Works", "5", TradeRequest_CloseBy))
+
+	// Tests that, if the attribute type submitted to UnmarshalDynamoDBAttributeValue is not one we
+	// recognize, then the function will return an error
+	It("UnmarshalDynamoDBAttributeValue - AttributeValue type invalid - Error", func() {
+		enum := new(TradeRequest_Action)
+		err := attributevalue.Unmarshal(&types.AttributeValueMemberBOOL{Value: true}, &enum)
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("Attribute value of *types.AttributeValueMemberBOOL could not be converted to a data.TradeRequest.Action"))
+	})
+
+	// Tests that, if time parsing fails, then calling UnmarshalDynamoDBAttributeValue will return an error
+	It("UnmarshalDynamoDBAttributeValue - Parse fails - Error", func() {
+		enum := new(TradeRequest_Action)
+		err := attributevalue.Unmarshal(&types.AttributeValueMemberS{Value: "derp"}, &enum)
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a data.TradeRequest_Action"))
+	})
+
+	// Tests the conditions under which UnmarshalDynamoDBAttributeValue is called and no error is generated
+	DescribeTable("UnmarshalDynamoDBAttributeValue - AttributeValue Conditions",
+		func(value types.AttributeValue, expected TradeRequest_Action) {
+			var enum TradeRequest_Action
+			err := attributevalue.Unmarshal(value, &enum)
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(expected))
+		},
+		Entry("Value is []bytes, Deal - Works",
+			&types.AttributeValueMemberB{Value: []byte("Deal")}, TradeRequest_Deal),
+		Entry("Value is []bytes, Pending - Works",
+			&types.AttributeValueMemberB{Value: []byte("Pending")}, TradeRequest_Pending),
+		Entry("Value is []bytes, SLTP - Works",
+			&types.AttributeValueMemberB{Value: []byte("SLTP")}, TradeRequest_SLTP),
+		Entry("Value is []bytes, Modify - Works",
+			&types.AttributeValueMemberB{Value: []byte("Modify")}, TradeRequest_Modify),
+		Entry("Value is []bytes, Remove - Works",
+			&types.AttributeValueMemberB{Value: []byte("Remove")}, TradeRequest_Remove),
+		Entry("Value is []bytes, CloseBy - Works",
+			&types.AttributeValueMemberB{Value: []byte("CloseBy")}, TradeRequest_CloseBy),
+		Entry("Value is []bytes, 0 - Works",
+			&types.AttributeValueMemberB{Value: []byte("0")}, TradeRequest_Deal),
+		Entry("Value is []bytes, 1 - Works",
+			&types.AttributeValueMemberB{Value: []byte("1")}, TradeRequest_Pending),
+		Entry("Value is []bytes, 2 - Works",
+			&types.AttributeValueMemberB{Value: []byte("2")}, TradeRequest_SLTP),
+		Entry("Value is []bytes, 3 - Works",
+			&types.AttributeValueMemberB{Value: []byte("3")}, TradeRequest_Modify),
+		Entry("Value is []bytes, 4 - Works",
+			&types.AttributeValueMemberB{Value: []byte("4")}, TradeRequest_Remove),
+		Entry("Value is []bytes, 5 - Works",
+			&types.AttributeValueMemberB{Value: []byte("5")}, TradeRequest_CloseBy),
+		Entry("Value is int, 0 - Works",
+			&types.AttributeValueMemberN{Value: "0"}, TradeRequest_Deal),
+		Entry("Value is int, 1 - Works",
+			&types.AttributeValueMemberN{Value: "1"}, TradeRequest_Pending),
+		Entry("Value is int, 2 - Works",
+			&types.AttributeValueMemberN{Value: "2"}, TradeRequest_SLTP),
+		Entry("Value is int, 3 - Works",
+			&types.AttributeValueMemberN{Value: "3"}, TradeRequest_Modify),
+		Entry("Value is int, 4 - Works",
+			&types.AttributeValueMemberN{Value: "4"}, TradeRequest_Remove),
+		Entry("Value is int, 5 - Works",
+			&types.AttributeValueMemberN{Value: "5"}, TradeRequest_CloseBy),
+		Entry("Value is NULL - Works", new(types.AttributeValueMemberNULL), TradeRequest_Action(0)),
+		Entry("Value is string, Deal - Works",
+			&types.AttributeValueMemberS{Value: "Deal"}, TradeRequest_Deal),
+		Entry("Value is string, Pending - Works",
+			&types.AttributeValueMemberS{Value: "Pending"}, TradeRequest_Pending),
+		Entry("Value is string, SLTP - Works",
+			&types.AttributeValueMemberS{Value: "SLTP"}, TradeRequest_SLTP),
+		Entry("Value is string, Modify - Works",
+			&types.AttributeValueMemberS{Value: "Modify"}, TradeRequest_Modify),
+		Entry("Value is string, Remove - Works",
+			&types.AttributeValueMemberS{Value: "Remove"}, TradeRequest_Remove),
+		Entry("Value is string, CloseBy - Works",
+			&types.AttributeValueMemberS{Value: "CloseBy"}, TradeRequest_CloseBy),
+		Entry("Value is string, 0 - Works",
+			&types.AttributeValueMemberS{Value: "0"}, TradeRequest_Deal),
+		Entry("Value is string, 1 - Works",
+			&types.AttributeValueMemberS{Value: "1"}, TradeRequest_Pending),
+		Entry("Value is string, 2 - Works",
+			&types.AttributeValueMemberS{Value: "2"}, TradeRequest_SLTP),
+		Entry("Value is string, 3 - Works",
+			&types.AttributeValueMemberS{Value: "3"}, TradeRequest_Modify),
+		Entry("Value is string, 4 - Works",
+			&types.AttributeValueMemberS{Value: "4"}, TradeRequest_Remove),
+		Entry("Value is string, 5 - Works",
+			&types.AttributeValueMemberS{Value: "5"}, TradeRequest_CloseBy))
+
+	// Test that attempting to deserialize a data.TradeRequest.Action will fial and return an error
+	// if the value cannot be converted to either the name value or integer value of the enum option
+	It("Scan - Value is nil - Error", func() {
+
+		// Attempt to convert a fake string value into a data.TradeRequest.Action; this should return an error
+		var enum *TradeRequest_Action
+		err := enum.Scan(nil)
+
+		// Verify the error
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of %!q(<nil>) had an invalid type of <nil>"))
+		Expect(enum).Should(BeNil())
+	})
+
+	// Test the conditions under which values should be convertible to a data.TradeRequest.Action
+	DescribeTable("Scan Tests",
+		func(value interface{}, shouldBe TradeRequest_Action) {
+
+			// Attempt to convert the value into a data.TradeRequest.Action; this should not fail
+			var enum TradeRequest_Action
+			err := enum.Scan(value)
+
+			// Verify that the deserialization was successful
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(shouldBe))
+		},
+		Entry("Deal - Works", "Deal", TradeRequest_Deal),
+		Entry("Pending - Works", "Pending", TradeRequest_Pending),
+		Entry("SLTP - Works", "SLTP", TradeRequest_SLTP),
+		Entry("Modify - Works", "Modify", TradeRequest_Modify),
+		Entry("Remove - Works", "Remove", TradeRequest_Remove),
+		Entry("CloseBy - Works", "CloseBy", TradeRequest_CloseBy),
+		Entry("0 - Works", 0, TradeRequest_Deal),
+		Entry("1 - Works", 1, TradeRequest_Pending),
+		Entry("2 - Works", 2, TradeRequest_SLTP),
+		Entry("3 - Works", 3, TradeRequest_Modify),
+		Entry("4 - Works", 4, TradeRequest_Remove),
+		Entry("5 - Works", 5, TradeRequest_CloseBy))
+})
