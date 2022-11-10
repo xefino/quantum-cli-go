@@ -63,11 +63,10 @@ func startServer(ctx context.Context, registrar func(grpc.ServiceRegistrar)) err
 func runGRPC(registrar func(grpc.ServiceRegistrar), lis net.Listener) (*grpc.Server, error) {
 
 	// First, create our GRPC server with no credentials
-	service := grpc.NewServer(grpc.WithInsecure())
+	service := grpc.NewServer()
 
 	// Next, register the GRPC server as our new Entry server
 	registrar(service)
-	//entry.RegisterEntryServiceServer(service, server)
 
 	// Finally, begin serving the service on the TCP port; if this fails then return an error
 	log.Printf("GRPC listening for %s on %s", Name, lis.Addr())
