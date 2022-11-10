@@ -3096,3 +3096,284 @@ var _ = Describe("data.Order.Reason Marshal/Unmarshal Tests", func() {
 		Entry("5 - Works", 5, Order_TakeProfit),
 		Entry("6 - Works", 6, Order_StopOut))
 })
+
+var _ = Describe("data.Position.Reason Marshal/Unmarshal Tests", func() {
+
+	// Test that converting the data.Position.Reason enum to JSON works for all values
+	DescribeTable("MarshalJSON Tests",
+		func(enum Position_Reason, value string) {
+			data, err := json.Marshal(enum)
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(string(data)).Should(Equal(value))
+		},
+		Entry("Client - Works", Position_Client, "\"Client\""),
+		Entry("Mobile - Works", Position_Mobile, "\"Mobile\""),
+		Entry("Web - Works", Position_Web, "\"Web\""),
+		Entry("Strategy - Works", Position_Strategy, "\"Strategy\""))
+
+	// Test that converting the data.Position.Reason enum to a CSV column works for all values
+	DescribeTable("MarshalCSV Tests",
+		func(enum Position_Reason, value string) {
+			data, err := enum.MarshalCSV()
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(string(data)).Should(Equal(value))
+		},
+		Entry("Client - Works", Position_Client, "Client"),
+		Entry("Mobile - Works", Position_Mobile, "Mobile"),
+		Entry("Web - Works", Position_Web, "Web"),
+		Entry("Strategy - Works", Position_Strategy, "Strategy"))
+
+	// Test that converting the data.Position.Reason enum to a YAML node works for all values
+	DescribeTable("MarshalYAML - Works",
+		func(enum Position_Reason, value string) {
+			data, err := enum.MarshalYAML()
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(data).Should(Equal(value))
+		},
+		Entry("Client - Works", Position_Client, "Client"),
+		Entry("Mobile - Works", Position_Mobile, "Mobile"),
+		Entry("Web - Works", Position_Web, "Web"),
+		Entry("Strategy - Works", Position_Strategy, "Strategy"))
+
+	// Test that converting the data.Position.Reason enum to a DynamoDB AttributeVAlue works for all values
+	DescribeTable("MarshalDynamoDBAttributeValue - Works",
+		func(enum Position_Reason, value string) {
+			data, err := attributevalue.Marshal(enum)
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(data.(*types.AttributeValueMemberS).Value).Should(Equal(value))
+		},
+		Entry("Client - Works", Position_Client, "Client"),
+		Entry("Mobile - Works", Position_Mobile, "Mobile"),
+		Entry("Web - Works", Position_Web, "Web"),
+		Entry("Strategy - Works", Position_Strategy, "Strategy"))
+
+	// Test that converting the data.Position.Reason enum to an SQL value for all values
+	DescribeTable("Value Tests",
+		func(enum Position_Reason, value string) {
+			data, err := enum.Value()
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(data).Should(Equal(value))
+		},
+		Entry("Client - Works", Position_Client, "Client"),
+		Entry("Mobile - Works", Position_Mobile, "Mobile"),
+		Entry("Web - Works", Position_Web, "Web"),
+		Entry("Strategy - Works", Position_Strategy, "Strategy"))
+
+	// Test that attempting to deserialize a data.Position.Reason will fail and return an error if the value
+	// cannot be deserialized from a JSON value to a string
+	It("UnmarshalJSON fails - Error", func() {
+
+		// Attempt to convert a non-parseable string value into a data.Position.Reason; this should return an error
+		enum := new(Position_Reason)
+		err := enum.UnmarshalJSON([]byte("derp"))
+
+		// Verify the error
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a data.Position_Reason"))
+	})
+
+	// Test that attempting to deserialize a data.Position.Reason will fail and return an error if the value
+	// cannot be converted to either the name value or integer value of the enum option
+	It("UnmarshalJSON - Value is invalid - Error", func() {
+
+		// Attempt to convert a fake string value into a data.Position.Reason; this should return an error
+		enum := new(Position_Reason)
+		err := enum.UnmarshalJSON([]byte("\"derp\""))
+
+		// Verify the error
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a data.Position_Reason"))
+	})
+
+	// Test the conditions under which values should be convertible to a data.Position.Reason
+	DescribeTable("UnmarshalJSON Tests",
+		func(value string, shouldBe Position_Reason) {
+
+			// Attempt to convert the string value into a data.Position.Reason; this should not fail
+			var enum Position_Reason
+			err := enum.UnmarshalJSON([]byte(value))
+
+			// Verify that the deserialization was successful
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(shouldBe))
+		},
+		Entry("Client - Works", "\"Client\"", Position_Client),
+		Entry("Mobile - Works", "\"Mobile\"", Position_Mobile),
+		Entry("Web - Works", "\"Web\"", Position_Web),
+		Entry("Strategy - Works", "\"Strategy\"", Position_Strategy),
+		Entry("0 - Works", "\"0\"", Position_Client),
+		Entry("1 - Works", "\"1\"", Position_Mobile),
+		Entry("2 - Works", "\"2\"", Position_Web),
+		Entry("3 - Works", "\"3\"", Position_Strategy))
+
+	// Test that attempting to deserialize a data.Position.Reason will fail and return an error if the value
+	// cannot be converted to either the name value or integer value of the enum option
+	It("UnmarshalCSV - Value is empty - Error", func() {
+
+		// Attempt to convert a fake string value into a data.Position.Reason; this should return an error
+		enum := new(Position_Reason)
+		err := enum.UnmarshalCSV("")
+
+		// Verify the error
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"\" cannot be mapped to a data.Position_Reason"))
+	})
+
+	// Test the conditions under which values should be convertible to a data.Position.Reason
+	DescribeTable("UnmarshalCSV Tests",
+		func(value string, shouldBe Position_Reason) {
+
+			// Attempt to convert the value into a data.Position.Reason; this should not fail
+			var enum Position_Reason
+			err := enum.UnmarshalCSV(value)
+
+			// Verify that the deserialization was successful
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(shouldBe))
+		},
+		Entry("Client - Works", "Client", Position_Client),
+		Entry("Mobile - Works", "Mobile", Position_Mobile),
+		Entry("Web - Works", "Web", Position_Web),
+		Entry("Strategy - Works", "Strategy", Position_Strategy),
+		Entry("0 - Works", "0", Position_Client),
+		Entry("1 - Works", "1", Position_Mobile),
+		Entry("2 - Works", "2", Position_Web),
+		Entry("3 - Works", "3", Position_Strategy))
+
+	// Test that attempting to deserialize a data.Position.Reason will fail and return an error if the YAML
+	// node does not represent a scalar value
+	It("UnmarshalYAML - Node type is not scalar - Error", func() {
+		enum := new(Position_Reason)
+		err := enum.UnmarshalYAML(&yaml.Node{Kind: yaml.AliasNode})
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("YAML node had an invalid kind (expected scalar value)"))
+	})
+
+	// Test that attempting to deserialize a data.Position.Reason will fail and return an error if the YAML
+	// node value cannot be converted to either the name value or integer value of the enum option
+	It("UnmarshalYAML - Parse fails - Error", func() {
+		enum := new(Position_Reason)
+		err := enum.UnmarshalYAML(&yaml.Node{Kind: yaml.ScalarNode, Value: "derp"})
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a data.Position_Reason"))
+	})
+
+	// Test the conditions under which YAML node values should be convertible to a data.Position.Reason
+	DescribeTable("UnmarshalYAML Tests",
+		func(value string, shouldBe Position_Reason) {
+			var enum Position_Reason
+			err := enum.UnmarshalYAML(&yaml.Node{Kind: yaml.ScalarNode, Value: value})
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(shouldBe))
+		},
+		Entry("Client - Works", "Client", Position_Client),
+		Entry("Mobile - Works", "Mobile", Position_Mobile),
+		Entry("Web - Works", "Web", Position_Web),
+		Entry("Strategy - Works", "Strategy", Position_Strategy),
+		Entry("0 - Works", "0", Position_Client),
+		Entry("1 - Works", "1", Position_Mobile),
+		Entry("2 - Works", "2", Position_Web),
+		Entry("3 - Works", "3", Position_Strategy))
+
+	// Tests that, if the attribute type submitted to UnmarshalDynamoDBAttributeValue is not one we
+	// recognize, then the function will return an error
+	It("UnmarshalDynamoDBAttributeValue - AttributeValue type invalid - Error", func() {
+		enum := new(Position_Reason)
+		err := attributevalue.Unmarshal(&types.AttributeValueMemberBOOL{Value: true}, &enum)
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("Attribute value of *types.AttributeValueMemberBOOL could not be converted to a data.Position.Reason"))
+	})
+
+	// Tests that, if time parsing fails, then calling UnmarshalDynamoDBAttributeValue will return an error
+	It("UnmarshalDynamoDBAttributeValue - Parse fails - Error", func() {
+		enum := new(Position_Reason)
+		err := attributevalue.Unmarshal(&types.AttributeValueMemberS{Value: "derp"}, &enum)
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a data.Position_Reason"))
+	})
+
+	// Tests the conditions under which UnmarshalDynamoDBAttributeValue is called and no error is generated
+	DescribeTable("UnmarshalDynamoDBAttributeValue - AttributeValue Conditions",
+		func(value types.AttributeValue, expected Position_Reason) {
+			var enum Position_Reason
+			err := attributevalue.Unmarshal(value, &enum)
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(expected))
+		},
+		Entry("Value is []bytes, Client - Works",
+			&types.AttributeValueMemberB{Value: []byte("Client")}, Position_Client),
+		Entry("Value is []bytes, Mobile - Works",
+			&types.AttributeValueMemberB{Value: []byte("Mobile")}, Position_Mobile),
+		Entry("Value is []bytes, Web - Works",
+			&types.AttributeValueMemberB{Value: []byte("Web")}, Position_Web),
+		Entry("Value is []bytes, Strategy - Works",
+			&types.AttributeValueMemberB{Value: []byte("Strategy")}, Position_Strategy),
+		Entry("Value is []bytes, 0 - Works",
+			&types.AttributeValueMemberB{Value: []byte("0")}, Position_Client),
+		Entry("Value is []bytes, 1 - Works",
+			&types.AttributeValueMemberB{Value: []byte("1")}, Position_Mobile),
+		Entry("Value is []bytes, 2 - Works",
+			&types.AttributeValueMemberB{Value: []byte("2")}, Position_Web),
+		Entry("Value is []bytes, 3 - Works",
+			&types.AttributeValueMemberB{Value: []byte("3")}, Position_Strategy),
+		Entry("Value is int, 0 - Works",
+			&types.AttributeValueMemberN{Value: "0"}, Position_Client),
+		Entry("Value is int, 1 - Works",
+			&types.AttributeValueMemberN{Value: "1"}, Position_Mobile),
+		Entry("Value is int, 2 - Works",
+			&types.AttributeValueMemberN{Value: "2"}, Position_Web),
+		Entry("Value is int, 3 - Works",
+			&types.AttributeValueMemberN{Value: "3"}, Position_Strategy),
+		Entry("Value is NULL - Works", new(types.AttributeValueMemberNULL), Position_Reason(0)),
+		Entry("Value is string, Client - Works",
+			&types.AttributeValueMemberS{Value: "Client"}, Position_Client),
+		Entry("Value is string, Mobile - Works",
+			&types.AttributeValueMemberS{Value: "Mobile"}, Position_Mobile),
+		Entry("Value is string, Web - Works",
+			&types.AttributeValueMemberS{Value: "Web"}, Position_Web),
+		Entry("Value is string, Strategy - Works",
+			&types.AttributeValueMemberS{Value: "Strategy"}, Position_Strategy),
+		Entry("Value is string, 0 - Works",
+			&types.AttributeValueMemberS{Value: "0"}, Position_Client),
+		Entry("Value is string, 1 - Works",
+			&types.AttributeValueMemberS{Value: "1"}, Position_Mobile),
+		Entry("Value is string, 2 - Works",
+			&types.AttributeValueMemberS{Value: "2"}, Position_Web),
+		Entry("Value is string, 3 - Works",
+			&types.AttributeValueMemberS{Value: "3"}, Position_Strategy))
+
+	// Test that attempting to deserialize a data.Position.Reason will fial and return an error if the value
+	// cannot be converted to either the name value or integer value of the enum option
+	It("Scan - Value is nil - Error", func() {
+
+		// Attempt to convert a fake string value into a data.Position.Reason; this should return an error
+		var enum *Position_Reason
+		err := enum.Scan(nil)
+
+		// Verify the error
+		Expect(err).Should(HaveOccurred())
+		Expect(err.Error()).Should(Equal("value of %!q(<nil>) had an invalid type of <nil>"))
+		Expect(enum).Should(BeNil())
+	})
+
+	// Test the conditions under which values should be convertible to a data.Position.Reason
+	DescribeTable("Scan Tests",
+		func(value interface{}, shouldBe Position_Reason) {
+
+			// Attempt to convert the value into a data.Position.Reason; this should not fail
+			var enum Position_Reason
+			err := enum.Scan(value)
+
+			// Verify that the deserialization was successful
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(enum).Should(Equal(shouldBe))
+		},
+		Entry("Client - Works", "Client", Position_Client),
+		Entry("Mobile - Works", "Mobile", Position_Mobile),
+		Entry("Web - Works", "Web", Position_Web),
+		Entry("Strategy - Works", "Strategy", Position_Strategy),
+		Entry("0 - Works", 0, Position_Client),
+		Entry("1 - Works", 1, Position_Mobile),
+		Entry("2 - Works", 2, Position_Web),
+		Entry("3 - Works", 3, Position_Strategy))
+})
