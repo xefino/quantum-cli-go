@@ -1,52 +1,34 @@
 package data
 
 import (
-	"math"
-	"strconv"
+	"math/big"
 
 	"github.com/shopspring/decimal"
 )
 
+// Size of the integer values we want to save (designed to fit inside an int64)
+var offset = big.NewInt(1e18)
+
 // NewFromDecimal creates a new representation of our Decimal from a decimal.Decimal
 func NewFromDecimal(in decimal.Decimal) *Decimal {
-	const width = 18
+	coefficient := in.Coefficient()
+	sign := int64(coefficient.Sign())
 
-	// First, convert the input decimal coefficient to a big.Int and from there to a string
-	asStr := in.Coefficient().Text(10)
-	strLen := len(asStr)
+	// First, get the absolute value of the coefficient
+	rest := new(big.Int)
+	rest.Abs(coefficient)
 
-	// Next, if the original value was negative then we'll calculate an offset to use when
-	// calculating the number of int64's and when propogating the negative sign
-	offset := 0
-	if in.IsNegative() {
-		offset = 1
-	}
+	// Next, iteratively div-mod the coefficient until there's no data remaining
+	var ints []int64
+	r := new(big.Int)
+	for rest.BitLen() != 0 {
 
-	// Now, determine the number of int64's we want to split the value into
-	length := int(math.Ceil(float64(strLen-offset) / width))
+		// Divide the remaining value by the width of our integer value, saving the remainder
+		// of the division to our temporary value, r and saving the quotient to the remainder
+		rest.DivMod(rest, offset, r)
 
-	// Finally, iterate over each of the int64's and extract a portion of the string to load into it
-	ints := make([]int64, length)
-	for i := 1; i <= length; i++ {
-
-		// First, calculate the start position (we want this to be from the end of the string)
-		start := strLen - (i * width)
-
-		// Next, calculate the end of the string, which should have a constant value
-		end := start + width
-
-		// Now, if we're at risk of walking off the front of the string then set the start value to zero
-		if start < 0 || (start == 1 && asStr[0] == '-') {
-			start = 0
-		}
-
-		// Finally, parse the string back into an integer; since we came from an integer this cannot fail
-		// If the value we're parsing from is negative but we're working with an intermediate value then
-		// we'll need to be sure that the negative sign is propogated
-		ints[i-1], _ = strconv.ParseInt(asStr[start:end], 10, 64)
-		if offset == 1 && ints[i-1] > 0 {
-			ints[i-1] = 0 - ints[i-1]
-		}
+		// Append the remainder to our list (ensuring that we save the sign value)
+		ints = append(ints, r.Int64()*sign)
 	}
 
 	// Inject the parts and the exponent into a Decimal value and return it
