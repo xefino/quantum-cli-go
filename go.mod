@@ -3,15 +3,15 @@ module github.com/xefino/quantum-cli-go
 go 1.18
 
 require (
-	github.com/aws/aws-sdk-go-v2/feature/dynamodb/attributevalue v1.10.2
-	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.17.3
+	github.com/aws/aws-sdk-go-v2/feature/dynamodb/attributevalue v1.10.6
+	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.17.7
 	github.com/golang/protobuf v1.5.2
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.13.0
 	github.com/onsi/ginkgo/v2 v2.4.0
 	github.com/onsi/gomega v1.23.0
 	github.com/spf13/cobra v1.6.1
 	github.com/xefino/goutils v1.1.13
-	github.com/xefino/protobuf-gen-go v1.1.5
+	github.com/xefino/protobuf-gen-go v1.1.6
 	github.com/xefino/quantum-api-go v1.2.2
 	google.golang.org/grpc v1.50.1
 	google.golang.org/protobuf v1.28.1
@@ -19,7 +19,7 @@ require (
 )
 
 require (
-	github.com/aws/aws-sdk-go-v2/service/dynamodbstreams v1.13.22 // indirect
+	github.com/aws/aws-sdk-go-v2/service/dynamodbstreams v1.13.26 // indirect
 	github.com/aws/smithy-go v1.13.4 // indirect
 	github.com/flowerinthenight/kettle/v2 v2.4.3 // indirect
 	github.com/go-logr/logr v1.2.3 // indirect
