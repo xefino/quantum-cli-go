@@ -9,10 +9,9 @@ require (
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.13.0
 	github.com/onsi/ginkgo/v2 v2.4.0
 	github.com/onsi/gomega v1.23.0
-	github.com/shopspring/decimal v1.3.1
 	github.com/spf13/cobra v1.6.1
 	github.com/xefino/goutils v1.1.13
-	github.com/xefino/protobuf-gen-go v1.1.4
+	github.com/xefino/protobuf-gen-go v1.1.5
 	github.com/xefino/quantum-api-go v1.2.2
 	google.golang.org/grpc v1.50.1
 	google.golang.org/protobuf v1.28.1
@@ -31,6 +30,7 @@ require (
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
 	github.com/inconshreveable/mousetrap v1.0.1 // indirect
 	github.com/satori/go.uuid v1.2.0 // indirect
+	github.com/shopspring/decimal v1.3.1 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	golang.org/x/net v0.1.0 // indirect
 	golang.org/x/sys v0.1.0 // indirect
