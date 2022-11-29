@@ -12,7 +12,7 @@ require (
 	github.com/spf13/cobra v1.6.1
 	github.com/xefino/goutils v1.1.13
 	github.com/xefino/protobuf-gen-go v1.1.6
-	github.com/xefino/quantum-api-go v1.2.4
+	github.com/xefino/quantum-api-go v1.2.5
 	google.golang.org/grpc v1.50.1
 	google.golang.org/protobuf v1.28.1
 	gopkg.in/yaml.v3 v3.0.1
