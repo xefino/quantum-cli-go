@@ -75,8 +75,8 @@ github.com/stvp/tempredis v0.0.0-20181119212430-b82af8480203 h1:QVqDTf3h2WHt08Yu
 github.com/stvp/tempredis v0.0.0-20181119212430-b82af8480203/go.mod h1:oqN97ltKNihBbwlX8dLpwxCl3+HnXKV/R0e+sRLd9C8=
 github.com/xefino/goutils v1.1.13 h1:YDgt0HVZJsSXNGqrHzvzh8xnJistkhRDbsO8i48/tJY=
 github.com/xefino/goutils v1.1.13/go.mod h1:9sryXwYJM7EqSOdklU6ww0/F2lBrIl9r712qlFjGp7w=
-github.com/xefino/protobuf-gen-go v1.1.10 h1:NAv814l9RTuiXmt7+x0Q4bqYgIOF7OPmY2pSl90BMuA=
-github.com/xefino/protobuf-gen-go v1.1.10/go.mod h1:oBDpwM3jgA4tiIOkUvsdYHqwMuo/9RFd7zfavk3P6Do=
+github.com/xefino/protobuf-gen-go v1.1.11 h1:doktipIJ7vYwOE5arX7ccvEcYyDOXLbjNvCAamRkiC4=
+github.com/xefino/protobuf-gen-go v1.1.11/go.mod h1:oBDpwM3jgA4tiIOkUvsdYHqwMuo/9RFd7zfavk3P6Do=
 github.com/xefino/quantum-api-go v1.2.9 h1:xeP3Qu17t0LC1mXq1FZCMEYxO94OpqkbR626dyykLs0=
 github.com/xefino/quantum-api-go v1.2.9/go.mod h1:Fl+vbrPIiYoHTbl8NealoItPRmzzl3Kd+STskg5E0ks=
 golang.org/x/net v0.1.0 h1:hZ/3BUoy5aId7sCpA/Tc5lt8DkFgdVS2onTpJsZ/fl0=
