@@ -10,7 +10,7 @@ require (
 	github.com/onsi/ginkgo/v2 v2.4.0
 	github.com/onsi/gomega v1.23.0
 	github.com/spf13/cobra v1.6.1
-	github.com/xefino/goutils v1.1.13
+	github.com/xefino/goutils v1.1.21
 	github.com/xefino/protobuf-gen-go v1.2.4
 	github.com/xefino/quantum-api-go v1.2.16
 	google.golang.org/grpc v1.50.1
