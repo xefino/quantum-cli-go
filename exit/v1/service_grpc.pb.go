@@ -29,6 +29,9 @@ type ExitServiceClient interface {
 	// name result showing the address, ID and human-readable name of the filter service that processed
 	// the original request.
 	GetName(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*data.NameResult, error)
+	// Enabled determines whether or not the service is enabled, allowing the strategy runner to skip
+	// exit rules for all the positions at a given time.
+	Enabled(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*data.EnabledResult, error)
 	// ShouldExit determines whether or not a position should be exited, using the data contained in
 	// the ExitRequest. This endpoint will return an ExitResult, that shows the exit decision and the
 	// order that should be submitted to the trade service.
@@ -46,6 +49,15 @@ func NewExitServiceClient(cc grpc.ClientConnInterface) ExitServiceClient {
 func (c *exitServiceClient) GetName(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*data.NameResult, error) {
 	out := new(data.NameResult)
 	err := c.cc.Invoke(ctx, "/protos.edge.exit.v1.ExitService/GetName", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *exitServiceClient) Enabled(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*data.EnabledResult, error) {
+	out := new(data.EnabledResult)
+	err := c.cc.Invoke(ctx, "/protos.edge.exit.v1.ExitService/Enabled", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -70,6 +82,9 @@ type ExitServiceServer interface {
 	// name result showing the address, ID and human-readable name of the filter service that processed
 	// the original request.
 	GetName(context.Context, *empty.Empty) (*data.NameResult, error)
+	// Enabled determines whether or not the service is enabled, allowing the strategy runner to skip
+	// exit rules for all the positions at a given time.
+	Enabled(context.Context, *empty.Empty) (*data.EnabledResult, error)
 	// ShouldExit determines whether or not a position should be exited, using the data contained in
 	// the ExitRequest. This endpoint will return an ExitResult, that shows the exit decision and the
 	// order that should be submitted to the trade service.
@@ -83,6 +98,9 @@ type UnimplementedExitServiceServer struct {
 
 func (UnimplementedExitServiceServer) GetName(context.Context, *empty.Empty) (*data.NameResult, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetName not implemented")
+}
+func (UnimplementedExitServiceServer) Enabled(context.Context, *empty.Empty) (*data.EnabledResult, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Enabled not implemented")
 }
 func (UnimplementedExitServiceServer) ShouldExit(context.Context, *ExitRequest) (*ExitResult, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ShouldExit not implemented")
@@ -118,6 +136,24 @@ func _ExitService_GetName_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ExitService_Enabled_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ExitServiceServer).Enabled(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/protos.edge.exit.v1.ExitService/Enabled",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ExitServiceServer).Enabled(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ExitService_ShouldExit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ExitRequest)
 	if err := dec(in); err != nil {
@@ -146,6 +182,10 @@ var ExitService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetName",
 			Handler:    _ExitService_GetName_Handler,
+		},
+		{
+			MethodName: "Enabled",
+			Handler:    _ExitService_Enabled_Handler,
 		},
 		{
 			MethodName: "ShouldExit",

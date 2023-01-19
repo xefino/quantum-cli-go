@@ -25,9 +25,9 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MoneyManagementServiceClient interface {
 	// GetName retrieves an identifier associated with the service, allowing the strategy runner to
-	// uniquely identify it when multiple filter services are being referenced. It will return a
-	// name result showing the address, ID and human-readable name of the filter service that processed
-	// the original request.
+	// uniquely identify it when multiple money-management services are being referenced. It will return
+	// a name result showing the address, ID and human-readable name of the money-management service
+	// that processed the original request.
 	GetName(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*data.NameResult, error)
 	// ModifyOrder takes an existing order and modifies it with liquid asset management in mind. This
 	// endpoint will be responsible for assigning lot sizes, and deviation with margin and account balance
@@ -67,9 +67,9 @@ func (c *moneyManagementServiceClient) ModifyOrder(ctx context.Context, in *Modi
 // for forward compatibility
 type MoneyManagementServiceServer interface {
 	// GetName retrieves an identifier associated with the service, allowing the strategy runner to
-	// uniquely identify it when multiple filter services are being referenced. It will return a
-	// name result showing the address, ID and human-readable name of the filter service that processed
-	// the original request.
+	// uniquely identify it when multiple money-management services are being referenced. It will return
+	// a name result showing the address, ID and human-readable name of the money-management service
+	// that processed the original request.
 	GetName(context.Context, *empty.Empty) (*data.NameResult, error)
 	// ModifyOrder takes an existing order and modifies it with liquid asset management in mind. This
 	// endpoint will be responsible for assigning lot sizes, and deviation with margin and account balance
