@@ -6,6 +6,8 @@ import (
 	exit "github.com/xefino/quantum-cli-go/exit/v1"
 	filtering "github.com/xefino/quantum-cli-go/filtering/v1"
 	money "github.com/xefino/quantum-cli-go/money/v1"
+	orders "github.com/xefino/quantum-cli-go/orders/v1"
+	positions "github.com/xefino/quantum-cli-go/positions/v1"
 	risk "github.com/xefino/quantum-cli-go/risk/v1"
 	"google.golang.org/grpc"
 )
@@ -60,6 +62,32 @@ func MoneyManagementServiceCmd(server money.MoneyManagementServiceServer) *cobra
 	// Generate our command and return it
 	return generateCommand(registrar, "money-manage", "Serve a Money-Management Module",
 		"Start an RPC service associated with a Money Management Module")
+}
+
+// OrderManagementServiceCmd creates a server that makes an Order Management Module available to users
+func OrderManagementServiceCmd(server orders.OrderManagementServiceServer) *cobra.Command {
+
+	// Create a new registrar that registers the service implementation as an entry module server
+	registrar := func(service grpc.ServiceRegistrar) {
+		orders.RegisterOrderManagementServiceServer(service, server)
+	}
+
+	// Generate our command and return it
+	return generateCommand(registrar, "orders-manage", "Serve an Orders Management Module",
+		"Start an RPC service associated with an Order Management Module")
+}
+
+// PositionManagementServiceCmd creates a server that makes a Position Management Module available to users
+func PositionManagementServiceCmd(server positions.PositionManagementServiceServer) *cobra.Command {
+
+	// Create a new registrar that registers the service implementation as an entry module server
+	registrar := func(service grpc.ServiceRegistrar) {
+		positions.RegisterPositionManagementServiceServer(service, server)
+	}
+
+	// Generate our command and return it
+	return generateCommand(registrar, "positions-manage", "Serve a Positions Management Module",
+		"Start an RPC service associated with a Position Management Module")
 }
 
 // RiskManagementServiceCmd creates a server that makes a Risk Management Module available to users
