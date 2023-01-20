@@ -10,9 +10,9 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-var _ = Describe("filtering.v1.AllowedTrades Marshal/Unmarshal Tests", func() {
+var _ = Describe("data.AllowedTrades Marshal/Unmarshal Tests", func() {
 
-	// Test that converting the filtering.v1.AllowedTrades enum to JSON works for all values
+	// Test that converting the data.AllowedTrades enum to JSON works for all values
 	DescribeTable("MarshalJSON Tests",
 		func(enum AllowedTrades, value string) {
 			data, err := json.Marshal(enum)
@@ -23,7 +23,7 @@ var _ = Describe("filtering.v1.AllowedTrades Marshal/Unmarshal Tests", func() {
 		Entry("BuysAllowed - Works", AllowedTrades_BuysAllowed, "\"BUY\""),
 		Entry("SellsAllowed - Works", AllowedTrades_SellsAllowed, "\"SELL\""))
 
-	// Test that converting the filtering.v1.AllowedTrades enum to a CSV column works for all values
+	// Test that converting the data.AllowedTrades enum to a CSV column works for all values
 	DescribeTable("MarshalCSV Tests",
 		func(enum AllowedTrades, value string) {
 			data, err := enum.MarshalCSV()
@@ -34,7 +34,7 @@ var _ = Describe("filtering.v1.AllowedTrades Marshal/Unmarshal Tests", func() {
 		Entry("BuysAllowed - Works", AllowedTrades_BuysAllowed, "BUY"),
 		Entry("SellsAllowed - Works", AllowedTrades_SellsAllowed, "SELL"))
 
-	// Test that converting the filtering.v1.AllowedTrades enum to a YAML node works for all values
+	// Test that converting the data.AllowedTrades enum to a YAML node works for all values
 	DescribeTable("MarshalYAML - Works",
 		func(enum AllowedTrades, value string) {
 			data, err := enum.MarshalYAML()
@@ -45,7 +45,7 @@ var _ = Describe("filtering.v1.AllowedTrades Marshal/Unmarshal Tests", func() {
 		Entry("BuysAllowed - Works", AllowedTrades_BuysAllowed, "BUY"),
 		Entry("SellsAllowed - Works", AllowedTrades_SellsAllowed, "SELL"))
 
-	// Test that converting the filtering.v1.AllowedTrades enum to a DynamoDB AttributeVAlue works for all values
+	// Test that converting the data.AllowedTrades enum to a DynamoDB AttributeVAlue works for all values
 	DescribeTable("MarshalDynamoDBAttributeValue - Works",
 		func(enum AllowedTrades, value string) {
 			data, err := attributevalue.Marshal(enum)
@@ -56,7 +56,7 @@ var _ = Describe("filtering.v1.AllowedTrades Marshal/Unmarshal Tests", func() {
 		Entry("BuysAllowed - Works", AllowedTrades_BuysAllowed, "BUY"),
 		Entry("SellsAllowed - Works", AllowedTrades_SellsAllowed, "SELL"))
 
-	// Test that converting the filtering.v1.AllowedTrades enum to an SQL value for all values
+	// Test that converting the data.AllowedTrades enum to an SQL value for all values
 	DescribeTable("Value Tests",
 		func(enum AllowedTrades, value string) {
 			data, err := enum.Value()
@@ -67,11 +67,11 @@ var _ = Describe("filtering.v1.AllowedTrades Marshal/Unmarshal Tests", func() {
 		Entry("BuysAllowed - Works", AllowedTrades_BuysAllowed, "BUY"),
 		Entry("SellsAllowed - Works", AllowedTrades_SellsAllowed, "SELL"))
 
-	// Test that attempting to deserialize a filtering.v1.AllowedTrades will fail and return an error if the value
+	// Test that attempting to deserialize a data.AllowedTrades will fail and return an error if the value
 	// cannot be deserialized from a JSON value to a string
 	It("UnmarshalJSON fails - Error", func() {
 
-		// Attempt to convert a non-parseable string value into a filtering.v1.AllowedTrades; this should return an error
+		// Attempt to convert a non-parseable string value into a data.AllowedTrades; this should return an error
 		enum := new(AllowedTrades)
 		err := enum.UnmarshalJSON([]byte("derp"))
 
@@ -80,11 +80,11 @@ var _ = Describe("filtering.v1.AllowedTrades Marshal/Unmarshal Tests", func() {
 		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a v1.AllowedTrades"))
 	})
 
-	// Test that attempting to deserialize a filtering.v1.AllowedTrades will fail and return an error if the value
+	// Test that attempting to deserialize a data.AllowedTrades will fail and return an error if the value
 	// cannot be converted to either the name value or integer value of the enum option
 	It("UnmarshalJSON - Value is invalid - Error", func() {
 
-		// Attempt to convert a fake string value into a filtering.v1.AllowedTrades; this should return an error
+		// Attempt to convert a fake string value into a data.AllowedTrades; this should return an error
 		enum := new(AllowedTrades)
 		err := enum.UnmarshalJSON([]byte("\"derp\""))
 
@@ -93,11 +93,11 @@ var _ = Describe("filtering.v1.AllowedTrades Marshal/Unmarshal Tests", func() {
 		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a v1.AllowedTrades"))
 	})
 
-	// Test the conditions under which values should be convertible to a filtering.v1.AllowedTrades
+	// Test the conditions under which values should be convertible to a data.AllowedTrades
 	DescribeTable("UnmarshalJSON Tests",
 		func(value string, shouldBe AllowedTrades) {
 
-			// Attempt to convert the string value into a filtering.v1.AllowedTrades; this should not fail
+			// Attempt to convert the string value into a data.AllowedTrades; this should not fail
 			var enum AllowedTrades
 			err := enum.UnmarshalJSON([]byte(value))
 
@@ -118,11 +118,11 @@ var _ = Describe("filtering.v1.AllowedTrades Marshal/Unmarshal Tests", func() {
 		Entry("1 - Works", "\"1\"", AllowedTrades_BuysAllowed),
 		Entry("2 - Works", "\"2\"", AllowedTrades_SellsAllowed))
 
-	// Test that attempting to deserialize a filtering.v1.AllowedTrades will fail and return an error if the value
+	// Test that attempting to deserialize a data.AllowedTrades will fail and return an error if the value
 	// cannot be converted to either the name value or integer value of the enum option
 	It("UnmarshalCSV - Value is empty - Error", func() {
 
-		// Attempt to convert a fake string value into a filtering.v1.AllowedTrades; this should return an error
+		// Attempt to convert a fake string value into a data.AllowedTrades; this should return an error
 		enum := new(AllowedTrades)
 		err := enum.UnmarshalCSV("")
 
@@ -131,11 +131,11 @@ var _ = Describe("filtering.v1.AllowedTrades Marshal/Unmarshal Tests", func() {
 		Expect(err.Error()).Should(Equal("value of \"\" cannot be mapped to a v1.AllowedTrades"))
 	})
 
-	// Test the conditions under which values should be convertible to a filtering.v1.AllowedTrades
+	// Test the conditions under which values should be convertible to a data.AllowedTrades
 	DescribeTable("UnmarshalCSV Tests",
 		func(value string, shouldBe AllowedTrades) {
 
-			// Attempt to convert the value into a filtering.v1.AllowedTrades; this should not fail
+			// Attempt to convert the value into a data.AllowedTrades; this should not fail
 			var enum AllowedTrades
 			err := enum.UnmarshalCSV(value)
 
@@ -156,7 +156,7 @@ var _ = Describe("filtering.v1.AllowedTrades Marshal/Unmarshal Tests", func() {
 		Entry("1 - Works", "1", AllowedTrades_BuysAllowed),
 		Entry("2 - Works", "2", AllowedTrades_SellsAllowed))
 
-	// Test that attempting to deserialize a filtering.v1.AllowedTrades will fail and return an error if the YAML
+	// Test that attempting to deserialize a data.AllowedTrades will fail and return an error if the YAML
 	// node does not represent a scalar value
 	It("UnmarshalYAML - Node type is not scalar - Error", func() {
 		enum := new(AllowedTrades)
@@ -165,7 +165,7 @@ var _ = Describe("filtering.v1.AllowedTrades Marshal/Unmarshal Tests", func() {
 		Expect(err.Error()).Should(Equal("YAML node had an invalid kind (expected scalar value)"))
 	})
 
-	// Test that attempting to deserialize a filtering.v1.AllowedTrades will fail and return an error if the YAML
+	// Test that attempting to deserialize a data.AllowedTrades will fail and return an error if the YAML
 	// node value cannot be converted to either the name value or integer value of the enum option
 	It("UnmarshalYAML - Parse fails - Error", func() {
 		enum := new(AllowedTrades)
@@ -174,7 +174,7 @@ var _ = Describe("filtering.v1.AllowedTrades Marshal/Unmarshal Tests", func() {
 		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a v1.AllowedTrades"))
 	})
 
-	// Test the conditions under which YAML node values should be convertible to a filtering.v1.AllowedTrades
+	// Test the conditions under which YAML node values should be convertible to a data.AllowedTrades
 	DescribeTable("UnmarshalYAML Tests",
 		func(value string, shouldBe AllowedTrades) {
 			var enum AllowedTrades
@@ -201,7 +201,7 @@ var _ = Describe("filtering.v1.AllowedTrades Marshal/Unmarshal Tests", func() {
 		enum := new(AllowedTrades)
 		err := attributevalue.Unmarshal(&types.AttributeValueMemberBOOL{Value: true}, &enum)
 		Expect(err).Should(HaveOccurred())
-		Expect(err.Error()).Should(Equal("Attribute value of *types.AttributeValueMemberBOOL could not be converted to a filtering.v1.AllowedTrades"))
+		Expect(err.Error()).Should(Equal("Attribute value of *types.AttributeValueMemberBOOL could not be converted to a data.AllowedTrades"))
 	})
 
 	// Tests that, if time parsing fails, then calling UnmarshalDynamoDBAttributeValue will return an error
@@ -276,11 +276,11 @@ var _ = Describe("filtering.v1.AllowedTrades Marshal/Unmarshal Tests", func() {
 		Entry("Value is string, 2 - Works",
 			&types.AttributeValueMemberS{Value: "2"}, AllowedTrades_SellsAllowed))
 
-	// Test that attempting to deserialize a filtering.v1.AllowedTrades will fial and return an error if the value
+	// Test that attempting to deserialize a data.AllowedTrades will fial and return an error if the value
 	// cannot be converted to either the name value or integer value of the enum option
 	It("Scan - Value is nil - Error", func() {
 
-		// Attempt to convert a fake string value into a filtering.v1.AllowedTrades; this should return an error
+		// Attempt to convert a fake string value into a data.AllowedTrades; this should return an error
 		var enum *AllowedTrades
 		err := enum.Scan(nil)
 
@@ -290,11 +290,11 @@ var _ = Describe("filtering.v1.AllowedTrades Marshal/Unmarshal Tests", func() {
 		Expect(enum).Should(BeNil())
 	})
 
-	// Test the conditions under which values should be convertible to a filtering.v1.AllowedTrades
+	// Test the conditions under which values should be convertible to a data.AllowedTrades
 	DescribeTable("Scan Tests",
 		func(value interface{}, shouldBe AllowedTrades) {
 
-			// Attempt to convert the value into a filtering.v1.AllowedTrades; this should not fail
+			// Attempt to convert the value into a data.AllowedTrades; this should not fail
 			var enum AllowedTrades
 			err := enum.Scan(value)
 
