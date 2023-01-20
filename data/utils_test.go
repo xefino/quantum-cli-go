@@ -77,7 +77,7 @@ var _ = Describe("data.AllowedTrades Marshal/Unmarshal Tests", func() {
 
 		// Verify the error
 		Expect(err).Should(HaveOccurred())
-		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a v1.AllowedTrades"))
+		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a data.AllowedTrades"))
 	})
 
 	// Test that attempting to deserialize a data.AllowedTrades will fail and return an error if the value
@@ -90,7 +90,7 @@ var _ = Describe("data.AllowedTrades Marshal/Unmarshal Tests", func() {
 
 		// Verify the error
 		Expect(err).Should(HaveOccurred())
-		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a v1.AllowedTrades"))
+		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a data.AllowedTrades"))
 	})
 
 	// Test the conditions under which values should be convertible to a data.AllowedTrades
@@ -128,7 +128,7 @@ var _ = Describe("data.AllowedTrades Marshal/Unmarshal Tests", func() {
 
 		// Verify the error
 		Expect(err).Should(HaveOccurred())
-		Expect(err.Error()).Should(Equal("value of \"\" cannot be mapped to a v1.AllowedTrades"))
+		Expect(err.Error()).Should(Equal("value of \"\" cannot be mapped to a data.AllowedTrades"))
 	})
 
 	// Test the conditions under which values should be convertible to a data.AllowedTrades
@@ -171,7 +171,7 @@ var _ = Describe("data.AllowedTrades Marshal/Unmarshal Tests", func() {
 		enum := new(AllowedTrades)
 		err := enum.UnmarshalYAML(&yaml.Node{Kind: yaml.ScalarNode, Value: "derp"})
 		Expect(err).Should(HaveOccurred())
-		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a v1.AllowedTrades"))
+		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a data.AllowedTrades"))
 	})
 
 	// Test the conditions under which YAML node values should be convertible to a data.AllowedTrades
@@ -209,7 +209,7 @@ var _ = Describe("data.AllowedTrades Marshal/Unmarshal Tests", func() {
 		enum := new(AllowedTrades)
 		err := attributevalue.Unmarshal(&types.AttributeValueMemberS{Value: "derp"}, &enum)
 		Expect(err).Should(HaveOccurred())
-		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a v1.AllowedTrades"))
+		Expect(err.Error()).Should(Equal("value of \"derp\" cannot be mapped to a data.AllowedTrades"))
 	})
 
 	// Tests the conditions under which UnmarshalDynamoDBAttributeValue is called and no error is generated
