@@ -10,7 +10,7 @@ require (
 	github.com/onsi/ginkgo/v2 v2.4.0
 	github.com/onsi/gomega v1.23.0
 	github.com/spf13/cobra v1.6.1
-	github.com/xefino/goutils v1.1.28
+	github.com/xefino/goutils v1.1.30
 	github.com/xefino/protobuf-gen-go v1.3.3
 	github.com/xefino/quantum-api-go v1.2.23
 	google.golang.org/grpc v1.50.1
@@ -20,7 +20,7 @@ require (
 
 require (
 	github.com/aws/aws-sdk-go-v2/service/dynamodbstreams v1.13.26 // indirect
-	github.com/aws/smithy-go v1.13.4 // indirect
+	github.com/aws/smithy-go v1.13.5 // indirect
 	github.com/flowerinthenight/kettle/v2 v2.4.3 // indirect
 	github.com/go-logr/logr v1.2.3 // indirect
 	github.com/go-redsync/redsync v1.4.2 // indirect

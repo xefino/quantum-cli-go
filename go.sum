@@ -1,5 +1,5 @@
-github.com/aws/aws-sdk-go-v2 v1.17.1 h1:02c72fDJr87N8RAC2s3Qu0YuvMRZKNZJ9F+lAehCazk=
 github.com/aws/aws-sdk-go-v2 v1.17.1/go.mod h1:JLnGeGONAyi2lWXI1p0PCIOIy333JMVK1U7Hf0aRFLw=
+github.com/aws/aws-sdk-go-v2 v1.17.4 h1:wyC6p9Yfq6V2y98wfDsj6OnNQa4w2BLGCLIxzNhwOGY=
 github.com/aws/aws-sdk-go-v2/feature/dynamodb/attributevalue v1.10.6 h1:TAs693KgM5digUjCmCmNC9RhpPLxwczfjrCq7mjR7KY=
 github.com/aws/aws-sdk-go-v2/feature/dynamodb/attributevalue v1.10.6/go.mod h1:4jroHJSgwid88qqpZyJFpxTyNe6qlItCUND1cXfN50g=
 github.com/aws/aws-sdk-go-v2/internal/configsources v1.1.25/go.mod h1:Zb29PYkf42vVYQY6pvSyJCJcFHlPIiY+YKdPtwnvMkY=
@@ -10,8 +10,9 @@ github.com/aws/aws-sdk-go-v2/service/dynamodbstreams v1.13.26 h1:ToM7rTr08bzBTGW
 github.com/aws/aws-sdk-go-v2/service/dynamodbstreams v1.13.26/go.mod h1:5lIdkQbMmEblCTEAyFAsLduBtMPD9Bqt9fwPjBK1KWU=
 github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.9.10/go.mod h1:9cBNUHI2aW4ho0A5T87O294iPDuuUOSIEDjnd1Lq/z0=
 github.com/aws/aws-sdk-go-v2/service/internal/endpoint-discovery v1.7.19/go.mod h1:2WpVWFC5n4DYhjNXzObtge8xfgId9UP6GWca46KJFLo=
-github.com/aws/smithy-go v1.13.4 h1:/RN2z1txIJWeXeOkzX+Hk/4Uuvv7dWtCjbmVJcrskyk=
 github.com/aws/smithy-go v1.13.4/go.mod h1:Tg+OJXh4MB2R/uN61Ko2f6hTZwB/ZYGOtib8J3gBHzA=
+github.com/aws/smithy-go v1.13.5 h1:hgz0X/DX0dGqTYpGALqXJoRKRj5oQ7150i5FdTePzO8=
+github.com/aws/smithy-go v1.13.5/go.mod h1:Tg+OJXh4MB2R/uN61Ko2f6hTZwB/ZYGOtib8J3gBHzA=
 github.com/cpuguy83/go-md2man/v2 v2.0.2/go.mod h1:tgQtvFlXSQOSOSIRvRPT7W67SCa46tRHOmNcaadrF8o=
 github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
@@ -73,8 +74,8 @@ github.com/spf13/pflag v1.0.5/go.mod h1:McXfInJRrz4CZXVZOBLb0bTZqETkiAhM9Iw0y3An
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stvp/tempredis v0.0.0-20181119212430-b82af8480203 h1:QVqDTf3h2WHt08YuiTGPZLls0Wq99X9bWd0Q5ZSBesM=
 github.com/stvp/tempredis v0.0.0-20181119212430-b82af8480203/go.mod h1:oqN97ltKNihBbwlX8dLpwxCl3+HnXKV/R0e+sRLd9C8=
-github.com/xefino/goutils v1.1.28 h1:X8aQ6stHmZK/6gbDeLhVwpuR5iklVinpQdetcD5QJzg=
-github.com/xefino/goutils v1.1.28/go.mod h1:/yXOBV+klvIQr1owdpgttV/Ai3afhWvvxK9u5nsXMTs=
+github.com/xefino/goutils v1.1.30 h1:pvYIeOdRxnOvtuHHR6q81UMUpvLHHrmN5VOzcEeyS1I=
+github.com/xefino/goutils v1.1.30/go.mod h1:Rn06Pnc6t5dnlPl0zixvhJgg5igiVhagowH0kNQGkEI=
 github.com/xefino/protobuf-gen-go v1.3.3 h1:GpPq74fS9103da/SFMdCMMbuSZyDuIyJtKqDFLK6/vA=
 github.com/xefino/protobuf-gen-go v1.3.3/go.mod h1:oBDpwM3jgA4tiIOkUvsdYHqwMuo/9RFd7zfavk3P6Do=
 github.com/xefino/quantum-api-go v1.2.23 h1:KMCxKorBH5Fy8TJdYPbyLCLxr0FepV0mYsxt+yugXBw=
