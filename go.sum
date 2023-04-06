@@ -78,8 +78,8 @@ github.com/xefino/goutils v1.1.40 h1:CrK8T3Rv02Anm2DfToNZ3u9q/HgrhbxG0aEpDr56r54
 github.com/xefino/goutils v1.1.40/go.mod h1:XZuAMAHP2h4A8crdtiihBPHh0ZV165PUfHgAU3wmbUI=
 github.com/xefino/protobuf-gen-go v1.3.7 h1:FHi+CzWPQ0X9PzJq4IewXjk14J26HYQb9o2jNaSwwgg=
 github.com/xefino/protobuf-gen-go v1.3.7/go.mod h1:oBDpwM3jgA4tiIOkUvsdYHqwMuo/9RFd7zfavk3P6Do=
-github.com/xefino/quantum-api-go v1.2.27 h1:wxUSELKgQbMhwpQ5nhXDXpn/T7uqL3IAu+Q5uKSButE=
-github.com/xefino/quantum-api-go v1.2.27/go.mod h1:UB3e+wVw4+qsxdZMBcV4vQ8/IXdHctMVjPrHnqiTBFw=
+github.com/xefino/quantum-api-go v1.2.28 h1:WbuPWF66jp4sKJ1zdzNBlFti+Ofo5DAyMf5LFh4agVg=
+github.com/xefino/quantum-api-go v1.2.28/go.mod h1:0V1zg3dafIgmSXYBkq6NNE06OEdz06USqTzgMIRVs1o=
 golang.org/x/net v0.1.0 h1:hZ/3BUoy5aId7sCpA/Tc5lt8DkFgdVS2onTpJsZ/fl0=
 golang.org/x/net v0.1.0/go.mod h1:Cx3nUiGt4eDBEyega/BKRp+/AlGL8hYe7U9odMt2Cco=
 golang.org/x/sys v0.1.0 h1:kunALQeHf1/185U1i0GOB/fy1IPRDDpuoOOqRReG57U=
