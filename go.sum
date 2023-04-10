@@ -74,10 +74,8 @@ github.com/spf13/pflag v1.0.5/go.mod h1:McXfInJRrz4CZXVZOBLb0bTZqETkiAhM9Iw0y3An
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stvp/tempredis v0.0.0-20181119212430-b82af8480203 h1:QVqDTf3h2WHt08YuiTGPZLls0Wq99X9bWd0Q5ZSBesM=
 github.com/stvp/tempredis v0.0.0-20181119212430-b82af8480203/go.mod h1:oqN97ltKNihBbwlX8dLpwxCl3+HnXKV/R0e+sRLd9C8=
-github.com/xefino/goutils v1.1.42 h1:Sn6BCLT4hkucqbDBpGA/lV3onZv1miGxMD/tNApBi2M=
-github.com/xefino/goutils v1.1.42/go.mod h1:EBjlgoZH/m6S3FCxrJ8rot438xgX/IHpaSqU1lv29Co=
-github.com/xefino/goutils v1.1.43 h1:7o4KIq85HcLmepTg7/dhvpdou9JuatsYMuNdmA76u74=
-github.com/xefino/goutils v1.1.43/go.mod h1:EBjlgoZH/m6S3FCxrJ8rot438xgX/IHpaSqU1lv29Co=
+github.com/xefino/goutils v1.1.44 h1:YGzCZbnPjlYWi2032ddNY1moZxN0LcqAzBcg4rOQK2Q=
+github.com/xefino/goutils v1.1.44/go.mod h1:EBjlgoZH/m6S3FCxrJ8rot438xgX/IHpaSqU1lv29Co=
 github.com/xefino/protobuf-gen-go v1.3.7 h1:FHi+CzWPQ0X9PzJq4IewXjk14J26HYQb9o2jNaSwwgg=
 github.com/xefino/protobuf-gen-go v1.3.7/go.mod h1:oBDpwM3jgA4tiIOkUvsdYHqwMuo/9RFd7zfavk3P6Do=
 github.com/xefino/quantum-api-go v1.2.28 h1:WbuPWF66jp4sKJ1zdzNBlFti+Ofo5DAyMf5LFh4agVg=
